@@ -2,10 +2,11 @@
   "name": "maeng-design",
   "version": "1.0.0",
   "description": "Maeng Design is for building Design system with React, Typescript and Storybook",
-  "main": "build/index.js",
-  "module": "build/index.es.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "files": [
-    "build"
+    "es",
+    "lib"
   ],
   "scripts": {
     "build": "rollup -c",
@@ -24,8 +25,10 @@
     "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-image": "^2.1.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
+    "@rollup/plugin-url": "^6.1.0",
     "@storybook/addon-knobs": "^6.3.0",
     "@storybook/react": "^6.3.7",
+    "@svgr/rollup": "^5.5.0",
     "@types/react": "^17.0.18",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",

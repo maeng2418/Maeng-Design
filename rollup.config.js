@@ -1,25 +1,29 @@
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import resolve from "@rollup/plugin-node-resolve";
-import image from "@rollup/plugin-image";
-import commonjs from "@rollup/plugin-commonjs";
-import babel from "@rollup/plugin-babel";
-import typescript from "rollup-plugin-typescript2";
-import postcss from "rollup-plugin-postcss";
-const packageJson = require("./package.json");
-const extentions = ["js", "jsx", "ts", "tsx"];
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import resolve from '@rollup/plugin-node-resolve';
+import image from '@rollup/plugin-image';
+import commonjs from '@rollup/plugin-commonjs';
+import babel from '@rollup/plugin-babel';
+import typescript from 'rollup-plugin-typescript2';
+import postcss from 'rollup-plugin-postcss';
+import url from '@rollup/plugin-url';
+import svgr from '@svgr/rollup';
 
-export default {
-  input: "src/index.ts",
+const extentions = ['.js', '.jsx', '.ts', '.tsx'];
+
+const rollupConfig = {
+  input: 'src/index.ts',
   output: [
     {
-      file: packageJson.main,
-      format: "cjs",
+      dir: 'lib',
+      format: 'cjs',
       sourcemap: true,
+      exports: 'named',
     },
     {
-      file: packageJson.module,
-      format: "esm",
+      dir: 'es',
+      format: 'es',
       sourcemap: true,
+      exports: 'named',
     },
   ],
   plugins: [
@@ -27,15 +31,23 @@ export default {
     resolve({ extentions }),
     babel({
       extentions,
-      include: ["src/**/*"],
-      exclude: /node_modules/,
-      babelHelpers: "runtime",
+      include: ['src/**/*'],
+      exclude: 'node_modules/**',
+      babelHelpers: 'runtime',
     }),
     commonjs({
-      include: /node_modules/,
+      include: 'node_modules/**',
     }),
-    typescript({ useTsconfigDeclarationDir: true }),
+    typescript({
+      tsconfigDefaults: { compilerOptions: { declaration: true } },
+      tsconfig: 'tsconfig.json',
+    }),
     postcss(),
     image(),
+    url(),
+    svgr(),
   ],
+  preserveModules: true,
 };
+
+export default rollupConfig;
