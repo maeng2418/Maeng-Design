@@ -268,7 +268,6 @@ https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clik
       color: #690;
     }
 
-    .token.operator,
     .token.entity,
     .token.url,
     .language-css .token.string,

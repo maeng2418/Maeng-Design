@@ -413,9 +413,11 @@ const Text: React.FC<TextProps> = ({
     return (
       <>
         <Global styles={codeStyle} />
-        <pre className={`language-${code.language}`}>
-          <code className={`language-${code.language}`}>{children}</code>
-        </pre>
+        <span css={createStyle('gray13', false, false)} onClick={onClick}>
+          <pre className={`language-${code.language}`}>
+            <code className={`language-${code.language}`}>{children}</code>
+          </pre>
+        </span>
       </>
     );
 

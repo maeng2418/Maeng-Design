@@ -1,6 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import Typography from './index';
+import { languages } from 'prismjs';
 
 export default {
   title: 'Design System/Typography',
@@ -21,13 +22,25 @@ export const Template: Story = () => (
         프론트엔드 개발 자원을 지원하는 것을 목표로 하는 Maeng에 의해 개발되었습니다.
       </Typography.Text>
     </Typography.Paragraph>
+    <Typography.Title level={3}>코드 예시</Typography.Title>
+    <Typography.Paragraph code={{ language: 'javascript' }}>
+      {`
+        import React from 'react';
+        import Typography from 'maeng-design';
+
+        const Content = () => {
+          return (
+            <Typography>
+              <Typography.Title level={3}>타이포그래피</Typography.Title>
+              <Typography.Paragraph>
+                Maeng Design은 누구나 쉽고 간편하게 사용할 수 있도록 개발되었습니다.
+              </Typography.Paragraph>
+            </Typography>
+          )
+        }
+
+        export default Content;
+      `}
+    </Typography.Paragraph>
   </Typography>
 );
-
-// export const DefaultTypography = Template.bind({});
-// DefaultTypography.args = {
-//   // props를 넣어주세요.
-//   children: (
-
-//   ),
-// };
