@@ -8,7 +8,7 @@ export interface ButtonProps {
   color?: LightColorType | DarkColorType;
   size?: 'large' | 'medium' | 'small';
   shape?: 'default' | 'circle' | 'round';
-  type?: 'default' | 'primary' | 'dashed' | 'text' | 'link';
+  type?: 'default' | 'primary' | 'dashed' | 'text' | 'link' | 'outline';
   htmlType?: 'submit' | 'reset' | 'button';
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   disabled?: boolean;

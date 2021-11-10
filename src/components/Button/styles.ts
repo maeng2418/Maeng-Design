@@ -1,12 +1,13 @@
 import { css, Interpolation, Theme } from '@emotion/react';
-import { getColor, LightColorType, DarkColorType, ThemeMode } from '../../styles';
+import { getColor, ThemeMode } from '../../styles';
+import { ButtonProps } from './Button';
 
 const createStyle = (
-  color?: LightColorType | DarkColorType,
-  size?: 'large' | 'medium' | 'small',
-  shape?: 'default' | 'circle' | 'round',
-  type?: 'default' | 'primary' | 'dashed' | 'text' | 'link',
-  disabled?: boolean,
+  color?: ButtonProps['color'],
+  size?: ButtonProps['size'],
+  shape?: ButtonProps['shape'],
+  type?: ButtonProps['type'],
+  disabled?: ButtonProps['disabled'],
 ) => (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
   // color
   const primaryColor = getColor(theme, color, disabled, 'gray5');
@@ -17,7 +18,7 @@ const createStyle = (
     font-weight: 400;
     white-space: nowrap;
     text-align: center;
-    border: 1px solid transparent;
+    border: 1px solid ${getColor(theme, 'gray5')};
     box-sizing: border-box;
     box-shadow: 0 2px 0 rgb(0 0 0 / 2%);
     cursor: pointer;
@@ -29,7 +30,6 @@ const createStyle = (
     font-size: 14px;
     border-radius: 2px;
     color: ${getColor(theme, 'gray10')};
-    border-color: ${getColor(theme, 'gray5')};
     background: ${getColor(theme, 'gray1')};
 
     &:focus,
@@ -38,6 +38,7 @@ const createStyle = (
       color: ${primaryColor};
       border-color: ${primaryColor};
       background: ${getColor(theme, 'gray1')};
+      box-shadow: 0 0 8px 2px rgb(0 0 0 / 12%);
     }
 
     &[disabled] {
@@ -156,6 +157,11 @@ const createStyle = (
           border-color: transparent !important;
           background: transparent !important;
         }
+      `;
+    if (type === 'outline')
+      return css`
+        color: ${primaryColor};
+        border-color: ${primaryColor};
       `;
     return css``;
   };
