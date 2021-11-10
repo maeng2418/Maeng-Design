@@ -1,11 +1,11 @@
 import { css, Interpolation, Theme } from '@emotion/react';
-import { getColor, LightColorType, DarkColorType, ThemeMode } from '../../../styles';
-import { EllipsisOptions } from './Paragraph';
+import { getColor, ThemeMode } from '../../../styles';
+import { EllipsisOptions, ParagraphProps } from './Paragraph';
 
 const createStyle = (
-  color?: LightColorType | DarkColorType,
-  ellipsis?: boolean | EllipsisOptions,
-  disabled?: boolean,
+  color?: ParagraphProps['color'],
+  ellipsis?: ParagraphProps['ellipsis'],
+  disabled?: ParagraphProps['disabled'],
 ) => (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
   // color
   const primaryColor = getColor(theme, color, disabled, 'gray5');

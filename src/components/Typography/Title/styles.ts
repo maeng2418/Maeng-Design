@@ -1,12 +1,12 @@
 import { css, Interpolation, Theme } from '@emotion/react';
-import { getColor, LightColorType, DarkColorType, ThemeMode } from '../../../styles';
-import { EllipsisOptions } from './Title';
+import { getColor, ThemeMode } from '../../../styles';
+import { EllipsisOptions, TitleProps } from './Title';
 
 const createStyle = (
-  level?: 1 | 2 | 3 | 4 | 5,
-  color?: LightColorType | DarkColorType,
-  ellipsis?: boolean | EllipsisOptions,
-  disabled?: boolean,
+  level?: TitleProps['level'],
+  color?: TitleProps['color'],
+  ellipsis?: TitleProps['ellipsis'],
+  disabled?: TitleProps['disabled'],
 ) => (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
   // color
   const primaryColor = getColor(theme, color, disabled, 'gray5');
