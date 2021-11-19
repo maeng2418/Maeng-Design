@@ -17,7 +17,9 @@ export default {
 
 const Template: Story = (args) => (
   <Select {...args}>
-    <Option value={'1'}>1 번</Option>
+    <Option value={'1'} disabled>
+      1 번
+    </Option>
     <Option value={'3'}>3 번</Option>
   </Select>
 );

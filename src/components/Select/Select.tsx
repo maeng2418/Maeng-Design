@@ -10,7 +10,7 @@ import React, {
 } from 'react';
 import { CaretDownOutlined, CaretUpOutlined } from '..';
 import { DarkColorType, LightColorType } from '../../styles/colors';
-import createStyle from './styles';
+import createSelectStyle, { createOptionStyle } from './styles';
 
 export interface SelectProps {
   children:
@@ -48,8 +48,9 @@ const Select: React.FC<SelectProps> = ({
   }, [children, defaultValue]);
 
   const onSelectValue = useCallback(
-    (value: string | number) => (e: MouseEvent<HTMLDivElement>) => {
+    (value: string | number, disabled: boolean) => (e: MouseEvent<HTMLDivElement>) => {
       e.preventDefault();
+      if (disabled) return;
       setActive(false);
       setSelectedValue(value);
       onSelect && onSelect(value);
@@ -62,7 +63,7 @@ const Select: React.FC<SelectProps> = ({
   }, [disabled]);
 
   return (
-    <div css={createStyle(active, color, size, disabled, optionStyle)} onBlur={onSetActive}>
+    <div css={createSelectStyle(active, color, size, disabled)} onBlur={onSetActive}>
       <div className="input-box" onClick={onSetActive}>
         <input
           type="text"
@@ -75,11 +76,12 @@ const Select: React.FC<SelectProps> = ({
       </div>
       <div className="option-list">
         {React.Children.map(children, (child: React.ReactElement) => {
-          const { value } = child.props;
+          const { value, disabled: optionDisabled } = child.props;
           return (
             <div
               className={`option-item ${selectedValue === value ? 'selected' : ''}`}
-              onClick={onSelectValue(value)}
+              onClick={onSelectValue(value, optionDisabled)}
+              css={createOptionStyle(color, size, optionDisabled, optionStyle)}
             >
               {child}
             </div>

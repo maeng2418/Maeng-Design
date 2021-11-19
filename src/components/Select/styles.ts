@@ -3,20 +3,14 @@ import { getColor, ThemeMode } from '../../styles';
 import { STRING_REGEX } from '../../utils/regex';
 import { SelectProps } from './Select';
 
-const createStyle = (
+const createSelectStyle = (
   active: boolean,
   color?: SelectProps['color'],
   size?: SelectProps['size'],
   disabled?: SelectProps['disabled'],
-  option?: SelectProps['optionStyle'],
 ) => (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
   // color
   const primaryColor = getColor(theme, color, disabled, 'gray5');
-  const subColor = (function () {
-    const SUB_COLOR_IDX = 1;
-    const sub = `${color?.replace(STRING_REGEX, '')}${SUB_COLOR_IDX}` as SelectProps['color'];
-    return getColor(theme, sub, disabled, 'gray5');
-  })();
 
   // default
   const defaultStyle = css`
@@ -106,22 +100,6 @@ const createStyle = (
         transform: translateY(-100%);
       }
     }
-    & > div.option-list .option-item {
-      display: flex;
-      align-items: center;
-      min-height: 32px;
-      line-height: 22px;
-      font-size: 14px;
-      padding: 4px 15px;
-      &:hover {
-        background-color: ${getColor(theme, 'gray3')};
-      }
-      &.selected {
-        font-weight: 600;
-        background-color: ${subColor};
-      }
-      ${option}
-    }
 
     ${active &&
     css`
@@ -136,18 +114,16 @@ const createStyle = (
   const getSize = () => {
     if (size === 'large')
       return css`
-        & > div.input-box > input,
-        & > div.option-list .option-item {
+        & > div.input-box > input {
           font-size: 16px;
-          height: 32 px;
+          height: 32px;
           line-height: 32px;
         }
       `;
     if (size === 'small')
       return css`
-        & > div.input-box > input,
-        & > div.option-list .option-item {
-          height: 16 px;
+        & > div.input-box > input {
+          height: 16px;
           line-height: 14px;
         }
       `;
@@ -181,4 +157,63 @@ const createStyle = (
   return [defaultStyle, optionStyle, getSize(), getDisabled()];
 };
 
-export default createStyle;
+export const createOptionStyle = (
+  color?: SelectProps['color'],
+  size?: SelectProps['size'],
+  disabled?: SelectProps['disabled'],
+  option?: SelectProps['optionStyle'],
+) => (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
+  const subColor = (function () {
+    const SUB_COLOR_IDX = 1;
+    const sub = `${color?.replace(STRING_REGEX, '')}${SUB_COLOR_IDX}` as SelectProps['color'];
+    return getColor(theme, sub, disabled, 'gray5');
+  })();
+
+  // default
+  const defaultStyle = css`
+    display: flex;
+    align-items: center;
+    min-height: 32px;
+    line-height: 22px;
+    font-size: 14px;
+    padding: 4px 15px;
+    &:hover {
+      background-color: ${getColor(theme, 'gray3')};
+    }
+    &.selected {
+      font-weight: 600;
+      background-color: ${subColor};
+    }
+  `;
+  const getDisabled = () => {
+    if (disabled)
+      return css`
+        cursor: not-allowed !important;
+        color: ${getColor(theme, 'gray6')} !important;
+        background: ${getColor(theme, 'gray1')} !important;
+        border-color: ${getColor(theme, 'gray5')} !important;
+        text-shadow: none !important;
+        box-shadow: none !important;
+      `;
+    return css``;
+  };
+
+  // size
+  const getSize = () => {
+    if (size === 'large')
+      return css`
+        font-size: 16px;
+        height: 32px;
+        line-height: 32px;
+      `;
+    if (size === 'small')
+      return css`
+        height: 16px;
+        line-height: 14px;
+      `;
+    return css``;
+  };
+  return [defaultStyle, getSize(), getDisabled(), option];
+};
+
+export default createSelectStyle;
