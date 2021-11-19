@@ -24,11 +24,11 @@ const createStyle = (
     display: flex;
     color: ${getColor(theme, 'gray10')};
 
-    & > div.selected > svg {
+    & > div.input-box > svg {
       fill: ${getColor(theme, 'gray7')};
     }
 
-    & > div.selected {
+    & > div.input-box {
       border: 1px solid ${getColor(theme, 'gray5')};
       border-radius: 2px;
       width: 100%;
@@ -53,7 +53,7 @@ const createStyle = (
       }
     }
 
-    & > div.selected {
+    & > div.input-box {
       ${active &&
       css`
         color: ${getColor(theme, 'gray6')};
@@ -114,6 +114,9 @@ const createStyle = (
       font-size: 14px;
       padding: 4px 15px;
       &:hover {
+        background-color: ${getColor(theme, 'gray3')};
+      }
+      &.selected {
         font-weight: 600;
         background-color: ${subColor};
       }
@@ -133,7 +136,7 @@ const createStyle = (
   const getSize = () => {
     if (size === 'large')
       return css`
-        & > div.selected > input,
+        & > div.input-box > input,
         & > div.option-list .option-item {
           font-size: 16px;
           height: 32 px;
@@ -142,7 +145,7 @@ const createStyle = (
       `;
     if (size === 'small')
       return css`
-        & > div.selected > input,
+        & > div.input-box > input,
         & > div.option-list .option-item {
           height: 16 px;
           line-height: 14px;
@@ -155,8 +158,8 @@ const createStyle = (
   const getDisabled = () => {
     if (disabled) {
       return css`
-        & > div.selected,
-        & > div.selected > input[disabled] {
+        & > div.input-box,
+        & > div.input-box > input[disabled] {
           cursor: not-allowed !important;
           background: ${getColor(theme, 'gray3')} !important;
 

@@ -63,7 +63,7 @@ const Select: React.FC<SelectProps> = ({
 
   return (
     <div css={createStyle(active, color, size, disabled, optionStyle)} onBlur={onSetActive}>
-      <div className="selected" onClick={onSetActive}>
+      <div className="input-box" onClick={onSetActive}>
         <input
           type="text"
           readOnly
@@ -77,7 +77,10 @@ const Select: React.FC<SelectProps> = ({
         {React.Children.map(children, (child: React.ReactElement) => {
           const { value } = child.props;
           return (
-            <div className={`option-item ${value}`} onClick={onSelectValue(value)}>
+            <div
+              className={`option-item ${selectedValue === value ? 'selected' : ''}`}
+              onClick={onSelectValue(value)}
+            >
               {child}
             </div>
           );
