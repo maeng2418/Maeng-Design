@@ -32,6 +32,7 @@ const createSelectStyle = (
       cursor: pointer;
 
       & > input {
+        cursor: pointer;
         line-height: 22px;
         padding: 4px 15px;
         font-size: 14px;
@@ -39,6 +40,7 @@ const createSelectStyle = (
         border: none;
         outline: none;
         margin: 0;
+        text-overflow: ellipsis;
       }
 
       & > svg {
@@ -177,6 +179,11 @@ export const createOptionStyle = (
     line-height: 22px;
     font-size: 14px;
     padding: 4px 15px;
+
+    & > div {
+      text-overflow: ellipsis;
+    }
+
     &:hover {
       background-color: ${getColor(theme, 'gray3')};
     }
@@ -185,6 +192,8 @@ export const createOptionStyle = (
       background-color: ${subColor};
     }
   `;
+
+  // disabled
   const getDisabled = () => {
     if (disabled)
       return css`

@@ -17,10 +17,14 @@ export default {
 
 const Template: Story = (args) => (
   <Select {...args}>
-    <Option value={'1'} disabled>
-      1 번
+    <Option
+      value={'dsfhwefhwlehfw jj wefhwhefiuwe w wiehfwbefw bej wbfjwbef jwb dsdfwe sfwef we wef wfe'}
+    >
+      dsfhwefhwlehfw jj wefhwhefiuwe w wiehfwbefw bej wbfjwbef jwb dsdfwe sfwef we wef wfe
     </Option>
-    <Option value={'3'}>3 번</Option>
+    <Option value={'3'} disabled>
+      3 번
+    </Option>
   </Select>
 );
 
