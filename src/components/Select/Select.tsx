@@ -6,6 +6,7 @@ import React, {
   ReactElement,
   useCallback,
   useEffect,
+  useMemo,
   useState,
 } from 'react';
 import { CaretDownOutlined, CaretUpOutlined } from '..';
@@ -17,8 +18,10 @@ export interface SelectProps {
     | ReactElement<any, string | JSXElementConstructor<any>>
     | readonly ReactElement<any, string | JSXElementConstructor<any>>[];
   onSelect?: (value: string | number) => void;
+  onChange?: (value: (string | number)[]) => void;
+  multiple?: boolean;
   placeholder?: string;
-  defaultValue?: string | number;
+  defaultValue?: string | number | (string | number)[];
   size?: 'large' | 'medium' | 'small';
   color?: LightColorType | DarkColorType;
   disabled?: boolean;
@@ -28,6 +31,8 @@ export interface SelectProps {
 const Select: React.FC<SelectProps> = ({
   children,
   onSelect,
+  onChange,
+  multiple = false,
   placeholder = 'Select',
   defaultValue,
   size = 'medium',
@@ -35,43 +40,68 @@ const Select: React.FC<SelectProps> = ({
   disabled = false,
   optionStyle,
 }) => {
-  const [selectedValue, setSelectedValue] = useState<SelectProps['defaultValue']>(defaultValue);
+  const [selectedValue, setSelectedValue] = useState<string | number>();
+  const [multiSelectedValue, setMultiSelectedValue] = useState<(string | number)[]>([]);
   const [active, setActive] = useState<boolean>(false);
 
   useEffect(() => {
-    React.Children.forEach(children, (child: React.ReactElement) => {
-      const { value } = child.props;
-      if (value === defaultValue) {
-        setSelectedValue(defaultValue);
-      }
-    });
-  }, [children, defaultValue]);
+    if (multiple) {
+      setSelectedValue(defaultValue as string | number);
+    } else {
+      setMultiSelectedValue((defaultValue as (string | number)[]) || []);
+    }
+  }, [multiple, defaultValue]);
 
   const onSelectValue = useCallback(
     (value: string | number, disabled: boolean) => (e: MouseEvent<HTMLDivElement>) => {
       e.preventDefault();
       if (disabled) return;
-      setActive(false);
-      setSelectedValue(value);
+      if (multiple) {
+        setMultiSelectedValue([...multiSelectedValue, value]);
+      } else {
+        setSelectedValue(value);
+        setActive(false);
+      }
       onSelect && onSelect(value);
     },
-    [],
+    [multiple, multiSelectedValue],
   );
 
   const onSetActive = useCallback(() => {
     !disabled && setActive((prev) => !prev);
   }, [disabled]);
 
+  const values = useMemo(() => {
+    if (multiple && multiSelectedValue.length > 0) return multiSelectedValue.join(', ');
+    if (multiple) return undefined;
+    return selectedValue;
+  }, [multiple, selectedValue, multiSelectedValue]);
+
+  useEffect(() => {
+    console.log(selectedValue);
+    console.log(multiSelectedValue);
+  }, [selectedValue, multiSelectedValue]);
+
   return (
     <div css={createSelectStyle(active, color, size, disabled)} onBlur={onSetActive}>
       <div className="input-box" onClick={onSetActive}>
-        <input
-          type="text"
-          readOnly
-          value={selectedValue}
-          placeholder={placeholder}
-          disabled={disabled}
-        />
+        {multiple ? (
+          <input
+            type="text"
+            readOnly
+            value={values}
+            placeholder={placeholder}
+            disabled={disabled}
+          />
+        ) : (
+          <input
+            type="text"
+            readOnly
+            value={values}
+            placeholder={placeholder}
+            disabled={disabled}
+          />
+        )}
         {active ? <CaretUpOutlined /> : <CaretDownOutlined />}
       </div>
       <div className="option-list">
