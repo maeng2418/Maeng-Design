@@ -84,23 +84,7 @@ const Select: React.FC<SelectProps> = ({
   return (
     <div css={createSelectStyle(active, color, size, disabled)} onBlur={onSetActive}>
       <div className="input-box" onClick={onSetActive}>
-        {multiple ? (
-          <input
-            type="text"
-            readOnly
-            value={values}
-            placeholder={placeholder}
-            disabled={disabled}
-          />
-        ) : (
-          <input
-            type="text"
-            readOnly
-            value={values}
-            placeholder={placeholder}
-            disabled={disabled}
-          />
-        )}
+        <input type="text" readOnly value={values} placeholder={placeholder} disabled={disabled} />
         {active ? <CaretUpOutlined /> : <CaretDownOutlined />}
       </div>
       <div className="option-list">
