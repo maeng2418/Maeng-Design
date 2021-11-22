@@ -46,9 +46,9 @@ const Select: React.FC<SelectProps> = ({
 
   useEffect(() => {
     if (multiple) {
-      setSelectedValue(defaultValue as string | number);
-    } else {
       setMultiSelectedValue((defaultValue as (string | number)[]) || []);
+    } else {
+      setSelectedValue(defaultValue as string | number);
     }
   }, [multiple, defaultValue]);
 
@@ -78,7 +78,7 @@ const Select: React.FC<SelectProps> = ({
   const values = useMemo(() => {
     if (multiple && multiSelectedValue.length > 0) return multiSelectedValue.join(', ');
     if (multiple) return '';
-    return selectedValue;
+    return selectedValue || '';
   }, [multiple, selectedValue, multiSelectedValue]);
 
   return (
