@@ -44,11 +44,8 @@ const createStyle = (color?: TagProps['color']) => (
   // default
   const defaultStyle = css`
     box-sizing: border-box;
-    margin: 0 8px 8px 0;
     color: ${getColor(theme, tagColor as LightColorType | DarkColorType)};
-    font-size: 14px;
     font-variant: tabular-nums;
-    line-height: 1.5715;
     list-style: none;
     font-feature-settings: 'tnum';
     display: inline-block;

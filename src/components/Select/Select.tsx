@@ -18,7 +18,7 @@ export interface SelectProps {
     | ReactElement<any, string | JSXElementConstructor<any>>
     | readonly ReactElement<any, string | JSXElementConstructor<any>>[];
   onSelect?: (value: string | number) => void;
-  onChange?: (value: (string | number)[]) => void;
+  onChange?: (value: (string | number)[] | string | number) => void;
   multiple?: boolean;
   placeholder?: string;
   defaultValue?: string | number | (string | number)[];
@@ -52,6 +52,13 @@ const Select: React.FC<SelectProps> = ({
     }
   }, [multiple, defaultValue]);
 
+  const onSetActive = useCallback(
+    (value: boolean) => () => {
+      !disabled && setActive(value);
+    },
+    [disabled],
+  );
+
   const onSelectValue = useCallback(
     (value: string | number, disabled: boolean) => (e: MouseEvent<HTMLDivElement>) => {
       e.preventDefault();
@@ -64,16 +71,13 @@ const Select: React.FC<SelectProps> = ({
       }
       if (!multiple) {
         setSelectedValue(value);
-        setActive(false);
+        onSetActive(false);
       }
       onSelect && onSelect(value);
+      onChange && onChange(multiple ? multiSelectedValue : selectedValue);
     },
-    [multiple, multiSelectedValue, onSelect],
+    [multiple, multiSelectedValue, selectedValue, onSelect, onChange, onSetActive],
   );
-
-  const onSetActive = useCallback(() => {
-    !disabled && setActive((prev) => !prev);
-  }, [disabled]);
 
   const values = useMemo(() => {
     if (multiple && multiSelectedValue.length > 0) return multiSelectedValue.join(', ');
@@ -82,8 +86,8 @@ const Select: React.FC<SelectProps> = ({
   }, [multiple, selectedValue, multiSelectedValue]);
 
   return (
-    <div css={createSelectStyle(active, color, size, disabled)} onBlur={onSetActive}>
-      <div className="input-box" onClick={onSetActive}>
+    <div css={createSelectStyle(active, color, size, disabled)} onBlur={onSetActive(false)}>
+      <div className="input-box" onClick={onSetActive(true)}>
         <input type="text" readOnly value={values} placeholder={placeholder} disabled={disabled} />
         {active ? <CaretUpOutlined /> : <CaretDownOutlined />}
       </div>
@@ -91,10 +95,10 @@ const Select: React.FC<SelectProps> = ({
         {React.Children.map(children, (child: React.ReactElement) => {
           const { value, disabled: optionDisabled } = child.props;
           const selectedTag = (function () {
-            if (multiple && multiSelectedValue.includes(value)) {
-              return 'selected';
-            }
-            if (!multiple && selectedValue === value) {
+            if (
+              (multiple && multiSelectedValue.includes(value)) ||
+              (!multiple && selectedValue === value)
+            ) {
               return 'selected';
             }
             return '';
