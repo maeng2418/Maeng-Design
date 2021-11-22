@@ -49,7 +49,7 @@ const createStyle = (color?: TagProps['color']) => (
     list-style: none;
     font-feature-settings: 'tnum';
     display: inline-block;
-    height: auto;
+    height: 20px;
     padding: 0 7px;
     font-size: 12px;
     line-height: 20px;
@@ -59,6 +59,13 @@ const createStyle = (color?: TagProps['color']) => (
     border-radius: 2px;
     opacity: 1;
     transition: all 0.3s;
+
+    & > svg {
+      font-size: 10px;
+      vertical-align: -0.125em;
+      margin-left: 5px;
+      fill: ${getColor(theme, tagColor as LightColorType | DarkColorType)};
+    }
   `;
 
   return [defaultStyle];
