@@ -40,7 +40,7 @@ const Select: React.FC<SelectProps> = ({
   disabled = false,
   optionStyle,
 }) => {
-  const [selectedValue, setSelectedValue] = useState<string | number>();
+  const [selectedValue, setSelectedValue] = useState<string | number>('');
   const [multiSelectedValue, setMultiSelectedValue] = useState<(string | number)[]>([]);
   const [active, setActive] = useState<boolean>(false);
 
@@ -56,15 +56,19 @@ const Select: React.FC<SelectProps> = ({
     (value: string | number, disabled: boolean) => (e: MouseEvent<HTMLDivElement>) => {
       e.preventDefault();
       if (disabled) return;
-      if (multiple) {
+      if (multiple && !multiSelectedValue.includes(value)) {
         setMultiSelectedValue([...multiSelectedValue, value]);
-      } else {
+      }
+      if (multiple && multiSelectedValue.includes(value)) {
+        setMultiSelectedValue(multiSelectedValue.filter((v) => v !== value));
+      }
+      if (!multiple) {
         setSelectedValue(value);
         setActive(false);
       }
       onSelect && onSelect(value);
     },
-    [multiple, multiSelectedValue],
+    [multiple, multiSelectedValue, onSelect],
   );
 
   const onSetActive = useCallback(() => {
@@ -73,14 +77,9 @@ const Select: React.FC<SelectProps> = ({
 
   const values = useMemo(() => {
     if (multiple && multiSelectedValue.length > 0) return multiSelectedValue.join(', ');
-    if (multiple) return undefined;
+    if (multiple) return '';
     return selectedValue;
   }, [multiple, selectedValue, multiSelectedValue]);
-
-  useEffect(() => {
-    console.log(selectedValue);
-    console.log(multiSelectedValue);
-  }, [selectedValue, multiSelectedValue]);
 
   return (
     <div css={createSelectStyle(active, color, size, disabled)} onBlur={onSetActive}>
@@ -107,9 +106,18 @@ const Select: React.FC<SelectProps> = ({
       <div className="option-list">
         {React.Children.map(children, (child: React.ReactElement) => {
           const { value, disabled: optionDisabled } = child.props;
+          const selectedTag = (function () {
+            if (multiple && multiSelectedValue.includes(value)) {
+              return 'selected';
+            }
+            if (!multiple && selectedValue === value) {
+              return 'selected';
+            }
+            return '';
+          })();
           return (
             <div
-              className={`option-item ${selectedValue === value ? 'selected' : ''}`}
+              className={`option-item ${selectedTag}`}
               onClick={onSelectValue(value, optionDisabled)}
               css={createOptionStyle(color, size, optionDisabled, optionStyle)}
             >

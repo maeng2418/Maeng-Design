@@ -86,6 +86,7 @@ const createSelectStyle = (
       right: 0;
       opacity: 1;
       visibility: hidden;
+      background-color: ${getColor(theme, 'gray1')};
       transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
       transform: translateY(10px);
       box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
