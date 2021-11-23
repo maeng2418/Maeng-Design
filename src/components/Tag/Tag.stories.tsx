@@ -18,5 +18,4 @@ const Template: Story = (args) => (
 export const DefaultTag = Template.bind({});
 DefaultTag.args = {
   // props를 넣어주세요.
-  color: 'orange',
 } as TagProps;

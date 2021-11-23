@@ -29,17 +29,24 @@ const createStyle = (color?: TagProps['color']) => (
     return presetColors.includes(color as TagColorType);
   };
 
-  const tagColor = isPresetColor(color)
-    ? `${color?.replace(STRING_REGEX, '')}${PRESET_COLOR_IDX}`
-    : 'gray1';
+  const tagColor = (function () {
+    if (isPresetColor(color)) return `${color?.replace(STRING_REGEX, '')}${PRESET_COLOR_IDX}`;
+    if (color) return 'gray1';
+    return 'gray13';
+  })();
 
-  const bgColor = isPresetColor(color)
-    ? `${color?.replace(STRING_REGEX, '')}${PRESET_BG_COLOR_IDX}`
-    : color;
+  const bgColor = (function () {
+    if (isPresetColor(color)) return `${color?.replace(STRING_REGEX, '')}${PRESET_BG_COLOR_IDX}`;
+    if (color) return color;
+    return 'gray3';
+  })();
 
-  const borderColor = isPresetColor(color)
-    ? `${color?.replace(STRING_REGEX, '')}${PRESET_BORDER_COLOR_IDX}`
-    : 'gray5';
+  const borderColor = (function () {
+    if (isPresetColor(color))
+      return `${color?.replace(STRING_REGEX, '')}${PRESET_BORDER_COLOR_IDX}`;
+    if (color) return 'gray5';
+    return 'gray4';
+  })();
 
   // default
   const defaultStyle = css`
@@ -63,8 +70,14 @@ const createStyle = (color?: TagProps['color']) => (
     & > svg {
       font-size: 10px;
       vertical-align: -0.125em;
-      margin-left: 5px;
+      margin: 0 5px;
       fill: ${getColor(theme, tagColor as LightColorType | DarkColorType)};
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
     }
   `;
 
