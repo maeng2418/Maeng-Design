@@ -31,7 +31,8 @@ const createSelectStyle = (
       justify-content: space-between;
       cursor: pointer;
 
-      & > input {
+      & > input,
+      & > div.input {
         cursor: pointer;
         line-height: 22px;
         padding: 4px 15px;

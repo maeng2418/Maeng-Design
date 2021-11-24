@@ -1,11 +1,4 @@
-import Option from './Option';
-import OriginSelect from './Select';
-
-export type SelectProps = typeof OriginSelect & {
-  Option: typeof Option;
-};
-
-const Select = OriginSelect as SelectProps;
-Select.Option = Option;
+import Select from './Select';
+export { default as Option } from './Option';
 
 export default Select;

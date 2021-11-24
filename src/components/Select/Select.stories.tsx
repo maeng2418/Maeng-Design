@@ -34,4 +34,5 @@ DefaultSelect.args = {
   placeholder: '선택해주세요',
   disabled: false,
   multiple: false,
+  tagRender: false,
 } as SelectProps;

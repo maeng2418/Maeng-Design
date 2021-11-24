@@ -12,6 +12,7 @@ import React, {
 import { CaretDownOutlined, CaretUpOutlined } from '..';
 import { DarkColorType, LightColorType } from '../../styles/colors';
 import createSelectStyle, { createOptionStyle } from './styles';
+import TagRenderer from './TagRenderer';
 
 export interface SelectProps {
   children:
@@ -26,6 +27,7 @@ export interface SelectProps {
   color?: LightColorType | DarkColorType;
   disabled?: boolean;
   optionStyle?: SerializedStyles;
+  tagRender?: boolean;
 }
 
 const Select: React.FC<SelectProps> = ({
@@ -39,6 +41,7 @@ const Select: React.FC<SelectProps> = ({
   color = 'blue6',
   disabled = false,
   optionStyle,
+  tagRender = false,
 }) => {
   const [selectedValue, setSelectedValue] = useState<string | number>('');
   const [multiSelectedValue, setMultiSelectedValue] = useState<(string | number)[]>([]);
@@ -85,10 +88,30 @@ const Select: React.FC<SelectProps> = ({
     return selectedValue || '';
   }, [multiple, selectedValue, multiSelectedValue]);
 
+  const onDeselect = useCallback(
+    (value: string | number) => () => {
+      setMultiSelectedValue(multiSelectedValue.filter((v) => v !== value));
+    },
+    [multiSelectedValue],
+  );
+
   return (
     <div css={createSelectStyle(active, color, size, disabled)} onBlur={onSetActive(false)}>
       <div className="input-box" onClick={onSetActive(true)}>
-        <input type="text" readOnly value={values} placeholder={placeholder} disabled={disabled} />
+        {tagRender ? (
+          <TagRenderer
+            onDeselect={onDeselect}
+            selectedValue={multiple ? multiSelectedValue : selectedValue}
+          />
+        ) : (
+          <input
+            type="text"
+            readOnly
+            value={values}
+            placeholder={placeholder}
+            disabled={disabled}
+          />
+        )}
         {active ? <CaretUpOutlined /> : <CaretDownOutlined />}
       </div>
       <div className="option-list">
