@@ -5,11 +5,18 @@ import { CloseOutlined, Tag } from '..';
 interface TagRendererProps {
   selectedValue?: (string | number)[] | string | number;
   onDeselect: (value: string | number) => () => void;
+  placeholder?: string;
+  disabled?: boolean;
 }
 
-const TagRenderer: React.FC<TagRendererProps> = ({ selectedValue, onDeselect }) => {
+const TagRenderer: React.FC<TagRendererProps> = ({
+  selectedValue,
+  onDeselect,
+  placeholder,
+  disabled,
+}) => {
   if (Array.isArray(selectedValue)) {
-    return (
+    return selectedValue.length > 0 ? (
       <div className="input">
         {selectedValue.map((v) => (
           <Tag key={uuidv4()}>
@@ -18,6 +25,8 @@ const TagRenderer: React.FC<TagRendererProps> = ({ selectedValue, onDeselect }) 
           </Tag>
         ))}
       </div>
+    ) : (
+      <input type="text" readOnly placeholder={placeholder} disabled={disabled} />
     );
   } else if (selectedValue) {
     return (
@@ -26,7 +35,7 @@ const TagRenderer: React.FC<TagRendererProps> = ({ selectedValue, onDeselect }) 
       </div>
     );
   }
-  return <></>;
+  return <input type="text" readOnly placeholder={placeholder} disabled={disabled} />;
 };
 
 export default TagRenderer;

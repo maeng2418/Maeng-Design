@@ -55,31 +55,26 @@ const Select: React.FC<SelectProps> = ({
     }
   }, [multiple, defaultValue]);
 
-  const onSetActive = useCallback(
-    (value: boolean) => () => {
-      !disabled && setActive(value);
-    },
-    [disabled],
-  );
-
   const onSelectValue = useCallback(
     (value: string | number, disabled: boolean) => (e: MouseEvent<HTMLDivElement>) => {
       e.preventDefault();
       if (disabled) return;
       if (multiple && !multiSelectedValue.includes(value)) {
         setMultiSelectedValue([...multiSelectedValue, value]);
+        setActive(true);
       }
       if (multiple && multiSelectedValue.includes(value)) {
         setMultiSelectedValue(multiSelectedValue.filter((v) => v !== value));
+        setActive(true);
       }
       if (!multiple) {
         setSelectedValue(value);
-        onSetActive(false);
+        setActive(false);
       }
       onSelect && onSelect(value);
       onChange && onChange(multiple ? multiSelectedValue : selectedValue);
     },
-    [multiple, multiSelectedValue, selectedValue, onSelect, onChange, onSetActive],
+    [multiSelectedValue, multiple, onChange, onSelect, selectedValue],
   );
 
   const values = useMemo(() => {
@@ -90,18 +85,32 @@ const Select: React.FC<SelectProps> = ({
 
   const onDeselect = useCallback(
     (value: string | number) => () => {
-      setMultiSelectedValue(multiSelectedValue.filter((v) => v !== value));
+      !disabled && setMultiSelectedValue(multiSelectedValue.filter((v) => v !== value));
     },
-    [multiSelectedValue],
+    [disabled, multiSelectedValue],
+  );
+
+  const onSetActive = useCallback(
+    (value: boolean) => () => {
+      !disabled && setActive(value);
+    },
+    [disabled],
   );
 
   return (
-    <div css={createSelectStyle(active, color, size, disabled)} onBlur={onSetActive(false)}>
+    <div
+      className="select"
+      css={createSelectStyle(active, color, size, disabled)}
+      tabIndex={0}
+      onBlur={onSetActive(false)}
+    >
       <div className="input-box" onClick={onSetActive(true)}>
         {tagRender ? (
           <TagRenderer
             onDeselect={onDeselect}
             selectedValue={multiple ? multiSelectedValue : selectedValue}
+            placeholder={placeholder}
+            disabled={disabled}
           />
         ) : (
           <input

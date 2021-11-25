@@ -66,6 +66,11 @@ const createStyle = (color?: TagProps['color']) => (
     border-radius: 2px;
     opacity: 1;
     transition: all 0.3s;
+    margin-right: 5px;
+
+    &:last-child {
+      margin-right: 0;
+    }
 
     & > svg {
       font-size: 10px;

@@ -118,7 +118,8 @@ const createSelectStyle = (
   const getSize = () => {
     if (size === 'large')
       return css`
-        & > div.input-box > input {
+        & > div.input-box > input,
+        & > div.input-box > .input {
           font-size: 16px;
           height: 32px;
           line-height: 32px;
@@ -126,7 +127,8 @@ const createSelectStyle = (
       `;
     if (size === 'small')
       return css`
-        & > div.input-box > input {
+        & > div.input-box > input,
+        & > div.input-box > .input {
           height: 16px;
           line-height: 14px;
         }
@@ -139,9 +141,14 @@ const createSelectStyle = (
     if (disabled) {
       return css`
         & > div.input-box,
-        & > div.input-box > input[disabled] {
+        & > div.input-box > input[disabled],
+        & > div.input-box > div.input {
           cursor: not-allowed !important;
           background: ${getColor(theme, 'gray3')} !important;
+
+          & > span {
+            border: 1px solid ${getColor(theme, 'gray5')} !important;
+          }
 
           &:focus,
           &:active,
