@@ -27,18 +27,31 @@ const TagRenderer: React.FC<TagRendererProps> = ({
       const containerWidth = containerRef.current?.clientWidth || 0;
       let tagListWidth = 0;
       let maxIndex = 0;
+
       (containerRef.current?.childNodes as NodeListOf<HTMLSpanElement>)?.forEach(
         (tag: HTMLSpanElement, idx: number) => {
+          console.log(idx);
+          console.log(tag);
+          console.log(tag.clientWidth);
           if (
+            !tag.closest('.ellipsis') &&
             tagListWidth + tag.clientWidth <=
-            containerWidth - CONTAINER_PADDING_SIZE * 2 - GAP_SIZE * maxIndex - CARET_ICON_SIZE
+              containerWidth - CONTAINER_PADDING_SIZE * 2 - GAP_SIZE * maxIndex - CARET_ICON_SIZE
           ) {
             tagListWidth += tag.clientWidth;
             maxIndex = idx;
           }
+          if (
+            tag.closest('.ellipsis') &&
+            tagListWidth + tag.clientWidth >
+              containerWidth - CONTAINER_PADDING_SIZE * 2 - GAP_SIZE * maxIndex - CARET_ICON_SIZE
+          ) {
+            maxIndex -= 1;
+          }
         },
       );
       setMax(maxIndex);
+      console.log(maxIndex);
     }
   }, [selectedValue]);
 
@@ -62,6 +75,9 @@ const TagRenderer: React.FC<TagRendererProps> = ({
             <CloseOutlined onClick={onDeselect(v)} />
           </Tag>
         ))}
+        {selectedValue.length > max + 1 && (
+          <div className="ellipsis">{`+ ${selectedValue.length - (max + 1)}`}</div>
+        )}
       </div>
     ) : (
       <input type="text" readOnly placeholder={placeholder} disabled={disabled} />
