@@ -22,10 +22,15 @@ export interface TagProps {
   children?: React.ReactNode;
   color?: LightColorType | DarkColorType | TagColorType;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
+  style?: React.CSSProperties;
 }
 
-const Tag: React.FC<TagProps> = ({ children, color }) => {
-  return <span css={createStyle(color)}>{children}</span>;
+const Tag: React.FC<TagProps> = ({ children, color, style }) => {
+  return (
+    <span css={createStyle(color)} style={style}>
+      {children}
+    </span>
+  );
 };
 
 export default Tag;
