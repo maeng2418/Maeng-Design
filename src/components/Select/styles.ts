@@ -44,6 +44,12 @@ const createSelectStyle = (
         text-overflow: ellipsis;
       }
 
+      & > div.input {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+
       & > svg {
         position: absolute;
         right: 10px;

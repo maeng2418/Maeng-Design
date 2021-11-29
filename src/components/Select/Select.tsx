@@ -84,7 +84,8 @@ const Select: React.FC<SelectProps> = ({
   }, [multiple, selectedValue, multiSelectedValue]);
 
   const onDeselect = useCallback(
-    (value: string | number) => () => {
+    (value: string | number): React.MouseEventHandler<SVGSVGElement> => (e) => {
+      e.stopPropagation();
       !disabled && setMultiSelectedValue(multiSelectedValue.filter((v) => v !== value));
     },
     [disabled, multiSelectedValue],
@@ -104,7 +105,7 @@ const Select: React.FC<SelectProps> = ({
       tabIndex={0}
       onBlur={onSetActive(false)}
     >
-      <div className="input-box" onClick={onSetActive(true)}>
+      <div className="input-box" onClick={onSetActive(!active)}>
         {tagRender ? (
           <TagRenderer
             onDeselect={onDeselect}

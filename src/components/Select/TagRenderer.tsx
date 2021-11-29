@@ -4,7 +4,7 @@ import { CloseOutlined, Tag } from '..';
 
 interface TagRendererProps {
   selectedValue?: (string | number)[] | string | number;
-  onDeselect: (value: string | number) => () => void;
+  onDeselect: (value: string | number) => React.MouseEventHandler<SVGSVGElement>;
   placeholder?: string;
   disabled?: boolean;
 }
