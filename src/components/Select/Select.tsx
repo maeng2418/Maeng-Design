@@ -56,7 +56,7 @@ const Select: React.FC<SelectProps> = ({
   }, [multiple, defaultValue]);
 
   const onSelectValue = useCallback(
-    (value: string | number, disabled: boolean) => (e: MouseEvent<HTMLDivElement>) => {
+    (value: string | number, disabled: boolean) => (e: MouseEvent<HTMLLIElement>) => {
       e.preventDefault();
       if (disabled) return;
       if (multiple && !multiSelectedValue.includes(value)) {
@@ -124,7 +124,7 @@ const Select: React.FC<SelectProps> = ({
         )}
         {active ? <CaretUpOutlined /> : <CaretDownOutlined />}
       </div>
-      <div className="option-list">
+      <ul className="option-list">
         {React.Children.map(children, (child: React.ReactElement) => {
           const { value, disabled: optionDisabled } = child.props;
           const selectedTag = (function () {
@@ -137,16 +137,16 @@ const Select: React.FC<SelectProps> = ({
             return '';
           })();
           return (
-            <div
+            <li
               className={`option-item ${selectedTag}`}
               onClick={onSelectValue(value, optionDisabled)}
               css={createOptionStyle(color, size, optionDisabled, optionStyle)}
             >
               {child}
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 };

@@ -89,7 +89,9 @@ const createSelectStyle = (
 
   // option
   const optionStyle = css`
-    & > div.option-list {
+    & > ul.option-list {
+      margin: 0;
+      padding: 0;
       border-radius: 4px;
       position: absolute;
       top: 100%;
@@ -117,7 +119,7 @@ const createSelectStyle = (
 
     ${active &&
     css`
-      & > div.option-list {
+      & > ul.option-list {
         opacity: 1;
         visibility: visible;
       }
