@@ -81,6 +81,10 @@ const createSelectStyle = (
         box-shadow: 0 0 8px 2px rgb(0 0 0 / 12%);
       }
     }
+
+    & > div.input-box > div.input > span.ellipsis {
+      color: ${getColor(theme, 'gray6')};
+    }
   `;
 
   // option
