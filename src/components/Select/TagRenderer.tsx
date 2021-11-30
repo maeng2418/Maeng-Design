@@ -1,6 +1,7 @@
 import React, { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { CloseOutlined, Tag } from '..';
+import { useWindowSize } from '../../hooks';
 import Ellipsis from './Ellipsis';
 
 interface TagRendererProps {
@@ -18,6 +19,7 @@ const TagRenderer: React.FC<TagRendererProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [max, setMax] = useState(0);
+  const [width] = useWindowSize();
 
   useLayoutEffect(() => {
     if (Array.isArray(selectedValue)) {
@@ -52,7 +54,7 @@ const TagRenderer: React.FC<TagRendererProps> = ({
       );
       setMax(maxIndex);
     }
-  }, [selectedValue]);
+  }, [selectedValue, width]);
 
   const setTagStyle = useCallback(
     (index: number) => {
