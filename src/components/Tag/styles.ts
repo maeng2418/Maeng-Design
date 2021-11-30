@@ -70,12 +70,16 @@ const createStyle = (color?: TagProps['color']) => (
     & > svg {
       font-size: 10px;
       vertical-align: -0.125em;
-      margin: 0 5px;
+      margin: 0;
       fill: ${getColor(theme, tagColor as LightColorType | DarkColorType)};
-      &:first-child {
+
+      &:first-of-type {
         margin-left: 0;
+        margin-right: 5px;
       }
+
       &:last-child {
+        margin-left: 5px;
         margin-right: 0;
       }
     }
