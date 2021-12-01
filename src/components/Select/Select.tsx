@@ -9,6 +9,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import { Option as SelectOption } from '.';
 import { CaretDownOutlined, CaretUpOutlined } from '..';
 import { DarkColorType, LightColorType } from '../../styles/colors';
 import createSelectStyle, { createOptionStyle } from './styles';
@@ -126,6 +127,12 @@ const Select: React.FC<SelectProps> = ({
       </div>
       <ul className="option-list">
         {React.Children.map(children, (child: React.ReactElement) => {
+          if (child.type !== SelectOption) {
+            console.warn(
+              `Select에서는 '${child.type}'은 사용 불가능합니다. 'Option'을 사용해주세요.`,
+            );
+            return <></>;
+          }
           const { value, disabled: optionDisabled } = child.props;
           const selectedTag = (function () {
             if (
