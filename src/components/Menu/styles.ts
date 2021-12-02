@@ -19,7 +19,52 @@ const createStyle = (color?: MenuProps['color']) => (
       height: 46px;
       line-height: 46px;
       margin: 0;
+    }
+  `;
 
+  // itemGroupStyle
+  const itemGroupStyle = css`
+    & ul.sub-menu {
+      min-width: 100%;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-radius: 4px;
+      position: absolute;
+      top: 50px;
+      background-color: ${getColor(theme, 'gray1')};
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
+        0 9px 28px 8px rgb(0 0 0 / 5%);
+      opacity: 0;
+
+      & li {
+        float: none;
+        padding: 0;
+        margin: 0;
+        font-size: 10px;
+
+        & a {
+          display: flex;
+          font-size: 14px;
+          padding: 4px 15px;
+          color: ${getColor(theme, 'gray13')};
+          text-decoration: none;
+          align-items: center;
+          white-space: nowrap;
+
+          &:hover {
+            color: ${primaryColor};
+            background: ${getColor(theme, 'gray1')};
+          }
+        }
+      }
+    }
+  `;
+
+  // itemStyle
+  const itemStyle = css`
+    & ul.main-menu {
       & > li {
         float: left; // 메뉴를 왼쪽부터 표시
         position: relative;
@@ -45,58 +90,35 @@ const createStyle = (color?: MenuProps['color']) => (
             opacity: 1;
           }
         }
-      }
-    }
-  `;
 
-  return [defaultStyle];
-};
+        & ul.sub-menu {
+          & li {
+            float: none;
+            padding: 0;
+            margin: 0;
+            font-size: 10px;
 
-export const createSubMenuStyle = (color?: MenuProps['color']) => (
-  theme: Theme = { mode: ThemeMode.LIGHT },
-): Interpolation<Theme> => {
-  // color
-  const primaryColor = getColor(theme, color);
+            & a {
+              display: flex;
+              font-size: 14px;
+              padding: 4px 15px;
+              color: ${getColor(theme, 'gray13')};
+              text-decoration: none;
+              align-items: center;
+              white-space: nowrap;
 
-  // default
-  const defaultStyle = css`
-    min-width: 100%;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border-radius: 4px;
-    position: absolute;
-    top: 50px;
-    background-color: ${getColor(theme, 'gray1')};
-    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
-      0 9px 28px 8px rgb(0 0 0 / 5%);
-    opacity: 0;
-
-    & li {
-      float: none;
-      padding: 0;
-      margin: 0;
-      font-size: 10px;
-
-      & a {
-        display: flex;
-        font-size: 14px;
-        padding: 4px 15px;
-        color: ${getColor(theme, 'gray13')};
-        text-decoration: none;
-        align-items: center;
-        white-space: nowrap;
-
-        &:hover {
-          color: ${primaryColor};
-          background: ${getColor(theme, 'gray1')};
+              &:hover {
+                color: ${primaryColor};
+                background: ${getColor(theme, 'gray1')};
+              }
+            }
+          }
         }
       }
     }
   `;
 
-  return [defaultStyle];
+  return [defaultStyle, itemGroupStyle, itemStyle];
 };
 
 export default createStyle;
