@@ -28,7 +28,13 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
       onClick={onSelect && onSelect([groupKey])}
       className={selectKeys?.includes(groupKey) ? 'selected' : ''}
     >
-      {href ? <a href={href}>{title}</a> : <span>{title}</span>}
+      {href ? (
+        <a href={href} className="group-title">
+          {title}
+        </a>
+      ) : (
+        <span className="group-title">{title}</span>
+      )}
       <ul className="sub-menu">
         {React.Children.map(children, (child: React.ReactElement) => {
           if (child.type !== Item) {

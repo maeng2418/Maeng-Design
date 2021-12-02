@@ -27,4 +27,5 @@ const Template: Story = (args) => (
 export const DefaultMenu = Template.bind({});
 DefaultMenu.args = {
   // props를 넣어주세요.
+  mode: 'vertical',
 } as MenuProps;

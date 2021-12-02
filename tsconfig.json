@@ -14,7 +14,8 @@
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "baseUrl": "."
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "es", "lib", "src/**/*.stories.tsx", "src/**/*.test.tsx"]
