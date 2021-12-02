@@ -13,7 +13,7 @@ const Template: Story = (args) => (
   <Menu {...args}>
     <ItemGroup title="메인메뉴 1" href="#">
       <Item href="#">메뉴 1-1</Item>
-      <Item href="#">메뉴 1-2</Item>
+      <Item href="#">메뉴 1-2sdfsdfefwefwefwefwef</Item>
     </ItemGroup>
     <Item href="#">메뉴 2-1</Item>
     <Item href="#">메뉴 3-1</Item>

@@ -10,45 +10,39 @@ const createStyle = (color?: MenuProps['color']) => (
 
   // default
   const defaultStyle = css`
-    list-style: none;
-    height: 40px;
-    padding: 5px 1px;
-    margin: 0;
-    background: ${primaryColor};
+    border-bottom: 1px solid ${getColor(theme, 'gray4')};
+    box-shadow: none;
 
     & ul.main-menu {
-      margin: 0;
       list-style: none;
+      list-style: none;
+      height: 46px;
+      line-height: 46px;
+      margin: 0;
 
       & > li {
         float: left; // 메뉴를 왼쪽부터 표시
         position: relative;
-        margin: 5px 30px;
-        padding: 0;
 
         & > a {
           display: flex;
-          font-weight: bold;
-          font-size: 18px;
-          padding: 7px 8px;
-          margin: 0;
-          color: ${getColor(theme, 'gray1')};
+          font-size: 14px;
+          padding: 0 20px;
+          color: ${getColor(theme, 'gray13')};
           text-decoration: none;
-          justify-content: center;
-
-          &:hover {
-            background: ${getColor(theme, 'gray1')};
-            color: ${primaryColor};
-          }
+          align-items: center;
         }
 
-        &:hover ul {
-          opacity: 1;
+        &:hover {
+          border-bottom: 2px solid ${primaryColor};
 
-          & li {
-            height: 35px;
-            overflow: visible;
-            padding: 0;
+          & > a {
+            color: ${primaryColor};
+          }
+
+          // 서브 메뉴 노출
+          ul {
+            opacity: 1;
           }
         }
       }
@@ -66,34 +60,37 @@ export const createSubMenuStyle = (color?: MenuProps['color']) => (
 
   // default
   const defaultStyle = css`
+    min-width: 100%;
     list-style: none;
     margin: 0;
     padding: 0;
+    border-radius: 4px;
     position: absolute;
-    left: -30px;
-    top: 40px;
-    width: 200px;
-    background: ${primaryColor};
+    top: 50px;
+    background-color: ${getColor(theme, 'gray1')};
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
+      0 9px 28px 8px rgb(0 0 0 / 5%);
     opacity: 0;
 
     & li {
       float: none;
       padding: 0;
+      margin: 0;
       font-size: 10px;
 
       & a {
         display: flex;
-        font-size: 18px;
-        padding: 7px 8px;
-        margin: 0;
-        color: ${getColor(theme, 'gray1')};
+        font-size: 14px;
+        padding: 4px 15px;
+        color: ${getColor(theme, 'gray13')};
         text-decoration: none;
-        justify-content: center;
+        align-items: center;
+        white-space: nowrap;
 
         &:hover {
           color: ${primaryColor};
           background: ${getColor(theme, 'gray1')};
-          border: 1px solid ${primaryColor};
         }
       }
     }
