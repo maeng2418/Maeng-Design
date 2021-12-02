@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { ReactElement } from 'react';
+import React, { MouseEvent, ReactElement, useCallback, useState } from 'react';
 import { DarkColorType, LightColorType } from '../../styles/colors';
 import Item from './Item';
 import ItemGroup from './ItemGroup';
@@ -11,6 +11,17 @@ export interface MenuProps {
 }
 
 const Menu: React.FC<MenuProps> = ({ children, color = 'blue6' }) => {
+  const [selectKeys, setSelectKeys] = useState<React.Key[]>([]);
+
+  const onSelect = useCallback(
+    (key: React.Key[]) => (e: MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setSelectKeys(key);
+    },
+    [],
+  );
+
   return (
     <nav css={createStyle(color)}>
       <ul className="main-menu">
@@ -21,7 +32,7 @@ const Menu: React.FC<MenuProps> = ({ children, color = 'blue6' }) => {
             );
             return <></>;
           } else {
-            return child;
+            return React.cloneElement(child, { onSelect, selectKeys });
           }
         })}
       </ul>

@@ -58,6 +58,11 @@ const createStyle = (color?: MenuProps['color']) => (
             background: ${getColor(theme, 'gray1')};
           }
         }
+
+        &.selected a {
+          color: ${primaryColor};
+          background: ${getColor(theme, 'gray1')};
+        }
       }
     }
   `;
@@ -91,6 +96,14 @@ const createStyle = (color?: MenuProps['color']) => (
           }
         }
 
+        &.selected {
+          border-bottom: 2px solid ${primaryColor};
+          a {
+            color: ${primaryColor};
+            background: ${getColor(theme, 'gray1')};
+          }
+        }
+
         & ul.sub-menu {
           & li {
             float: none;
@@ -111,6 +124,11 @@ const createStyle = (color?: MenuProps['color']) => (
                 color: ${primaryColor};
                 background: ${getColor(theme, 'gray1')};
               }
+            }
+
+            &.selected a {
+              color: ${primaryColor};
+              background: ${getColor(theme, 'gray1')};
             }
           }
         }
