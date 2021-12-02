@@ -8,8 +8,8 @@ interface ItemGroupProps {
   title: string;
   href?: string;
   children: ReactElement | readonly ReactElement[];
-  onSelect: (key: React.Key[]) => (event: MouseEvent<HTMLElement>) => void;
-  selectKeys: React.Key[];
+  onSelect?: (key: React.Key[]) => (event: MouseEvent<HTMLElement>) => void;
+  selectKeys?: React.Key[];
 }
 
 const ItemGroup: React.FC<ItemGroupProps> = ({
@@ -25,8 +25,8 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
   return (
     <li
       key={groupKey}
-      onClick={onSelect([groupKey])}
-      className={selectKeys.includes(groupKey) ? 'selected' : ''}
+      onClick={onSelect && onSelect([groupKey])}
+      className={selectKeys?.includes(groupKey) ? 'selected' : ''}
     >
       {href ? <a href={href}>{title}</a> : <span>{title}</span>}
       <ul className="sub-menu">

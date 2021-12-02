@@ -8,8 +8,8 @@ interface ItemProps {
   children: React.ReactNode;
   href: string;
   disabled?: boolean;
-  onSelect: (key: React.Key[]) => (event: MouseEvent<HTMLElement>) => void;
-  selectKeys: React.Key[];
+  onSelect?: (key: React.Key[]) => (event: MouseEvent<HTMLElement>) => void;
+  selectKeys?: React.Key[];
 }
 const Item: React.FC<ItemProps> = ({
   key,
@@ -29,9 +29,9 @@ const Item: React.FC<ItemProps> = ({
 
   return (
     <li
-      className={selectKeys.includes(itemKey) ? 'selected' : ''}
+      className={selectKeys?.includes(itemKey) ? 'selected' : ''}
       key={itemKey}
-      onClick={onSelect(mergedKey)}
+      onClick={onSelect && onSelect(mergedKey)}
     >
       <a href={href}>{children}</a>
     </li>

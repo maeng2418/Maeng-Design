@@ -8,9 +8,10 @@ import createStyle from './styles';
 export interface MenuProps {
   children: ReactElement | readonly ReactElement[];
   color?: LightColorType | DarkColorType;
+  mode?: 'horizontal' | 'vertical';
 }
 
-const Menu: React.FC<MenuProps> = ({ children, color = 'blue6' }) => {
+const Menu: React.FC<MenuProps> = ({ children, color = 'blue6', mode = 'horizontal' }) => {
   const [selectKeys, setSelectKeys] = useState<React.Key[]>([]);
 
   const onSelect = useCallback(
@@ -23,7 +24,7 @@ const Menu: React.FC<MenuProps> = ({ children, color = 'blue6' }) => {
   );
 
   return (
-    <nav css={createStyle(color)}>
+    <nav css={createStyle(color, mode)}>
       <ul className="main-menu">
         {React.Children.map(children, (child: React.ReactElement) => {
           if (child.type !== ItemGroup && child.type !== Item) {
