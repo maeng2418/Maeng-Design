@@ -62,6 +62,11 @@ const createStyle =
               background: ${getColor(theme, 'gray1')};
             }
           }
+
+          &.disabled > a {
+            cursor: not-allowed !important;
+            color: ${getColor(theme, 'gray6')} !important;
+          }
         }
       }
     `;
@@ -107,6 +112,11 @@ const createStyle =
         &.selected a {
           color: ${primaryColor};
           background: ${getColor(theme, 'gray1')};
+        }
+
+        &.disabled > a {
+          cursor: not-allowed !important;
+          color: ${getColor(theme, 'gray6')} !important;
         }
       }
     `;
@@ -166,6 +176,14 @@ const createStyle =
             display: block;
           }
         }
+        &.disabled > a {
+          cursor: not-allowed !important;
+          color: ${getColor(theme, 'gray6')} !important;
+
+          svg {
+            fill: ${getColor(theme, 'gray6')} !important;
+          }
+        }
       }
     `;
 
@@ -202,6 +220,10 @@ const createStyle =
 
         &.selected a {
           color: ${primaryColor};
+        }
+        &.disabled > a {
+          cursor: not-allowed !important;
+          color: ${getColor(theme, 'gray6')} !important;
         }
       }
     `;
@@ -257,6 +279,10 @@ const createStyle =
             border: 0;
           }
         }
+        &.disabled > a {
+          cursor: not-allowed !important;
+          color: ${getColor(theme, 'gray6')} !important;
+        }
       }
     `;
 
@@ -306,6 +332,10 @@ const createStyle =
           a {
             color: ${primaryColor};
           }
+        }
+        &.disabled > a {
+          cursor: not-allowed !important;
+          color: ${getColor(theme, 'gray6')} !important;
         }
       }
     `;
