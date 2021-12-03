@@ -11,7 +11,7 @@ export default {
 
 const Template: Story = (args) => (
   <Menu {...args}>
-    <ItemGroup title="메인메뉴 1" href="#">
+    <ItemGroup title="메인메뉴 1" href="#" icon="A">
       <Item href="#">메뉴 1-1</Item>
       <Item href="#">메뉴 1-2sdfsdfefwefwefwefwef</Item>
     </ItemGroup>
@@ -28,4 +28,5 @@ export const DefaultMenu = Template.bind({});
 DefaultMenu.args = {
   // props를 넣어주세요.
   mode: 'vertical',
+  collapsed: true,
 } as MenuProps;

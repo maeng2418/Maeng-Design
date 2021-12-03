@@ -1,11 +1,17 @@
 import { css, Interpolation, Theme } from '@emotion/react';
 import { getColor, ThemeMode } from '../../styles';
+import { STRING_REGEX } from '../../utils/regex';
 import { MenuProps } from './Menu';
 const createStyle =
-  (color?: MenuProps['color'], mode?: MenuProps['mode']) =>
+  (color?: MenuProps['color'], mode?: MenuProps['mode'], collapsed?: MenuProps['collapsed']) =>
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
     // color
     const primaryColor = getColor(theme, color);
+    const subColor = (function () {
+      const SUB_COLOR_IDX = 1;
+      const sub = `${color?.replace(STRING_REGEX, '')}${SUB_COLOR_IDX}` as MenuProps['color'];
+      return getColor(theme, sub);
+    })();
 
     const navStyle = css`
       border-bottom: 1px solid ${getColor(theme, 'gray4')};
@@ -108,6 +114,7 @@ const createStyle =
     const verticalNavStyle = css`
       border-right: 1px solid ${getColor(theme, 'gray4')};
       width: 256px;
+      height: 100vh;
     `;
 
     const verticalMainMenuStyle = css`
@@ -150,7 +157,7 @@ const createStyle =
         &.selected {
           &.item {
             border-right: 3px solid ${primaryColor};
-            background: ${getColor(theme, 'blue1')};
+            background: ${subColor};
           }
           & > a {
             color: ${primaryColor};
@@ -199,13 +206,125 @@ const createStyle =
       }
     `;
 
-    if (mode === 'vertical')
+    const collapsedNavStyle = css`
+      border-right: 1px solid ${getColor(theme, 'gray4')};
+      width: 80px;
+      height: 100vh;
+    `;
+
+    const collapsedMainMenuStyle = css`
+      & ul.main-menu {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+    `;
+
+    const collapsedMainMenuItemStyle = css`
+      & ul.main-menu > li {
+        position: relative;
+        padding: 0;
+        margin: 0;
+
+        a {
+          display: flex;
+          height: 40px;
+          line-height: 40px;
+          font-size: 14px;
+          padding: 4px 16px;
+          color: ${getColor(theme, 'gray13')};
+          text-decoration: none;
+          align-items: center;
+          justify-content: center;
+          white-space: nowrap;
+
+          & svg {
+            display: none;
+          }
+        }
+
+        &:hover,
+        &.selected {
+          background: ${subColor};
+          & > a {
+            color: ${primaryColor};
+          }
+        }
+
+        &:hover {
+          border-right: 3px solid ${primaryColor};
+          &.item {
+            border: 0;
+          }
+        }
+      }
+    `;
+
+    const collapsedSubMenuStyle = css`
+      & ul.sub-menu {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        background: ${getColor(theme, 'gray2')};
+        display: none;
+      }
+
+      & ul.main-menu li {
+        &:hover {
+          ul {
+            display: block;
+            position: absolute;
+            top: 0;
+            padding-left: 90px;
+            background: transparent;
+          }
+        }
+      }
+    `;
+
+    const collapsedSubMenuItemStyle = css`
+      & ul.sub-menu li {
+        padding: 0;
+        margin: 0;
+        background: ${getColor(theme, 'gray2')};
+
+        a {
+          display: flex;
+          height: 40px;
+          line-height: 40px;
+          font-size: 14px;
+          padding: 4px 16px;
+          color: ${getColor(theme, 'gray13')};
+          text-decoration: none;
+          align-items: center;
+          justify-content: left;
+          white-space: nowrap;
+        }
+
+        &:hover,
+        &.selected {
+          a {
+            color: ${primaryColor};
+          }
+        }
+      }
+    `;
+
+    if (mode === 'vertical' && collapsed === false)
       return [
         verticalNavStyle,
         verticalMainMenuStyle,
         verticalMainMenuItemStyle,
         verticalSubMenuStyle,
         verticalSubMenuItemStyle,
+      ];
+    if (mode === 'vertical' && collapsed === true)
+      return [
+        collapsedNavStyle,
+        collapsedMainMenuStyle,
+        collapsedMainMenuItemStyle,
+        collapsedSubMenuStyle,
+        collapsedSubMenuItemStyle,
       ];
     return [navStyle, mainMenuStyle, mainMenuItemStyle, subMenuStyle, subMenuItemStyle];
   };

@@ -3,6 +3,7 @@ import React, { MouseEvent, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 interface ItemProps {
+  mode?: 'horizontal' | 'vertical';
   key?: React.Key;
   groupKey?: React.Key;
   children: React.ReactNode;
@@ -10,8 +11,11 @@ interface ItemProps {
   disabled?: boolean;
   onSelect?: (key: React.Key[]) => (event: MouseEvent<HTMLElement>) => void;
   selectKeys?: React.Key[];
+  collapsed?: boolean;
+  icon?: React.ReactNode;
 }
 const Item: React.FC<ItemProps> = ({
+  mode,
   key,
   children,
   href,
@@ -19,6 +23,8 @@ const Item: React.FC<ItemProps> = ({
   onSelect,
   groupKey,
   selectKeys,
+  collapsed,
+  icon,
 }) => {
   const itemKey = useMemo(() => key || uuidv4(), [key]);
   const mergedKey = useMemo(() => {
@@ -33,7 +39,12 @@ const Item: React.FC<ItemProps> = ({
       key={itemKey}
       onClick={onSelect && onSelect(mergedKey)}
     >
-      <a href={href}>{children}</a>
+      <a href={href}>
+        {icon}
+        {mode === 'vertical' && !collapsed && children}
+        {mode === 'vertical' && collapsed && !icon && typeof children === 'string' && children[0]}
+        {mode === 'horizontal' && children}
+      </a>
     </li>
   );
 };

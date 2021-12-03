@@ -12,6 +12,8 @@ interface ItemGroupProps {
   children: ReactElement | readonly ReactElement[];
   onSelect?: (key: React.Key[]) => (event: MouseEvent<HTMLElement>) => void;
   selectKeys?: React.Key[];
+  collapsed?: boolean;
+  icon?: React.ReactNode;
 }
 
 const ItemGroup: React.FC<ItemGroupProps> = ({
@@ -22,6 +24,8 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
   children,
   onSelect,
   selectKeys,
+  collapsed,
+  icon,
 }) => {
   const groupKey = useMemo(() => key || uuidv4(), [key]);
 
@@ -32,7 +36,7 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
       className={selectKeys?.includes(groupKey) ? 'selected' : ''}
     >
       <a href={href || '#'}>
-        {title}
+        {mode === 'vertical' && collapsed ? (icon ? icon : title[0]) : title}
         {mode === 'vertical' &&
           (selectKeys?.includes(groupKey) ? <UpOutlined /> : <DownOutlined />)}
       </a>
@@ -47,6 +51,8 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
             onSelect: onSelect,
             selectKeys: selectKeys,
             groupKey: groupKey,
+            collapsed: false,
+            mode: mode,
           });
         })}
       </ul>
