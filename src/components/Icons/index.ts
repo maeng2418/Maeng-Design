@@ -3,4 +3,7 @@ export { default as CaretLeftOutlined } from '../../assets/icons/CaretLeftOutlin
 export { default as CaretRightOutlined } from '../../assets/icons/CaretRightOutlined.svg';
 export { default as CaretUpOutlined } from '../../assets/icons/CaretUpOutlined.svg';
 export { default as CloseOutlined } from '../../assets/icons/CloseOutlined.svg';
+export { default as DownOutlined } from '../../assets/icons/DownOutlined.svg';
+export { default as LeftOutlined } from '../../assets/icons/LeftOutlined.svg';
 export { default as RightOutlined } from '../../assets/icons/RightOutlined.svg';
+export { default as UpOutlined } from '../../assets/icons/UpOutlined.svg';

@@ -29,7 +29,7 @@ const Item: React.FC<ItemProps> = ({
 
   return (
     <li
-      className={selectKeys?.includes(itemKey) ? 'selected' : ''}
+      className={selectKeys?.includes(itemKey) ? 'item selected' : 'item'}
       key={itemKey}
       onClick={onSelect && onSelect(mergedKey)}
     >

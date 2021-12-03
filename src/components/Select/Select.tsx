@@ -85,10 +85,11 @@ const Select: React.FC<SelectProps> = ({
   }, [multiple, selectedValue, multiSelectedValue]);
 
   const onDeselect = useCallback(
-    (value: string | number): React.MouseEventHandler<SVGSVGElement> => (e) => {
-      e.stopPropagation();
-      !disabled && setMultiSelectedValue(multiSelectedValue.filter((v) => v !== value));
-    },
+    (value: string | number): React.MouseEventHandler<SVGSVGElement> =>
+      (e) => {
+        e.stopPropagation();
+        !disabled && setMultiSelectedValue(multiSelectedValue.filter((v) => v !== value));
+      },
     [disabled, multiSelectedValue],
   );
 

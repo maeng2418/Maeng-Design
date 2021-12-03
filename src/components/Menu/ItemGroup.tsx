@@ -1,9 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import React, { MouseEvent, ReactElement, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { DownOutlined, UpOutlined } from '../Icons';
 import Item from './Item';
 
 interface ItemGroupProps {
+  mode?: 'horizontal' | 'vertical';
   key?: React.Key;
   title: string;
   href?: string;
@@ -13,6 +15,7 @@ interface ItemGroupProps {
 }
 
 const ItemGroup: React.FC<ItemGroupProps> = ({
+  mode,
   key,
   title,
   href,
@@ -28,13 +31,11 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
       onClick={onSelect && onSelect([groupKey])}
       className={selectKeys?.includes(groupKey) ? 'selected' : ''}
     >
-      {href ? (
-        <a href={href} className="group-title">
-          {title}
-        </a>
-      ) : (
-        <span className="group-title">{title}</span>
-      )}
+      <a href={href || '#'}>
+        {title}
+        {mode === 'vertical' &&
+          (selectKeys?.includes(groupKey) ? <UpOutlined /> : <DownOutlined />)}
+      </a>
       <ul className="sub-menu">
         {React.Children.map(children, (child: React.ReactElement) => {
           if (child.type !== Item) {

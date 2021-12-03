@@ -1,7 +1,6 @@
 import { css, Interpolation, Theme } from '@emotion/react';
 import { getColor, ThemeMode } from '../../styles';
 import { MenuProps } from './Menu';
-
 const createStyle =
   (color?: MenuProps['color'], mode?: MenuProps['mode']) =>
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
@@ -148,22 +147,47 @@ const createStyle =
 
           a {
             display: flex;
-            height: 46px;
-            line-height: 46px;
+            height: 40px;
+            line-height: 40px;
             font-size: 14px;
-            padding: 4px 16px 4px 24px;
+            padding: 4px 16px;
             color: ${getColor(theme, 'gray13')};
             text-decoration: none;
             align-items: center;
             white-space: nowrap;
+            justify-content: space-between;
+
+            & svg {
+              margin-right: 8px;
+            }
           }
           &:hover a {
             color: ${primaryColor};
+
+            & svg {
+              fill: ${primaryColor};
+            }
           }
+
+          &.selected {
+            &.item {
+              border-right: 3px solid ${primaryColor};
+              background: ${getColor(theme, 'blue1')};
+            }
+            & a {
+              color: ${primaryColor};
+            }
+            & ul.sub-menu {
+              display: block;
+            }
+          }
+
           & ul.sub-menu {
             margin: 0;
             padding: 0;
             list-style: none;
+            background: ${getColor(theme, 'gray2')};
+            display: none;
 
             & li {
               padding: 0;
@@ -171,14 +195,22 @@ const createStyle =
 
               a {
                 display: flex;
-                height: 46px;
-                line-height: 46px;
+                height: 40px;
+                line-height: 40px;
                 font-size: 14px;
                 padding: 4px 16px 4px 48px;
                 color: ${getColor(theme, 'gray13')};
                 text-decoration: none;
                 align-items: center;
                 white-space: nowrap;
+              }
+
+              &:hover a {
+                color: ${primaryColor};
+              }
+
+              &.selected a {
+                color: ${primaryColor};
               }
             }
           }

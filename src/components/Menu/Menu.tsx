@@ -27,13 +27,15 @@ const Menu: React.FC<MenuProps> = ({ children, color = 'blue6', mode = 'horizont
     <nav css={createStyle(color, mode)}>
       <ul className="main-menu">
         {React.Children.map(children, (child: React.ReactElement) => {
-          if (child.type !== ItemGroup && child.type !== Item) {
+          if (child.type === ItemGroup) {
+            return React.cloneElement(child, { mode, onSelect, selectKeys });
+          } else if (child.type === Item) {
+            return React.cloneElement(child, { onSelect, selectKeys });
+          } else {
             console.warn(
               `Menu에서는 '${child.type}'은 사용 불가능합니다. 'ItemGroup' 혹은 'Item'을 사용해주세요.`,
             );
             return <></>;
-          } else {
-            return React.cloneElement(child, { onSelect, selectKeys });
           }
         })}
       </ul>
