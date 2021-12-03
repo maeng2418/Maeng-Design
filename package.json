@@ -10,7 +10,7 @@
   "types": "build/index.d.ts",
   "scripts": {
     "build": "rollup -c",
-    "storybook": "start-storybook -p 6006 -s public",
+    "storybook": "rm -rf node_modules/.cache/storybook/babel && start-storybook -p 6006 -s public",
     "storybook:export": "build-storybook -s public",
     "prepare": "husky install && npx husky add .husky/pre-commit 'npx lint-staged'"
   },
