@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { MouseEvent, ReactElement, useCallback, useState } from 'react';
+import React, { ReactElement, useCallback, useState } from 'react';
 import { DarkColorType, LightColorType } from '../../styles/colors';
 import Item from './Item';
 import ItemGroup from './ItemGroup';
@@ -20,23 +20,18 @@ const Menu: React.FC<MenuProps> = ({
 }) => {
   const [selectKeys, setSelectKeys] = useState<React.Key[]>([]);
 
-  const onSelect = useCallback(
-    (key: React.Key[]) => (e: MouseEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setSelectKeys(key);
-    },
-    [],
-  );
+  const onSelectKey = useCallback((key: React.Key[]) => {
+    setSelectKeys(key);
+  }, []);
 
   return (
     <nav css={createStyle(color, mode, collapsed)}>
       <ul className="main-menu">
         {React.Children.map(children, (child: React.ReactElement) => {
           if (child.type === ItemGroup) {
-            return React.cloneElement(child, { mode, onSelect, selectKeys, collapsed });
+            return React.cloneElement(child, { mode, onSelectKey, selectKeys, collapsed });
           } else if (child.type === Item) {
-            return React.cloneElement(child, { mode, onSelect, selectKeys, collapsed });
+            return React.cloneElement(child, { mode, onSelectKey, selectKeys, collapsed });
           } else {
             console.warn(
               `Menu에서는 '${child.type}'은 사용 불가능합니다. 'ItemGroup' 혹은 'Item'을 사용해주세요.`,

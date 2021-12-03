@@ -11,17 +11,21 @@ export default {
 
 const Template: Story = (args) => (
   <Menu {...args}>
-    <ItemGroup title="메인메뉴 1" href="#" icon="A" disabled>
-      <Item href="#">메뉴 1-1</Item>
-      <Item href="#" disabled>
+    <ItemGroup title="메인메뉴 1" href="#1" icon="A" disabled>
+      <Item href="#2">메뉴 1-1</Item>
+      <Item href="#3" disabled>
         메뉴 1-2sdfsdfefwefwefwefwef
       </Item>
     </ItemGroup>
-    <Item href="#">메뉴 2-1</Item>
-    <Item href="#">메뉴 3-1</Item>
-    <ItemGroup title="메인메뉴 3" href="#">
-      <Item href="#">메뉴 3-1</Item>
-      <Item href="#">메뉴 3-2</Item>
+    <Item href="#4">메뉴 2-1</Item>
+    <Item href="#5" disabled>
+      메뉴 3-1
+    </Item>
+    <ItemGroup title="메인메뉴 3" href="#6">
+      <Item href="#7" disabled>
+        메뉴 3-1
+      </Item>
+      <Item href="#8">메뉴 3-2</Item>
     </ItemGroup>
   </Menu>
 );

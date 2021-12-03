@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { MouseEvent, ReactElement, useMemo } from 'react';
+import React, { MouseEvent, ReactElement, useCallback, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { DownOutlined, UpOutlined } from '../Icons';
 import Item from './Item';
@@ -10,7 +10,8 @@ interface ItemGroupProps {
   title: string;
   href?: string;
   children: ReactElement | readonly ReactElement[];
-  onSelect?: (key: React.Key[]) => (event: MouseEvent<HTMLElement>) => void;
+  onSelectKey?: (key: React.Key[]) => void;
+  onClick?: (e: MouseEvent, title?: string, key?: React.Key) => void;
   selectKeys?: React.Key[];
   collapsed?: boolean;
   icon?: React.ReactNode;
@@ -23,7 +24,8 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
   title,
   href,
   children,
-  onSelect,
+  onSelectKey,
+  onClick,
   selectKeys,
   collapsed,
   icon,
@@ -31,10 +33,23 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
 }) => {
   const groupKey = useMemo(() => key || uuidv4(), [key]);
 
+  const onClickItemGroup = useCallback(
+    (e: MouseEvent<HTMLElement>) => {
+      e.stopPropagation();
+      if (disabled) {
+        e.preventDefault();
+        return;
+      }
+      onSelectKey && onSelectKey([groupKey]);
+      onClick && onClick(e, title, groupKey);
+    },
+    [disabled, groupKey, onClick, onSelectKey, title],
+  );
+
   return (
     <li
       key={groupKey}
-      onClick={onSelect && onSelect([groupKey])}
+      onClick={onClickItemGroup}
       className={`
         ${selectKeys?.includes(groupKey) ? 'selected' : ''}
         ${disabled ? 'disabled' : ''}
@@ -53,7 +68,7 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
             );
           }
           return React.cloneElement(child, {
-            onSelect: onSelect,
+            onSelectKey: onSelectKey,
             selectKeys: selectKeys,
             groupKey: groupKey,
             collapsed: false,

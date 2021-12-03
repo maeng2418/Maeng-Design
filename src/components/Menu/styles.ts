@@ -63,9 +63,15 @@ const createStyle =
             }
           }
 
-          &.disabled > a {
-            cursor: not-allowed !important;
-            color: ${getColor(theme, 'gray6')} !important;
+          &.disabled {
+            border: none !important;
+            ul {
+              opacity: 0;
+            }
+            a {
+              cursor: not-allowed !important;
+              color: ${getColor(theme, 'gray6')} !important;
+            }
           }
         }
       }
@@ -176,12 +182,16 @@ const createStyle =
             display: block;
           }
         }
-        &.disabled > a {
-          cursor: not-allowed !important;
-          color: ${getColor(theme, 'gray6')} !important;
+        &.disabled {
+          border: 0 !important;
+          background-color: ${getColor(theme, 'gray2')} !important;
+          & > a {
+            cursor: not-allowed !important;
+            color: ${getColor(theme, 'gray6')} !important;
 
-          svg {
-            fill: ${getColor(theme, 'gray6')} !important;
+            svg {
+              fill: ${getColor(theme, 'gray6')} !important;
+            }
           }
         }
       }
@@ -279,9 +289,13 @@ const createStyle =
             border: 0;
           }
         }
-        &.disabled > a {
-          cursor: not-allowed !important;
-          color: ${getColor(theme, 'gray6')} !important;
+        &.disabled {
+          background: ${getColor(theme, 'gray1')};
+          border: none;
+          a {
+            cursor: not-allowed !important;
+            color: ${getColor(theme, 'gray6')} !important;
+          }
         }
       }
     `;
@@ -304,6 +318,9 @@ const createStyle =
             padding-left: 90px;
             background: transparent;
           }
+        }
+        &.disabled ul {
+          display: none;
         }
       }
     `;

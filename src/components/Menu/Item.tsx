@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { MouseEvent, useMemo } from 'react';
+import React, { MouseEvent, useCallback, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 interface ItemProps {
@@ -9,7 +9,8 @@ interface ItemProps {
   children: React.ReactNode;
   href: string;
   disabled?: boolean;
-  onSelect?: (key: React.Key[]) => (event: MouseEvent<HTMLElement>) => void;
+  onSelectKey?: (key: React.Key[]) => (event: MouseEvent<HTMLElement>) => void;
+  onClick?: (e: MouseEvent, title?: React.ReactNode, key?: React.Key) => void;
   selectKeys?: React.Key[];
   collapsed?: boolean;
   icon?: React.ReactNode;
@@ -20,7 +21,8 @@ const Item: React.FC<ItemProps> = ({
   children,
   href,
   disabled,
-  onSelect,
+  onSelectKey,
+  onClick,
   groupKey,
   selectKeys,
   collapsed,
@@ -33,6 +35,19 @@ const Item: React.FC<ItemProps> = ({
     return keys;
   }, [groupKey, itemKey]);
 
+  const onClickItem = useCallback(
+    (e: MouseEvent<HTMLElement>) => {
+      e.stopPropagation();
+      onSelectKey && onSelectKey(mergedKey);
+      if (disabled) {
+        e.preventDefault();
+        return;
+      }
+      onClick && onClick(e, children, itemKey);
+    },
+    [children, disabled, itemKey, mergedKey, onClick, onSelectKey],
+  );
+
   return (
     <li
       className={`
@@ -40,7 +55,7 @@ const Item: React.FC<ItemProps> = ({
         ${disabled ? 'disabled' : ''}
       `}
       key={itemKey}
-      onClick={onSelect && onSelect(mergedKey)}
+      onClick={onClickItem}
     >
       <a href={href}>
         {icon}
