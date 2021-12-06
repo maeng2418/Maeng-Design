@@ -5,7 +5,11 @@ import {
   CaretLeftOutlined,
   CaretRightOutlined,
   CaretUpOutlined,
+  CloseOutlined,
+  DownOutlined,
+  LeftOutlined,
   RightOutlined,
+  UpOutlined,
 } from '.';
 
 export default {
@@ -17,3 +21,7 @@ export const DefaultCaretDownOutlined: Story = (args) => <CaretDownOutlined {...
 export const DefaultCaretUpOutlined: Story = (args) => <CaretUpOutlined {...args} />;
 export const DefaultCaretLeftOutlined: Story = (args) => <CaretLeftOutlined {...args} />;
 export const DefaultCaretRightOutlined: Story = (args) => <CaretRightOutlined {...args} />;
+export const DefaultCloseOutlined: Story = (args) => <CloseOutlined {...args} />;
+export const DefaultDownOutlined: Story = (args) => <DownOutlined {...args} />;
+export const DefaultLeftOutlined: Story = (args) => <LeftOutlined {...args} />;
+export const DefaultUpOutlined: Story = (args) => <UpOutlined {...args} />;
