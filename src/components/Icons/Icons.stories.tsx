@@ -8,6 +8,8 @@ import {
   CloseOutlined,
   DownOutlined,
   LeftOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
   RightOutlined,
   UpOutlined,
 } from '.';
@@ -25,3 +27,5 @@ export const DefaultCloseOutlined: Story = (args) => <CloseOutlined {...args} />
 export const DefaultDownOutlined: Story = (args) => <DownOutlined {...args} />;
 export const DefaultLeftOutlined: Story = (args) => <LeftOutlined {...args} />;
 export const DefaultUpOutlined: Story = (args) => <UpOutlined {...args} />;
+export const DefaultMenuFoldOutlined: Story = (args) => <MenuFoldOutlined {...args} />;
+export const DefaultMenuUnfoldOutlined: Story = (args) => <MenuUnfoldOutlined {...args} />;
