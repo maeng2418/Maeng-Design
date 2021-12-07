@@ -9,9 +9,9 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { Option as SelectOption } from '.';
 import { CaretDownOutlined, CaretUpOutlined } from '..';
 import { DarkColorType, LightColorType } from '../../styles/colors';
+import SelectOption from './Option';
 import createSelectStyle, { createOptionStyle } from './styles';
 import TagRenderer from './TagRenderer';
 

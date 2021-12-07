@@ -1,13 +1,13 @@
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import resolve from '@rollup/plugin-node-resolve';
-import image from '@rollup/plugin-image';
-import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
+import image from '@rollup/plugin-image';
+import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
-import postcss from 'rollup-plugin-postcss';
 import url from '@rollup/plugin-url';
 import svgr from '@svgr/rollup';
 import dts from 'rollup-plugin-dts';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import postcss from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
 import packageJson from './package.json';
 
@@ -51,7 +51,6 @@ const rollupConfig = [
   {
     input: 'build/es/types/index.d.ts',
     output: [{ file: 'build/index.d.ts', format: 'es' }],
-    external: [/\.css$/],
     plugins: [dts()],
   },
 ];

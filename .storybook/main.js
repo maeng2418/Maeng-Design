@@ -4,10 +4,6 @@ module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   // Add any Storybook addons you want here: https://storybook.js.org/addons/
   addons: ['@storybook/addon-actions', '@storybook/addon-links', '@storybook/addon-essentials'],
-  babel: async (options) => {
-    options.plugins.push('babel-plugin-inline-react-svg');
-    return options;
-  },
   webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.scss$/,

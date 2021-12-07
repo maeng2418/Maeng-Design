@@ -1,8 +1,10 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
-import Item from './Item';
-import ItemGroup from './ItemGroup';
-import Menu, { MenuProps } from './Menu';
+import Menu from '.';
+import { MenuProps } from './Menu';
+
+const ItemGroup = Menu.ItemGroup;
+const Item = Menu.Item;
 
 export default {
   title: 'Design System/Menu',

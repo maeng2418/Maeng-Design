@@ -6,7 +6,14 @@ export {
   CaretRightOutlined,
   CaretUpOutlined,
   CloseOutlined,
+  DownOutlined,
+  LeftOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  RightOutlined,
+  UpOutlined,
 } from './Icons';
+export { default as Menu } from './Menu';
 export { default as Select } from './Select';
 export { default as Tag } from './Tag';
 export { default as Typography } from './Typography';

@@ -1,8 +1,7 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
-import Option from './Option';
-import Select, { SelectProps } from './Select';
-
+import Select from '.';
+import { SelectProps } from './Select';
 export default {
   title: 'Design System/Select',
   component: Select,
@@ -14,6 +13,8 @@ export default {
     },
   },
 } as Meta;
+
+const Option = Select.Option;
 
 const Template: Story = (args) => (
   <Select {...args}>

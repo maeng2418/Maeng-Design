@@ -1,6 +1,6 @@
 {
-  "name": "maeng-design",
-  "version": "1.0.0",
+  "name": "maeng-design1",
+  "version": "1.0.10",
   "description": "Maeng Design is for building Design system with React, Typescript and Storybook",
   "main": "build/cjs/index.js",
   "module": "build/es/index.js",
@@ -10,10 +10,11 @@
   "types": "build/index.d.ts",
   "scripts": {
     "build": "rollup -c",
-    "storybook": "rm -rf node_modules/.cache/storybook/babel && start-storybook -p 6006 -s public",
+    "storybook": "start-storybook -p 6006 -s public",
     "storybook:export": "build-storybook -s public",
     "prepare": "husky install",
-    "prepare:husky": "npx husky add .husky/pre-commit 'npx lint-staged'"
+    "prepare:husky": "npx husky add .husky/pre-commit 'npx lint-staged'",
+    "svgr": "svgr --icon --title-prop --typescript --replace-attr-values '#1D1D1D=currentColor' -d src/components/icons src/assets/icons"
   },
   "author": "Maeng",
   "license": "ISC",
@@ -35,6 +36,7 @@
     "@storybook/node-logger": "^6.4.7",
     "@storybook/preset-create-react-app": "^3.2.0",
     "@storybook/react": "^6.4.7",
+    "@svgr/cli": "^6.1.1",
     "@svgr/rollup": "^6.1.0",
     "@types/prismjs": "^1.16.6",
     "@types/react": "^17.0.37",
@@ -42,7 +44,6 @@
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
     "babel-loader": "^8.2.3",
-    "babel-plugin-inline-react-svg": "^2.0.1",
     "babel-preset-react-app": "^10.0.0",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
