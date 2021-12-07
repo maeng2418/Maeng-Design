@@ -1,5 +1,5 @@
-import React from 'react';
 import { Theme, ThemeProvider as Provider } from '@emotion/react';
+import React from 'react';
 
 interface ThemeProviderProps {
   children: React.ReactNode;

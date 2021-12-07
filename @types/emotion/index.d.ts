@@ -1,7 +1,10 @@
 import '@emotion/react';
-import { ThemeMode } from './Theme';
 
 declare module '@emotion/react' {
+  enum ThemeMode {
+    DARK = 'DARK',
+    LIGHT = 'LIGHT',
+  }
   export interface Theme {
     mode: ThemeMode.DARK | ThemeMode.LIGHT;
   }

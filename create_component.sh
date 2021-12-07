@@ -13,8 +13,8 @@ COMPONENT_NAME=$2
 echo "디렉토리 생성 'src/${DIRECTORY}/${COMPONENT_NAME}'"
 mkdir -p src/${DIRECTORY}/${COMPONENT_NAME}
 
-# index.tsx
-echo "인덱스 파일 생성 '${COMPONENT_NAME}/index.tsx'"
+# index.ts
+echo "인덱스 파일 생성 '${COMPONENT_NAME}/index.ts'"
 echo "export { default } from './${COMPONENT_NAME}';" > src/${DIRECTORY}/${COMPONENT_NAME}/index.tsx
 
 # component file

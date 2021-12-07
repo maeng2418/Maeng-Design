@@ -11,6 +11,7 @@ import React, {
 } from 'react';
 import { CaretDownOutlined, CaretUpOutlined } from '..';
 import { DarkColorType, LightColorType } from '../../styles/colors';
+import SelectOption from './Option';
 import createSelectStyle, { createOptionStyle } from './styles';
 import TagRenderer from './TagRenderer';
 
@@ -84,10 +85,11 @@ const Select: React.FC<SelectProps> = ({
   }, [multiple, selectedValue, multiSelectedValue]);
 
   const onDeselect = useCallback(
-    (value: string | number): React.MouseEventHandler<SVGSVGElement> => (e) => {
-      e.stopPropagation();
-      !disabled && setMultiSelectedValue(multiSelectedValue.filter((v) => v !== value));
-    },
+    (value: string | number): React.MouseEventHandler<SVGSVGElement> =>
+      (e) => {
+        e.stopPropagation();
+        !disabled && setMultiSelectedValue(multiSelectedValue.filter((v) => v !== value));
+      },
     [disabled, multiSelectedValue],
   );
 
@@ -126,6 +128,12 @@ const Select: React.FC<SelectProps> = ({
       </div>
       <ul className="option-list">
         {React.Children.map(children, (child: React.ReactElement) => {
+          if (child.type !== SelectOption) {
+            console.warn(
+              `Select에서는 '${child.type}'은 사용 불가능합니다. 'Option'을 사용해주세요.`,
+            );
+            return <></>;
+          }
           const { value, disabled: optionDisabled } = child.props;
           const selectedTag = (function () {
             if (

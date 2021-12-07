@@ -14,8 +14,10 @@
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "baseUrl": ".",
+    "typeRoots": ["@types, node_modules/@types"]
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "@types/**/*"],
   "exclude": ["node_modules", "es", "lib", "src/**/*.stories.tsx", "src/**/*.test.tsx"]
 }

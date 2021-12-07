@@ -1,4 +1,11 @@
-import Select from './Select';
-export { default as Option } from './Option';
+import Option from './Option';
+import OriginalSelect from './Select';
 
-export default Select;
+export type SelectType = typeof OriginalSelect & {
+  Option: typeof Option;
+};
+
+const Menu = OriginalSelect as SelectType;
+Menu.Option = Option;
+
+export default Menu;
