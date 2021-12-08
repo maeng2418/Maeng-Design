@@ -9,7 +9,7 @@ interface ItemGroupProps {
   key?: React.Key;
   title: string;
   href?: string;
-  children: ReactElement | readonly ReactElement[];
+  children?: ReactElement | readonly ReactElement[];
   onSelectKey?: (key: React.Key[]) => void;
   onClick?: (e: MouseEvent, title?: string, key?: React.Key) => void;
   selectKeys?: React.Key[];
@@ -61,20 +61,21 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
           (selectKeys?.includes(groupKey) ? <UpOutlined /> : <DownOutlined />)}
       </a>
       <ul className="sub-menu">
-        {React.Children.map(children, (child: React.ReactElement) => {
-          if (child.type !== Item) {
-            console.warn(
-              `ItemGroup에서는 '${child.type}'은 사용 불가능합니다. 'Item'을 사용해주세요.`,
-            );
-          }
-          return React.cloneElement(child, {
-            onSelectKey: onSelectKey,
-            selectKeys: selectKeys,
-            groupKey: groupKey,
-            collapsed: false,
-            mode: mode,
-          });
-        })}
+        {children &&
+          React.Children.map(children, (child: React.ReactElement) => {
+            if (child.type !== Item) {
+              console.warn(
+                `ItemGroup에서는 '${child.type}'은 사용 불가능합니다. 'Item'을 사용해주세요.`,
+              );
+            }
+            return React.cloneElement(child, {
+              onSelectKey: onSelectKey,
+              selectKeys: selectKeys,
+              groupKey: groupKey,
+              collapsed: false,
+              mode: mode,
+            });
+          })}
       </ul>
     </li>
   );

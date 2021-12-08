@@ -6,7 +6,7 @@ import ItemGroup from './ItemGroup';
 import createStyle from './styles';
 
 export interface MenuProps {
-  children: ReactElement | readonly ReactElement[];
+  children?: ReactElement | readonly ReactElement[];
   color?: LightColorType | DarkColorType;
   mode?: 'horizontal' | 'vertical';
   collapsed?: boolean;
@@ -27,18 +27,19 @@ const Menu: React.FC<MenuProps> = ({
   return (
     <nav css={createStyle(color, mode, collapsed)}>
       <ul className="main-menu">
-        {React.Children.map(children, (child: React.ReactElement) => {
-          if (child.type === ItemGroup) {
-            return React.cloneElement(child, { mode, onSelectKey, selectKeys, collapsed });
-          } else if (child.type === Item) {
-            return React.cloneElement(child, { mode, onSelectKey, selectKeys, collapsed });
-          } else {
-            console.warn(
-              `Menu에서는 '${child.type}'은 사용 불가능합니다. 'ItemGroup' 혹은 'Item'을 사용해주세요.`,
-            );
-            return <></>;
-          }
-        })}
+        {children &&
+          React.Children.map(children, (child: React.ReactElement) => {
+            if (child.type === ItemGroup) {
+              return React.cloneElement(child, { mode, onSelectKey, selectKeys, collapsed });
+            } else if (child.type === Item) {
+              return React.cloneElement(child, { mode, onSelectKey, selectKeys, collapsed });
+            } else {
+              console.warn(
+                `Menu에서는 '${child.type}'은 사용 불가능합니다. 'ItemGroup' 혹은 'Item'을 사용해주세요.`,
+              );
+              return <></>;
+            }
+          })}
       </ul>
     </nav>
   );
