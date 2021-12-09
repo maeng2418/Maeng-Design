@@ -11,6 +11,7 @@ interface ItemGroupProps {
   href?: string;
   children?: ReactElement | readonly ReactElement[];
   onSelectKey?: (key: React.Key[]) => void;
+  isSelected?: boolean;
   onClick?: (e: MouseEvent, title?: string, key?: React.Key) => void;
   selectKeys?: React.Key[];
   collapsed?: boolean;
@@ -25,6 +26,7 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
   href,
   children,
   onSelectKey,
+  isSelected,
   onClick,
   selectKeys,
   collapsed,
@@ -51,7 +53,7 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
       key={groupKey}
       onClick={onClickItemGroup}
       className={`
-        ${selectKeys?.includes(groupKey) ? 'selected' : ''}
+        ${selectKeys?.includes(groupKey) || isSelected ? 'selected' : ''}
         ${disabled ? 'disabled' : ''}
       `}
     >

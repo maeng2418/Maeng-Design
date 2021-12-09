@@ -10,6 +10,7 @@ interface ItemProps {
   href: string;
   disabled?: boolean;
   onSelectKey?: (key: React.Key[]) => (event: MouseEvent<HTMLElement>) => void;
+  isSelected?: boolean;
   onClick?: (e: MouseEvent, title?: React.ReactNode, key?: React.Key) => void;
   selectKeys?: React.Key[];
   collapsed?: boolean;
@@ -22,6 +23,7 @@ const Item: React.FC<ItemProps> = ({
   href,
   disabled,
   onSelectKey,
+  isSelected,
   onClick,
   groupKey,
   selectKeys,
@@ -51,7 +53,7 @@ const Item: React.FC<ItemProps> = ({
   return (
     <li
       className={`
-        ${selectKeys?.includes(itemKey) ? 'item selected' : 'item'}
+        ${selectKeys?.includes(itemKey) || isSelected ? 'item selected' : 'item'}
         ${disabled ? 'disabled' : ''}
       `}
       key={itemKey}
