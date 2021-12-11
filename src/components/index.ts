@@ -10,6 +10,7 @@ export {
   LeftOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  PersonCircleOutlined,
   RightOutlined,
   UpOutlined,
 } from './Icons';

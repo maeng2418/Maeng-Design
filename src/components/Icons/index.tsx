@@ -7,5 +7,6 @@ export { default as DownOutlined } from './DownOutlined';
 export { default as LeftOutlined } from './LeftOutlined';
 export { default as MenuFoldOutlined } from './MenuFoldOutlined';
 export { default as MenuUnfoldOutlined } from './MenuUnfoldOutlined';
+export { default as PersonCircleOutlined } from './PersonCircleOutlined';
 export { default as RightOutlined } from './RightOutlined';
 export { default as UpOutlined } from './UpOutlined';

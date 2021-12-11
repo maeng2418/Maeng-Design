@@ -10,6 +10,7 @@ import {
   LeftOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  PersonCircleOutlined,
   RightOutlined,
   UpOutlined,
 } from '.';
@@ -29,3 +30,4 @@ export const DefaultLeftOutlined: Story = (args) => <LeftOutlined {...args} />;
 export const DefaultUpOutlined: Story = (args) => <UpOutlined {...args} />;
 export const DefaultMenuFoldOutlined: Story = (args) => <MenuFoldOutlined {...args} />;
 export const DefaultMenuUnfoldOutlined: Story = (args) => <MenuUnfoldOutlined {...args} />;
+export const DefaultPersonCircleOutlined: Story = (args) => <PersonCircleOutlined {...args} />;
