@@ -28,6 +28,7 @@ const Button: React.FC<ButtonProps> = ({
     <button
       css={createStyle(color, size, shape, type, disabled)}
       onClick={onClick}
+      onMouseDown={(e) => e.preventDefault()}
       type={htmlType}
       disabled={disabled}
     >
