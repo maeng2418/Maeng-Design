@@ -57,7 +57,7 @@ const useToast = () => {
     ) => message('warning', msg, duration, onClose),
   };
 
-  return { toast };
+  return toast;
 };
 
 export default useToast;

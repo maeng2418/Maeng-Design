@@ -18,7 +18,7 @@ export default {
 } as Meta;
 
 const Template: Story = (args) => {
-  const { toast } = useToast();
+  const toast = useToast();
   return (
     <div {...args}>
       <Button
