@@ -1,55 +1,82 @@
 /** @jsxImportSource @emotion/react */
 import React, { forwardRef, useEffect, useRef } from 'react';
-import { createPortal, render, unmountComponentAtNode } from 'react-dom';
-import { DarkColorType, LightColorType } from '../../styles/colors';
-import createStyle from './styles';
+import { unmountComponentAtNode } from 'react-dom';
+import { CheckCircleFilled, CloseCircleFilled, InfoCircleFilled } from '../Icons';
+import createStyle, { toastContainerStyle } from './styles';
 
-export interface ToastProps {
-  children?: React.ReactNode;
-  color?: LightColorType | DarkColorType;
+export type ToastMessageType = 'success' | 'error' | 'warning';
+
+export interface ToastMessage {
+  type: ToastMessageType;
+  message: string;
+  duration?: number;
+  onClose?: () => void;
 }
 
-const ToastMsg: React.FC<{ message: string; parentEle: HTMLDivElement }> = ({
-  message,
-  parentEle,
-}) => {
-  const ref = useRef<HTMLDivElement>(null);
+export interface ToastMsgProps extends ToastMessage {
+  container: HTMLDivElement;
+  containerRef: React.RefObject<HTMLDivElement>;
+  element: HTMLDivElement;
+}
 
-  useEffect(() => {
-    setTimeout(() => {
-      ref.current && ref.current.remove();
-      if (parentEle.childElementCount === 0) {
-        unmountComponentAtNode(parentEle);
-      }
-    }, 3000);
-  }, []);
-
-  return <div ref={ref}>{message}</div>;
-};
-
-const ToastMsgContainer = forwardRef<HTMLDivElement>(({ children }, ref) => {
+export const ToastMsgContainer = forwardRef<HTMLDivElement>(({ children }, ref) => {
   return (
-    <div ref={ref} css={createStyle('gray13')}>
+    <div ref={ref} css={toastContainerStyle}>
       {children}
     </div>
   );
 });
 
-const useToast = () => {
-  const toastContainer = useRef<HTMLDivElement>(null);
+export const ToastMsg: React.FC<ToastMsgProps> = ({
+  type,
+  message,
+  container,
+  containerRef,
+  element,
+  duration = 3000,
+  onClose,
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
 
-  const message = (message: string): void | Element | React.Component<any, any, any> => {
-    const div = document.createElement('div');
+  useEffect(() => {
+    setTimeout(() => {
+      unmountComponentAtNode(element);
+      onClose && onClose();
+      if (containerRef.current?.childElementCount === 0) unmountComponentAtNode(container);
+    }, duration);
+  }, []);
 
-    if (!toastContainer.current)
-      return render(createPortal(<ToastMsgContainer ref={toastContainer} />, document.body), div);
-    render(
-      createPortal(<ToastMsg message={message} parentEle={div} />, toastContainer.current),
-      div,
+  if (type === 'success')
+    return (
+      <div ref={ref} css={createStyle(type)}>
+        <span className="icon-wrapper">
+          <CheckCircleFilled />
+        </span>
+        <span>{message}</span>
+      </div>
     );
-  };
+  if (type === 'error')
+    return (
+      <div ref={ref} css={createStyle(type)}>
+        <span className="icon-wrapper">
+          <CloseCircleFilled />
+        </span>
+        <span>{message}</span>
+      </div>
+    );
+  if (type === 'warning')
+    return (
+      <div ref={ref} css={createStyle(type)}>
+        <span className="icon-wrapper">
+          <InfoCircleFilled />
+        </span>
+        <span>{message}</span>
+      </div>
+    );
 
-  return { message };
+  return (
+    <div ref={ref} css={createStyle(type)}>
+      <span>{message}</span>
+    </div>
+  );
 };
-
-export default useToast;
