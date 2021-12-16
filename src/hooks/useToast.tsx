@@ -6,7 +6,9 @@ import { ToastMessage } from '../components/Toast';
 
 const useToast = () => {
   const toastContainerRef = useRef<HTMLDivElement>(null);
-  const containerDiv = useRef(document.createElement('div')).current;
+  const containerDiv = useRef(
+    typeof window !== 'undefined' && document.createElement('div'),
+  ).current;
 
   const message = (
     type: ToastMessage['type'],
@@ -17,26 +19,28 @@ const useToast = () => {
     const messageDiv = document.createElement('div');
 
     if (!toastContainerRef.current)
-      render(
-        createPortal(<ToastMsgContainer ref={toastContainerRef} />, document.body),
-        containerDiv,
-      );
+      containerDiv &&
+        render(
+          createPortal(<ToastMsgContainer ref={toastContainerRef} />, document.body),
+          containerDiv,
+        );
     if (toastContainerRef.current)
-      render(
-        createPortal(
-          <ToastMsg
-            type={type}
-            message={message}
-            container={containerDiv}
-            containerRef={toastContainerRef}
-            element={messageDiv}
-            duration={duration}
-            onClose={onClose}
-          />,
-          toastContainerRef.current,
-        ),
-        messageDiv,
-      );
+      containerDiv &&
+        render(
+          createPortal(
+            <ToastMsg
+              type={type}
+              message={message}
+              container={containerDiv}
+              containerRef={toastContainerRef}
+              element={messageDiv}
+              duration={duration}
+              onClose={onClose}
+            />,
+            toastContainerRef.current,
+          ),
+          messageDiv,
+        );
   };
 
   const toast = {
