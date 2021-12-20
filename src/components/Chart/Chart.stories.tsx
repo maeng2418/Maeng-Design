@@ -3,20 +3,12 @@ import React from 'react';
 import SampleData from '../../assets/sample/barChartSampleData.json';
 import BarChart, { BarChartProps } from './BarChart';
 
-interface Data {
-  app_name: string;
-  icon_url: string;
-  package_name: string;
-  user_count: string;
-  biz_rate: string;
-}
-
 export default {
   title: 'Design System/Chart',
 } as Meta;
 
 const BarChartTemplate: Story = (args) => (
-  <BarChart {...args} data={SampleData.data.slice(0, 5) as Data[]} dataKey={'user_count'} />
+  <BarChart {...args} data={SampleData.data} dataKey={'user_count'} />
 );
 
 export const DefaultBarChart = BarChartTemplate.bind({});

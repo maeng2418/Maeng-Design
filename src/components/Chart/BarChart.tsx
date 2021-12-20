@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { useRef } from 'react';
+import React from 'react';
 import barChartStyle from './styles';
 
 export interface BarChartProps {
@@ -29,7 +29,6 @@ const BarChart: React.FC<BarChartProps> = ({
   xAxis,
   yAxis = { row: 4 },
 }) => {
-  const xLabelGroupRef = useRef<SVGGElement>(null);
   const DEFAULT_Y_AXIS_ROW_COUNT = 4;
 
   const xLabel =
@@ -89,10 +88,13 @@ const BarChart: React.FC<BarChartProps> = ({
             data.every((d: Record<string, unknown>) => {
               if (d[dataKey] !== undefined && d[dataKey] !== null) return true;
             }) && (
-              <g className="labels x-labels" ref={xLabelGroupRef}>
+              <g className="labels x-labels">
                 {xLabel.map((x: any, i: number) => (
                   <text
                     key={x}
+                    transform={`rotate(-45, ${
+                      CANVAS_X_START_POS + (X_AXIS_LEN / xLabel.length) * (i + 0.5) + LEFT_PADDING
+                    }, ${CANVAS_Y_END_POS - BOTTOM_PADDING + X_AXIS_BOTTOM_MARGIN})`}
                     x={CANVAS_X_START_POS + (X_AXIS_LEN / xLabel.length) * (i + 0.5) + LEFT_PADDING}
                     y={CANVAS_Y_END_POS - BOTTOM_PADDING + X_AXIS_BOTTOM_MARGIN}
                   >

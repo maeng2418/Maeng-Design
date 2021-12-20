@@ -33,7 +33,7 @@ const barChartStyle =
       }
 
       .graph .labels.x-labels {
-        text-anchor: middle;
+        text-anchor: end;
       }
 
       .graph .labels.y-labels {
