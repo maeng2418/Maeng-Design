@@ -1,11 +1,12 @@
 import { css, Interpolation, Theme } from '@emotion/react';
 import { getColor, ThemeMode } from '../../styles';
+import { BarChartProps } from './BarChart';
 
-const lineGraphStyle =
-  () =>
+const barChartStyle =
+  (yAxis: BarChartProps['yAxis'], padding: BarChartProps['padding']) =>
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
     // color
-    const primaryColor = getColor(theme, 'blue6');
+    const primaryColor = getColor(theme, 'red5');
 
     // default
     const defaultStyle = css`
@@ -13,19 +14,21 @@ const lineGraphStyle =
       grid-template-columns: min-content min-content;
 
       .title {
-        grid-column-start: 2;
+        grid-column-start: ${yAxis && yAxis.label ? '2' : 'span 2'};
         text-align: center;
-        padding-left: 25px;
+        padding-left: ${padding?.left}px;
       }
 
       .x-axis-section {
+        ${(!yAxis || !yAxis.label) && `grid-column-start: 1;`}
         text-align: right;
-        padding-left: 25px;
+        padding-left: ${padding?.left}px;
+        padding-right: ${padding?.right}px;
       }
 
       .y-axis-section {
         grid-row: span 2;
-        padding-top: 25px;
+        padding-top: ${padding?.top}px;
         padding-right: 15px;
       }
 
@@ -55,7 +58,7 @@ const lineGraphStyle =
       }
 
       .data {
-        fill: red;
+        fill: ${primaryColor};
         stroke-width: 1;
       }
     `;
@@ -63,4 +66,4 @@ const lineGraphStyle =
     return [defaultStyle];
   };
 
-export default lineGraphStyle;
+export default barChartStyle;

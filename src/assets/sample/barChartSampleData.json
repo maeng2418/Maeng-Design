@@ -1,0 +1,153 @@
+{
+  "status": true,
+  "message": "success",
+  "demo_flag": false,
+  "os_type": "Android+iOS",
+  "data_name": "업종 상위 앱 비교",
+  "biz_category_main": "엔터테인먼트",
+  "biz_category_sub": "동영상스트리밍",
+  "date_type": "월간",
+  "date": 20210901,
+  "data": [
+    {
+      "app_name": "YouTube",
+      "icon_url": "https://play-lh.googleusercontent.com/lMoItBgdPPVDJsNOVtP26EKHePkwBg-PkuY9NOrc-fumRtTFP4XhpUNk_22syN4Datc=s180",
+      "package_name": "com.google.android.youtube",
+      "user_count": "42330197",
+      "biz_rate": "97.75"
+    },
+    {
+      "app_name": "Netflix(넷플릭스)",
+      "icon_url": "https://play-lh.googleusercontent.com/TBRwjS_qfJCSj1m7zZB93FnpJM5fSpMA_wUlFDLxWAb45T9RmwBvQd5cWR5viJJOhkI=s180",
+      "package_name": "com.netflix.mediaclient",
+      "user_count": "12292492",
+      "biz_rate": "28.39"
+    },
+    {
+      "app_name": "wavve(웨이브) - 재미의 파도를 타다!",
+      "icon_url": "https://play-lh.googleusercontent.com/SHQlfqZ_mX6ATS7MS6W3RbZYpog_nawwg6FLhIbvQVVX6Mjz_d6aYBpl79a6-cMO_A=s180",
+      "package_name": "kr.co.captv.pooqV2",
+      "user_count": "4933773",
+      "biz_rate": "11.39"
+    },
+    {
+      "app_name": "티빙(TVING) - 실시간, TV프로그램, 영화",
+      "icon_url": "https://play-lh.googleusercontent.com/xi_u4e4HwTLsDQWqBa4JIyi9F9T4XdvmId3TxW-3XRQfueGgNBkcR1ShZlcxqIQV3g=s180",
+      "package_name": "net.cj.cjhv.gs.tving",
+      "user_count": "3625226",
+      "biz_rate": "8.37"
+    },
+    {
+      "app_name": "쿠팡플레이",
+      "icon_url": "https://play-lh.googleusercontent.com/K0qCnn2q_LsH9MlnkWjnsQ22p52G8c3KH6WdnxIdcUdUwlwxpdpOX_34GWGxQQtA504b=s180",
+      "package_name": "com.coupang.mobile.play",
+      "user_count": "2373510",
+      "biz_rate": "5.48"
+    },
+    {
+      "app_name": "Seezn(시즌) - 즐거움을 다 본다!",
+      "icon_url": "https://play-lh.googleusercontent.com/JWVq16gXjGLd7OQ-7eTp7JWlwV09q4axBGvLhAeMCgPFIopfT-t7ebyH_iUt0TZRO_Y=s180",
+      "package_name": "com.kt.otv",
+      "user_count": "1999722",
+      "biz_rate": "4.62"
+    },
+    {
+      "app_name": "U+모바일tv-실시간TV,TV다시보기,최신영화",
+      "icon_url": "https://play-lh.googleusercontent.com/tkz2dw8lt_QIUZZox7g2LEilvfKUVDoRMQ-RiIY7y4sxazU_tcWV19hcguaGpYj7PuU=s180",
+      "package_name": "com.uplus.onphone",
+      "user_count": "1835058",
+      "biz_rate": "4.24"
+    },
+    {
+      "app_name": "왓챠",
+      "icon_url": "https://play-lh.googleusercontent.com/vAkKvTtE8kdb0MWWxOVaqYVf0_suB-WMnfCR1MslBsGjhI49dAfF1IxcnhtpL3PnjVY=s180",
+      "package_name": "com.frograms.wplay",
+      "user_count": "1445242",
+      "biz_rate": "3.34"
+    },
+    {
+      "app_name": "네이버TV",
+      "icon_url": "https://play-lh.googleusercontent.com/r4o_VAt3SY7UY8sK9yzJRcOWwpAfDsxFiYcqJn0_s9olpmJV-d1suN_athfsQ8wr5nQ=s180",
+      "package_name": "com.nhn.android.naverplayer",
+      "user_count": "1338589",
+      "biz_rate": "3.09"
+    },
+    {
+      "app_name": "모바일 B tv",
+      "icon_url": "https://play-lh.googleusercontent.com/jCQ-GJ4McJ01dTNl_RIijXWp3aDT3bEiJxmMCAotDIyI6S1tt_XsVZdhBDAWeNg7xsA=s180",
+      "package_name": "com.skb.smartrc",
+      "user_count": "989368",
+      "biz_rate": "2.28"
+    },
+    {
+      "app_name": "네이버 시리즈온 - SERIES ON",
+      "icon_url": "https://play-lh.googleusercontent.com/N8iIEdMvThrqNz_hPfxyAu1lWZi1ir_ttfD337GtoWiuznb_Y3AjtFBKNez7FtAjT-Y=s180",
+      "package_name": "com.nhn.android.navertv",
+      "user_count": "692487",
+      "biz_rate": "1.6"
+    },
+    {
+      "app_name": "SBS - 온에어, VOD 7만편 무료",
+      "icon_url": "https://play-lh.googleusercontent.com/D1o5MHJJnkNcvE2m_ZY1IKz6EpdfWMUSiHwRW58CTrk21JZZasHsI3KOd2lnZYKMPzyX=s180",
+      "package_name": "kr.co.sbs.videoplayer",
+      "user_count": "564553",
+      "biz_rate": "1.3"
+    },
+    {
+      "app_name": "KBS my K",
+      "icon_url": "https://play-lh.googleusercontent.com/jZl1ELJd1RY9JlcK_3MSCrGHuvxKAjQ3LS3j2tjzOZAh4P6P7kfJOP8LxuGFOuC53w=s180",
+      "package_name": "kr.co.kbs.kplayer",
+      "user_count": "281638",
+      "biz_rate": "0.65"
+    },
+    {
+      "app_name": "My oksusu",
+      "icon_url": "https://play-lh.googleusercontent.com/U1GeRdehMBknKSHwSgifh9AXQL6HhMYDy9ZvSCiyCDM7IIzqhc7LVJzZ0Nv2Gekkvg=s180",
+      "package_name": "com.skb.btvmobile",
+      "user_count": "241638",
+      "biz_rate": "0.56"
+    },
+    {
+      "app_name": "DMB TV -실시간무료TV, 실시간TV 방송, 지상파, 디엠비 방송시청, 모바일 무료티비",
+      "icon_url": "https://play-lh.googleusercontent.com/BEvrq5K8NlIA_xRW54EH3DusmGyCGz6KSVmO85Z1LdNu6yLEV0Ap4FI74jmWm9TktX0=s180",
+      "package_name": "com.dmb.media",
+      "user_count": "148009",
+      "biz_rate": "0.34"
+    },
+    {
+      "app_name": "삼성 TV 플러스 : 콘텐츠 이용료 무료",
+      "icon_url": "https://play-lh.googleusercontent.com/Dh7aRZRfjfy8LqRpOBB5-1v-MhHUCg1p8meB7BHJKOCtaas4Wr3NETgAkGSXw3wRJ5E=s180",
+      "package_name": "com.samsung.android.tvplus",
+      "user_count": "147043",
+      "biz_rate": "0.34"
+    },
+    {
+      "app_name": "왓챠피디아(WATCHA PEDIA)",
+      "icon_url": "https://play-lh.googleusercontent.com/--RqK-iMPib0Y8buB8VdYzhPHqp_q8JBrhLUP4nVG1TMl0HBOZnnK7TDmjN8o_OD-Jb9=s180",
+      "package_name": "com.frograms.watcha",
+      "user_count": "134846",
+      "biz_rate": "0.31"
+    },
+    {
+      "app_name": "미디어팩 - TV,음악,웹툰을 한 방에!",
+      "icon_url": "https://play-lh.googleusercontent.com/9Rw0D3GpeAaAxRpfWE081YhjTsjxd0MdgiPhINhgb-JbBYraddp4wGWI8ZoOVQwhtJI=s180",
+      "package_name": "com.kt.aljjapackplus",
+      "user_count": "126559",
+      "biz_rate": "0.29"
+    },
+    {
+      "app_name": "MBC",
+      "icon_url": "https://play-lh.googleusercontent.com/OUrs7QN5nWUZzDJ10sVqVPyqNg6UXZDex2wfqID6uAaKeQydKRVJimy9ECYe4kMOKs8=s180",
+      "package_name": "com.imbc.downloadapp",
+      "user_count": "113923",
+      "biz_rate": "0.26"
+    },
+    {
+      "app_name": "아이치이(iQIYI) – 드라마, 영화, 예능",
+      "icon_url": "https://play-lh.googleusercontent.com/mG1DbBUe_oTVNuDRvst-csNzkvrCrhbTnVpPJHnOGi1W0_mRUz3vAFbM9vGdnQ59aZsW=s180",
+      "package_name": "com.iqiyi.i18n",
+      "user_count": "109440",
+      "biz_rate": "0.25"
+    }
+  ]
+}

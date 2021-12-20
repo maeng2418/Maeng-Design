@@ -1,4 +1,5 @@
 export { default as Button } from './Button';
+export { BarChart } from './Chart';
 export { default as Divider } from './Divider';
 export {
   CaretDownOutlined,
