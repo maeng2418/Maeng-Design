@@ -16,14 +16,6 @@ DefaultBarChart.args = {
   // props를 넣어주세요.
   children: 'Chart',
   title: SampleData.data_name,
-  width: 800,
-  height: 500,
-  padding: {
-    top: 25,
-    left: 70,
-    right: 0,
-    bottom: 25,
-  },
   xAxis: {
     label: 'App',
     dataKey: 'app_name',
@@ -31,4 +23,6 @@ DefaultBarChart.args = {
   yAxis: {
     label: 'User',
   },
+  width: '100%',
+  height: '100%',
 } as BarChartProps;

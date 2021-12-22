@@ -1,69 +1,88 @@
 import { css, Interpolation, Theme } from '@emotion/react';
 import { getColor, ThemeMode } from '../../styles';
+import sizeTranslator from '../../utils/sizeTranslator';
 import { BarChartProps } from './BarChart';
 
 const barChartStyle =
-  (yAxis: BarChartProps['yAxis'], padding: BarChartProps['padding']) =>
+  (width?: BarChartProps['width'], height?: BarChartProps['height']) =>
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
     // color
     const primaryColor = getColor(theme, 'red5');
 
     // default
     const defaultStyle = css`
-      display: grid;
-      grid-template-columns: min-content min-content;
-
+      display: flex;
+      flex-direction: column;
+      width: ${width ? sizeTranslator(width) : '100%'};
+      height: ${height ? sizeTranslator(height) : '100%'};
       .title {
-        grid-column-start: ${yAxis && yAxis.label ? '2' : 'span 2'};
-        text-align: center;
-        padding-left: ${padding?.left}px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
       }
+      .chart-container {
+        display: flex;
 
-      .x-axis-section {
-        ${(!yAxis || !yAxis.label) && `grid-column-start: 1;`}
-        text-align: right;
-        padding-left: ${padding?.left}px;
-        padding-right: ${padding?.right}px;
-      }
+        .left-group.y-axis {
+          display: flex;
+          .y-axis-label {
+            margin-right: 10px;
+          }
+          .y-axis-value {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-right: 10px;
+            label {
+              display: inline-block;
+              text-align: right;
+            }
+          }
+        }
 
-      .y-axis-section {
-        grid-row: span 2;
-        padding-top: ${padding?.top}px;
-        padding-right: 15px;
-      }
+        .right-group {
+          display: flex;
+          flex-direction: column;
 
-      .graph .labels.x-labels {
-        text-anchor: end;
-      }
-
-      .graph .labels.y-labels {
-        text-anchor: end;
-      }
-
-      .graph .axis {
-        stroke: #ccc;
-        stroke-dasharray: 0;
-        stroke-width: 1;
-      }
-
-      .labels {
-        font-size: 13px;
-      }
-
-      .label-title {
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: 12px;
-        fill: black;
-      }
-
-      .data {
-        fill: ${primaryColor};
-        stroke-width: 1;
+          .graph {
+            position: relative;
+            .axis {
+              stroke: #ccc;
+              stroke-dasharray: 0;
+              stroke-width: 1;
+            }
+            .data {
+              fill: ${primaryColor};
+              stroke-width: 1;
+            }
+          }
+          .x-axis {
+            display: flex;
+          }
+          .x-axis-label {
+            display: flex;
+            justify-content: end;
+          }
+        }
       }
     `;
 
     return [defaultStyle];
   };
+
+export const xAxisLabelStyle = (width: number) => css`
+  width: ${width}px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+`;
+
+export const yAxisLabelStyle = (height: number) => css`
+  height: 1em;
+  margin-bottom: calc(${height}px - 1em);
+  transform: translateY(-50%);
+`;
 
 export default barChartStyle;
