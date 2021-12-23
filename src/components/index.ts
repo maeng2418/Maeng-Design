@@ -17,6 +17,7 @@ export {
   RightOutlined,
   UpOutlined,
 } from './Icons';
+export { default as Input } from './Input';
 export { default as Menu } from './Menu';
 export { default as Select } from './Select';
 export { default as Tag } from './Tag';

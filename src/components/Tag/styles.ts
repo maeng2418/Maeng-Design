@@ -1,6 +1,6 @@
 import { css, Interpolation, Theme } from '@emotion/react';
 import { DarkColorType, getColor, LightColorType, ThemeMode } from '../../styles';
-import { STRING_REGEX } from '../../utils/regex';
+import { NOT_STRING_REGEX } from '../../utils/regex';
 import { TagColorType, TagProps } from './Tag';
 
 const createStyle =
@@ -30,20 +30,21 @@ const createStyle =
     };
 
     const tagColor = (function () {
-      if (isPresetColor(color)) return `${color?.replace(STRING_REGEX, '')}${PRESET_COLOR_IDX}`;
+      if (isPresetColor(color)) return `${color?.replace(NOT_STRING_REGEX, '')}${PRESET_COLOR_IDX}`;
       if (color) return 'gray1';
       return 'gray13';
     })();
 
     const bgColor = (function () {
-      if (isPresetColor(color)) return `${color?.replace(STRING_REGEX, '')}${PRESET_BG_COLOR_IDX}`;
+      if (isPresetColor(color))
+        return `${color?.replace(NOT_STRING_REGEX, '')}${PRESET_BG_COLOR_IDX}`;
       if (color) return color;
       return 'gray3';
     })();
 
     const borderColor = (function () {
       if (isPresetColor(color))
-        return `${color?.replace(STRING_REGEX, '')}${PRESET_BORDER_COLOR_IDX}`;
+        return `${color?.replace(NOT_STRING_REGEX, '')}${PRESET_BORDER_COLOR_IDX}`;
       if (color) return 'gray5';
       return 'gray4';
     })();
