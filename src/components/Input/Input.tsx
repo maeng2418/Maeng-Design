@@ -1,18 +1,23 @@
 /** @jsxImportSource @emotion/react */
 import React, { ChangeEvent, useCallback, useState } from 'react';
 import { DarkColorType, LightColorType } from '../../styles/colors';
-import createStyle from './styles';
+import InputNumber from './InputNumber';
+import inputStyle from './styles';
+
+export type ChangeInputEvent = (e?: ChangeEvent<HTMLInputElement>) => void;
+export type ChangeInputValueEvent = (value?: string | number) => void;
 
 export interface InputProps {
   color?: LightColorType | DarkColorType;
   type?: 'text' | 'email' | 'checkbox' | 'radio' | 'file' | 'number' | 'password' | 'tel';
-  onChange?: (e?: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: ChangeInputEvent | ChangeInputValueEvent;
   placeholder?: string;
   value?: any;
   size?: 'small' | 'medium' | 'large';
   disabled?: boolean;
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
+  step?: number;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -22,7 +27,7 @@ const Input: React.FC<InputProps> = ({
   prefix,
   suffix,
   disabled,
-  value,
+  onChange,
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -33,18 +38,30 @@ const Input: React.FC<InputProps> = ({
     [],
   );
 
+  if (type === 'number') {
+    return (
+      <InputNumber
+        {...props}
+        disabled={disabled}
+        isFocused={isFocused}
+        onFocus={onSetFocus(true)}
+        onBlur={onSetFocus(false)}
+        value={props.value}
+        color={color}
+        onChange={onChange as ChangeInputValueEvent}
+        size={size}
+      />
+    );
+  }
+
   if (
-    (type === 'text' ||
-      type === 'email' ||
-      type === 'number' ||
-      type === 'password' ||
-      type === 'tel') &&
+    (type === 'text' || type === 'email' || type === 'password' || type === 'tel') &&
     (prefix || suffix)
   ) {
     return (
       <span
         className={`affix ${isFocused ? 'focused' : ''} ${disabled ? 'disabled' : ''}`}
-        css={createStyle(color, size)}
+        css={inputStyle(color, size)}
       >
         <span className="prefix">{prefix}</span>
         <input
@@ -53,7 +70,7 @@ const Input: React.FC<InputProps> = ({
           disabled={disabled}
           onFocus={onSetFocus(true)}
           onBlur={onSetFocus(false)}
-          value={value}
+          onChange={onChange as ChangeInputEvent}
         />
         <span className="suffix">{suffix}</span>
       </span>
@@ -63,9 +80,9 @@ const Input: React.FC<InputProps> = ({
     <input
       {...props}
       type={type}
-      css={createStyle(color, size)}
+      css={inputStyle(color, size)}
       disabled={disabled}
-      value={value}
+      onChange={onChange as ChangeInputEvent}
     />
   );
 };

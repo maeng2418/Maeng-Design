@@ -7,7 +7,9 @@ export default {
   component: Input,
 } as Meta;
 
-const Template: Story = (args) => <Input {...args} />;
+const Template: Story = (args) => {
+  return <Input {...args} />;
+};
 
 export const DefaultInput = Template.bind({});
 DefaultInput.args = {
