@@ -7,9 +7,7 @@ export default {
   component: Input,
 } as Meta;
 
-const Template: Story = (args) => {
-  return <Input {...args} />;
-};
+const Template: Story = (args) => <Input {...args} />;
 
 export const DefaultInput = Template.bind({});
 DefaultInput.args = {
@@ -19,4 +17,5 @@ DefaultInput.args = {
   placeholder: 'Enter Email',
   prefix: '$',
   suffix: '원',
+  children: 'Checkbox',
 } as InputProps;

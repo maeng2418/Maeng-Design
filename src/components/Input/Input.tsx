@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { ChangeEvent, useCallback, useState } from 'react';
 import { DarkColorType, LightColorType } from '../../styles/colors';
+import Checkbox from './Checkbox';
 import InputNumber from './InputNumber';
 import inputStyle from './styles';
 
@@ -18,6 +19,8 @@ export interface InputProps {
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
   step?: number;
+  children?: React.ReactNode;
+  checked?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -28,6 +31,8 @@ const Input: React.FC<InputProps> = ({
   suffix,
   disabled,
   onChange,
+  children,
+  checked,
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -37,6 +42,20 @@ const Input: React.FC<InputProps> = ({
     },
     [],
   );
+
+  if (type === 'checkbox') {
+    return (
+      <Checkbox
+        {...props}
+        disabled={disabled}
+        color={color}
+        onChange={onChange as ChangeInputEvent}
+        checked={checked}
+      >
+        {children}
+      </Checkbox>
+    );
+  }
 
   if (type === 'number') {
     return (
