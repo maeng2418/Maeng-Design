@@ -31,7 +31,7 @@ const createStyle =
           position: relative;
           top: -0.06em;
           display: inline-block;
-          height: 0.9em;
+          height: inherit;
           margin: 0 8px;
           vertical-align: middle;
           border-top: 0;
