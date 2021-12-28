@@ -239,6 +239,7 @@ export const checkboxStyle =
         padding: 0;
 
         &::after {
+          box-sizing: border-box;
           position: absolute;
           display: table;
           border: 2px solid ${getColor(theme, 'gray1')};
