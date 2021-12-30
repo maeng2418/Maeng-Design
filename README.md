@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://maeng.design">
-    <img width="200" src="https://user-images.githubusercontent.com/46251629/147764442-dbbbc3b4-6d6f-4cac-804a-7b64e01e4331.png">
+    <img width="200" src="https://user-images.githubusercontent.com/46251629/147775785-484e41e0-9ea3-4a2a-a770-a20c3fdeb06b.png">
   </a>
 </p>
 
