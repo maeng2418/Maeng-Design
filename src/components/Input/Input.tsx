@@ -100,7 +100,7 @@ const Input: React.FC<InputProps> = ({
   return (
     <input
       {...props}
-      value={value || ''}
+      value={value}
       type={type}
       css={inputStyle(color, size)}
       disabled={disabled}

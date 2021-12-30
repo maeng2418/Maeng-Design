@@ -26,7 +26,6 @@ const AffixInput: React.FC<AffixInputProps> = ({
   color = 'blue6',
   onChange,
   children,
-  value = '',
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -46,7 +45,6 @@ const AffixInput: React.FC<AffixInputProps> = ({
       <span className="prefix">{prefix}</span>
       <input
         {...props}
-        value={value}
         type={type}
         disabled={disabled}
         onFocus={onSetFocus(true)}
