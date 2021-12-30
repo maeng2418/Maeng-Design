@@ -11,7 +11,7 @@
   "scripts": {
     "build": "rollup -c",
     "storybook": "start-storybook -p 6006 -s public",
-    "storybook:export": "build-storybook -s public",
+    "storybook:export": "build-storybook",
     "prepare": "husky install",
     "prepare:husky": "npx husky add .husky/pre-commit 'npx lint-staged'",
     "svgr": "svgr --icon --title-prop --typescript --replace-attr-values '#1D1D1D=currentColor' -d src/components/icons src/assets/icons"
