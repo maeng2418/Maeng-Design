@@ -14,7 +14,7 @@ export default {
   },
 } as Meta;
 
-const Option = Select.Option;
+const { Option } = Select;
 
 const Template: Story = (args) => (
   <Select {...args}>

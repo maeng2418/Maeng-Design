@@ -1,22 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import React, {
   ChangeEvent,
-  FocusEventHandler,
   MouseEventHandler,
   useCallback,
   useLayoutEffect,
   useState,
 } from 'react';
-import add, { num2str, trimNumber } from '../../utils/numbers';
-import { ChangeInputValueEvent, InputProps } from './Input';
-import inputStyle from './styles';
+import add, { num2str, trimNumber } from '../../../utils/numbers';
+import { ChangeInputValueEvent, InputProps } from '../Input';
+import createStyle from './styles';
 
-interface InputNumberProps {
+export interface InputNumberProps {
   disabled?: InputProps['disabled'];
-  onFocus: FocusEventHandler<HTMLInputElement>;
-  isFocused: boolean;
-  onBlur: FocusEventHandler<HTMLInputElement>;
   value?: InputProps['value'];
+  name?: InputProps['name'];
+  placeholder?: InputProps['placeholder'];
   onChange?: ChangeInputValueEvent;
   color?: InputProps['color'];
   size?: InputProps['size'];
@@ -24,18 +22,24 @@ interface InputNumberProps {
 }
 
 const InputNumber: React.FC<InputNumberProps> = ({
-  disabled,
-  onFocus,
-  isFocused,
-  onBlur,
+  disabled = false,
   value,
   onChange,
-  color,
-  size,
+  color = 'blue6',
+  size = 'medium',
   step = 1,
+  children,
   ...props
 }) => {
-  const [inputValue, setInputValue] = useState<string | number>(value);
+  const [inputValue, setInputValue] = useState<string | number | undefined>(value || '');
+  const [isFocused, setIsFocused] = useState(false);
+
+  const onSetFocus = useCallback(
+    (value: boolean) => () => {
+      setIsFocused(value);
+    },
+    [],
+  );
 
   useLayoutEffect(() => {
     const initValue = Number(value);
@@ -72,14 +76,14 @@ const InputNumber: React.FC<InputNumberProps> = ({
   return (
     <span
       className={`number ${isFocused ? 'focused' : ''} ${disabled ? 'disabled' : ''}`}
-      css={inputStyle(color, size)}
+      css={createStyle(color, size)}
     >
       <input
         {...props}
         type={'number'}
         disabled={disabled}
-        onFocus={onFocus}
-        onBlur={onBlur}
+        onFocus={onSetFocus(true)}
+        onBlur={onSetFocus(false)}
         value={inputValue}
         onChange={onChangeInput}
       />
