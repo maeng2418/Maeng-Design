@@ -1,6 +1,6 @@
 import { css, Interpolation, Theme } from '@emotion/react';
 import { getColor, ThemeMode } from '../../styles';
-import { STRING_REGEX } from '../../utils/regex';
+import { NOT_STRING_REGEX } from '../../utils/regex';
 import { MenuProps } from './Menu';
 const createStyle =
   (color?: MenuProps['color'], mode?: MenuProps['mode'], collapsed?: MenuProps['collapsed']) =>
@@ -9,7 +9,7 @@ const createStyle =
     const primaryColor = getColor(theme, color);
     const subColor = (function () {
       const SUB_COLOR_IDX = 1;
-      const sub = `${color?.replace(STRING_REGEX, '')}${SUB_COLOR_IDX}` as MenuProps['color'];
+      const sub = `${color?.replace(NOT_STRING_REGEX, '')}${SUB_COLOR_IDX}` as MenuProps['color'];
       return getColor(theme, sub);
     })();
 

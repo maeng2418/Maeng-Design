@@ -5,7 +5,7 @@ export type SelectType = typeof OriginalSelect & {
   Option: typeof Option;
 };
 
-const Menu = OriginalSelect as SelectType;
-Menu.Option = Option;
+const Select = OriginalSelect as SelectType;
+Select.Option = Option;
 
-export default Menu;
+export default Select;

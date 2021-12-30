@@ -1,6 +1,6 @@
 import { css, Interpolation, Theme } from '@emotion/react';
 import { getColor, ThemeMode } from '../../styles';
-import { STRING_REGEX } from '../../utils/regex';
+import { NOT_STRING_REGEX } from '../../utils/regex';
 import { SelectProps } from './Select';
 
 const createSelectStyle =
@@ -192,7 +192,7 @@ export const createOptionStyle =
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
     const subColor = (function () {
       const SUB_COLOR_IDX = 1;
-      const sub = `${color?.replace(STRING_REGEX, '')}${SUB_COLOR_IDX}` as SelectProps['color'];
+      const sub = `${color?.replace(NOT_STRING_REGEX, '')}${SUB_COLOR_IDX}` as SelectProps['color'];
       return getColor(theme, sub, disabled, 'gray5');
     })();
 
