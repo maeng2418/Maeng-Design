@@ -6,7 +6,7 @@
 
 <h1 align="center">Maeng Design</h1>
 <div align="center">
-  Maeng Design is React UI library.
+  <p align="center" style="font-size: 1.2rem;">Maeng Design is React UI library.</p>
 
 ![](https://img.shields.io/github/issues/maeng2418/Maeng-Design) ![](https://img.shields.io/github/forks/maeng2418/Maeng-Design) ![](https://img.shields.io/github/stars/maeng2418/Maeng-Design) ![](https://img.shields.io/github/license/maeng2418/Maeng-Design)
 
