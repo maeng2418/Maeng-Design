@@ -74,27 +74,49 @@ const createStyle =
 
     // shape
     const getShape = () => {
-      if (shape === 'circle')
+      if (shape === 'circle') {
+        if (size === 'large') {
+          return css`
+            min-width: 40px;
+            border-radius: 50%;
+            padding-right: 0;
+            padding-left: 0;
+            text-align: center;
+          `;
+        }
+        if (size === 'small') {
+          return css`
+            min-width: 24px;
+            border-radius: 50%;
+            padding-right: 0;
+            padding-left: 0;
+            text-align: center;
+          `;
+        }
         return css`
           min-width: 32px;
+          border-radius: 50%;
           padding-right: 0;
           padding-left: 0;
           text-align: center;
-          border-radius: 50%;
-
-          ${size === 'large' &&
-          `
-          min-width: 40px;
-          border-radius: 50%;
-        `}
         `;
-      if (shape === 'round')
+      }
+      if (shape === 'round') {
+        if (size === 'large')
+          return css`
+            padding: 6.4px 20px;
+            border-radius: 40px;
+          `;
+        if (size === 'small')
+          return css`
+            padding: 0px 12px;
+            border-radius: 24px;
+          `;
         return css`
-          height: 32px;
           padding: 4px 16px;
-          font-size: 14px;
           border-radius: 32px;
         `;
+      }
       return css``;
     };
 
