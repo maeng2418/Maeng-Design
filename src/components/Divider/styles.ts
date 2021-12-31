@@ -32,6 +32,7 @@ const createStyle =
           top: -0.06em;
           display: inline-block;
           height: inherit;
+          min-height: 1em;
           margin: 0 8px;
           vertical-align: middle;
           border-top: 0;
