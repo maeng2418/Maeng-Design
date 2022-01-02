@@ -2,6 +2,10 @@
   "name": "maeng-design",
   "version": "1.0.0",
   "description": "Maeng Design is for building Design system with React, Typescript and Storybook",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maeng2418/Maeng-Design.git"
+  },
   "main": "build/cjs/index.js",
   "module": "build/es/index.js",
   "files": [
@@ -16,7 +20,7 @@
     "prepare:husky": "npx husky add .husky/pre-commit 'npx lint-staged'",
     "svgr": "svgr --icon --title-prop --typescript --replace-attr-values '#1D1D1D=currentColor' -d src/components/icons src/assets/icons"
   },
-  "author": "Maeng",
+  "author": "Myeongseong Kim",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.16.0",
