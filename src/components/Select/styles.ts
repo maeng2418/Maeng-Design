@@ -94,6 +94,8 @@ const createSelectStyle =
     // option
     const optionStyle = css`
       & > ul.option-list {
+        max-height: 50vh;
+        overflow: scroll;
         margin: 0;
         padding: 0;
         border-radius: 4px;
