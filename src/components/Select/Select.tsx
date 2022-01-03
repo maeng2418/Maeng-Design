@@ -110,6 +110,7 @@ const Select: React.FC<SelectProps> = ({
       <div className="input-box" onClick={onSetActive(!active)}>
         {tagRender ? (
           <TagRenderer
+            size={size}
             onDeselect={onDeselect}
             selectedValue={multiple ? multiSelectedValue : selectedValue}
             placeholder={placeholder}

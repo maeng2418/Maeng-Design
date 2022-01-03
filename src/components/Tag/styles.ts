@@ -4,7 +4,7 @@ import { NOT_STRING_REGEX } from '../../utils/regex';
 import { TagColorType, TagProps } from './Tag';
 
 const createStyle =
-  (color?: TagProps['color']) =>
+  (color?: TagProps['color'], size?: TagProps['size']) =>
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
     // color
     const PRESET_COLOR_IDX = 7;
@@ -86,7 +86,23 @@ const createStyle =
       }
     `;
 
-    return [defaultStyle];
+    const getSize = () => {
+      if (size === 'large')
+        return css`
+          font-size: 16px;
+          height: 32px;
+          line-height: 32px;
+        `;
+      if (size === 'small')
+        return css`
+          font-size: 14px;
+          height: 16px;
+          line-height: 14px;
+        `;
+      return css``;
+    };
+
+    return [defaultStyle, getSize];
   };
 
 export default createStyle;

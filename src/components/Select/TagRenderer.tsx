@@ -9,6 +9,7 @@ interface TagRendererProps {
   onDeselect: (value: string | number) => React.MouseEventHandler<SVGSVGElement>;
   placeholder?: string;
   disabled?: boolean;
+  size?: 'large' | 'medium' | 'small';
 }
 
 const TagRenderer: React.FC<TagRendererProps> = ({
@@ -16,6 +17,7 @@ const TagRenderer: React.FC<TagRendererProps> = ({
   onDeselect,
   placeholder,
   disabled,
+  size,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [max, setMax] = useState(0);
@@ -76,7 +78,7 @@ const TagRenderer: React.FC<TagRendererProps> = ({
     return selectedValue.length > 0 ? (
       <div className="input" ref={containerRef}>
         {selectedValue.map((v, i) => (
-          <Tag key={uuidv4()} style={setTagStyle(i)}>
+          <Tag key={uuidv4()} style={setTagStyle(i)} size={size}>
             <span>{v}</span>
             <CloseOutlined onClick={onDeselect(v)} />
           </Tag>
@@ -89,7 +91,7 @@ const TagRenderer: React.FC<TagRendererProps> = ({
   } else if (selectedValue) {
     return (
       <div className="input">
-        <Tag>{selectedValue}</Tag>
+        <Tag size={size}>{selectedValue}</Tag>
       </div>
     );
   }

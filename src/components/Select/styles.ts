@@ -35,6 +35,7 @@ const createSelectStyle =
 
         & > input,
         & > div.input {
+          box-sizing: border-box;
           cursor: pointer;
           line-height: 22px;
           padding: 4px 15px;
@@ -50,6 +51,7 @@ const createSelectStyle =
           display: flex;
           flex-wrap: wrap;
           gap: 5px;
+          align-items: center;
         }
 
         & > svg {
@@ -135,19 +137,25 @@ const createSelectStyle =
           & > div.input-box > input,
           & > div.input-box > .input {
             font-size: 16px;
-            height: 32px;
-            line-height: 32px;
+            height: 40px;
+            line-height: 38px;
           }
         `;
       if (size === 'small')
         return css`
           & > div.input-box > input,
           & > div.input-box > .input {
-            height: 16px;
-            line-height: 14px;
+            height: 24px;
+            line-height: 22px;
           }
         `;
-      return css``;
+      return css`
+        & > div.input-box > input,
+        & > div.input-box > .input {
+          height: 32px;
+          line-height: 30px;
+        }
+      `;
     };
 
     // disabled
@@ -247,7 +255,7 @@ export const createOptionStyle =
         `;
       return css``;
     };
-    return [defaultStyle, getSize(), getDisabled(), option];
+    return [defaultStyle, getSize(), getDisabled()];
   };
 
 export default createSelectStyle;
