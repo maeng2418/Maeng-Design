@@ -76,10 +76,7 @@ const createSelectStyle =
           }
         `}
 
-        &:focus,
-      &:active,
-      &:hover {
-          color: ${primaryColor};
+        &:focus, &:active, &:hover {
           border-color: ${primaryColor};
           background: ${getColor(theme, 'gray1')};
           box-shadow: 0 0 8px 2px rgb(0 0 0 / 12%);
@@ -216,7 +213,9 @@ export const createOptionStyle =
       font-size: 14px;
       padding: 4px 15px;
 
-      & > div {
+      & > span {
+        overflow: hidden;
+        white-space: nowrap;
         text-overflow: ellipsis;
       }
 

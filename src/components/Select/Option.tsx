@@ -7,7 +7,7 @@ interface OptionProps {
   disabled?: boolean;
 }
 const Option: React.FC<OptionProps> = ({ children, value }) => {
-  return <div data-value={value}>{children}</div>;
+  return <span data-value={value}>{children}</span>;
 };
 
 export default Option;
