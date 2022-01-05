@@ -1,13 +1,17 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import React, { MouseEvent } from 'react';
+import { DarkColorType, LightColorType } from '../../styles/colors';
 
 interface OptionProps {
   children: React.ReactNode;
-  value: number | string;
+  value?: number | string;
+  label?: number | string;
+  color?: LightColorType | DarkColorType;
   disabled?: boolean;
+  onClick?: (e: MouseEvent<HTMLLIElement>) => void;
 }
-const Option: React.FC<OptionProps> = ({ children, value }) => {
-  return <span data-value={value}>{children}</span>;
+const Option: React.FC<OptionProps> = ({ children }) => {
+  return <>{children}</>;
 };
 
 export default Option;

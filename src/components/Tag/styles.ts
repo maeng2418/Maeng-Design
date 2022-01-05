@@ -95,9 +95,9 @@ const createStyle =
         `;
       if (size === 'small')
         return css`
-          font-size: 14px;
+          font-size: 12px;
           height: 16px;
-          line-height: 14px;
+          line-height: 16px;
         `;
       return css``;
     };

@@ -3,94 +3,73 @@ import { getColor, ThemeMode } from '../../styles';
 import { NOT_STRING_REGEX } from '../../utils/regex';
 import { SelectProps } from './Select';
 
-const createSelectStyle =
+const selectStyle =
   (
     active: boolean,
     color?: SelectProps['color'],
     size?: SelectProps['size'],
+    tagRender?: SelectProps['tagRender'],
     disabled?: SelectProps['disabled'],
   ) =>
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
     // color
-    const primaryColor = getColor(theme, color, disabled, 'gray5');
+    const primaryColor = getColor(theme, color);
 
     // default
     const defaultStyle = css`
       position: relative;
       display: flex;
-      color: ${getColor(theme, 'gray10')};
-
-      & > div.input-box > svg {
-        fill: ${getColor(theme, 'gray7')};
-      }
 
       & > div.input-box {
-        border: 1px solid ${getColor(theme, 'gray5')};
-        border-radius: 2px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        position: relative;
         cursor: pointer;
+        color: ${active ? getColor(theme, 'gray6') : getColor(theme, 'gray10')};
+        border: 1px solid ${active ? primaryColor : getColor(theme, 'gray5')};
+        border-radius: 2px;
+        box-shadow: ${active ? '0 0 8px 2px rgb(0 0 0 / 12%)' : 'none'};
+        background: ${getColor(theme, 'gray1')};
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 calc(15px + 1em) 0 15px;
+        outline: none;
+        margin: 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
 
-        & > input,
-        & > div.input {
-          box-sizing: border-box;
+        & > input.hidden-input {
           cursor: pointer;
-          line-height: 22px;
-          padding: 4px 15px;
-          font-size: 14px;
+          box-sizing: border-box;
           width: 100%;
+          font-size: 1em;
           border: none;
           outline: none;
           margin: 0;
+          padding: 0;
+          white-space: nowrap;
           text-overflow: ellipsis;
-        }
-
-        & > div.input {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 5px;
-          align-items: center;
+          overflow: hidden;
         }
 
         & > svg {
           position: absolute;
-          right: 10px;
+          top: 50%;
+          right: 15px;
+          fill: ${getColor(theme, 'gray7')};
+          transform: translateY(-50%);
         }
-      }
 
-      & > div.input-box {
-        ${active &&
-        css`
-          color: ${getColor(theme, 'gray6')};
-          border-color: ${primaryColor};
-          background: ${getColor(theme, 'gray1')};
-          box-shadow: 0 0 8px 2px rgb(0 0 0 / 12%);
-
-          & > input {
-            color: ${getColor(theme, 'gray6')};
-            border-color: ${primaryColor};
-            background: ${getColor(theme, 'gray1')};
-            box-shadow: 0 0 8px 2px rgb(0 0 0 / 12%);
-          }
-        `}
-
-        &:focus, &:active, &:hover {
+        &:focus,
+        &:active,
+        &:hover {
           border-color: ${primaryColor};
           background: ${getColor(theme, 'gray1')};
           box-shadow: 0 0 8px 2px rgb(0 0 0 / 12%);
         }
       }
 
-      & > div.input-box > div.input > span.ellipsis {
-        color: ${getColor(theme, 'gray6')};
-      }
-    `;
-
-    // option
-    const optionStyle = css`
-      & > ul.option-list {
+      // Options
+      & ul.option-list {
         max-height: 50vh;
         overflow: scroll;
         margin: 0;
@@ -101,7 +80,7 @@ const createSelectStyle =
         left: 0;
         right: 0;
         opacity: 1;
-        visibility: hidden;
+        visibility: ${active ? 'visible' : 'hidden'};
         background-color: ${getColor(theme, 'gray1')};
         transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         transform: translateY(10px);
@@ -120,38 +99,29 @@ const createSelectStyle =
           transform: translateY(-100%);
         }
       }
-
-      ${active &&
-      css`
-        & > ul.option-list {
-          opacity: 1;
-          visibility: visible;
-        }
-      `}
     `;
 
     // size
     const getSize = () => {
       if (size === 'large')
         return css`
-          & > div.input-box > input,
-          & > div.input-box > .input {
+          & > div.input-box {
             font-size: 16px;
             height: 40px;
-            line-height: 38px;
+            line-height: 40px;
           }
         `;
       if (size === 'small')
         return css`
-          & > div.input-box > input,
-          & > div.input-box > .input {
+          & > div.input-box {
+            font-size: 14px;
             height: 24px;
             line-height: 22px;
           }
         `;
       return css`
-        & > div.input-box > input,
-        & > div.input-box > .input {
+        & > div.input-box {
+          font-size: 14px;
           height: 32px;
           line-height: 30px;
         }
@@ -160,44 +130,43 @@ const createSelectStyle =
 
     // disabled
     const getDisabled = () => {
-      if (disabled) {
+      if (disabled)
         return css`
-          & > div.input-box,
-          & > div.input-box > input[disabled],
-          & > div.input-box > div.input {
-            cursor: not-allowed !important;
+          & > div.input-box {
+            cursor: not-allowed;
+            color: ${getColor(theme, 'gray6')} !important;
             background: ${getColor(theme, 'gray3')} !important;
+            border-color: ${getColor(theme, 'gray5')} !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
 
-            & > span {
-              border: 1px solid ${getColor(theme, 'gray5')} !important;
-            }
-
-            &:focus,
-            &:active,
-            &:hover {
-              color: ${getColor(theme, 'gray6')} !important;
-              background: ${getColor(theme, 'gray3')} !important;
-              border-color: ${getColor(theme, 'gray5')} !important;
-              text-shadow: none !important;
-              box-shadow: none !important;
+            input {
+              pointer-events: none;
+              background: none;
             }
           }
         `;
-      }
       return css``;
     };
 
-    return [defaultStyle, optionStyle, getSize(), getDisabled()];
+    // tag
+    const getTag = () => {
+      if (tagRender)
+        return css`
+          & > div.input-box span.tag {
+            margin-right: 5px;
+          }
+        `;
+      return css``;
+    };
+
+    return [defaultStyle, getSize, getTag, getDisabled];
   };
 
-export const createOptionStyle =
-  (
-    color?: SelectProps['color'],
-    size?: SelectProps['size'],
-    disabled?: SelectProps['disabled'],
-    option?: SelectProps['optionStyle'],
-  ) =>
+export const optionListStyle =
+  (color?: SelectProps['color'], disabled?: SelectProps['disabled']) =>
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
+    // color
     const subColor = (function () {
       const SUB_COLOR_IDX = 1;
       const sub = `${color?.replace(NOT_STRING_REGEX, '')}${SUB_COLOR_IDX}` as SelectProps['color'];
@@ -206,18 +175,13 @@ export const createOptionStyle =
 
     // default
     const defaultStyle = css`
+      cursor: pointer;
       display: flex;
       align-items: center;
       min-height: 32px;
       line-height: 22px;
       font-size: 14px;
       padding: 4px 15px;
-
-      & > span {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
 
       &:hover {
         background-color: ${getColor(theme, 'gray3')};
@@ -227,37 +191,21 @@ export const createOptionStyle =
         background-color: ${subColor};
       }
     `;
-
-    // disabled
-    const getDisabled = () => {
-      if (disabled)
-        return css`
-          cursor: not-allowed !important;
-          color: ${getColor(theme, 'gray6')} !important;
-          background: ${getColor(theme, 'gray1')} !important;
-          border-color: ${getColor(theme, 'gray5')} !important;
-          text-shadow: none !important;
-          box-shadow: none !important;
-        `;
-      return css``;
-    };
-
-    // size
-    const getSize = () => {
-      if (size === 'large')
-        return css`
-          font-size: 16px;
-          height: 32px;
-          line-height: 32px;
-        `;
-      if (size === 'small')
-        return css`
-          height: 16px;
-          line-height: 14px;
-        `;
-      return css``;
-    };
-    return [defaultStyle, getSize(), getDisabled()];
+    return [defaultStyle];
   };
 
-export default createSelectStyle;
+// multi selected value
+export const multiSelectedValueStyle = css`
+  margin-right: 5px;
+  &::after {
+    content: ',';
+  }
+  &:last-of-type {
+    margin: 0;
+    &::after {
+      content: none;
+    }
+  }
+`;
+
+export default selectStyle;
