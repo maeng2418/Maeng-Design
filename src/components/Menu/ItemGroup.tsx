@@ -60,7 +60,7 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
       <a href={href || '#'}>
         {mode === 'vertical' && collapsed ? (icon ? icon : title[0]) : title}
         {mode === 'vertical' &&
-          (selectKeys?.includes(groupKey) ? <UpOutlined /> : <DownOutlined />)}
+          (selectKeys?.includes(groupKey) || isSelected ? <UpOutlined /> : <DownOutlined />)}
       </a>
       <ul className="sub-menu">
         {children &&
