@@ -65,7 +65,11 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
         const filteredOptions = selectedOption?.filter(
           (selectedItem) => selectedItem.props.value !== child.props.value,
         );
-        setSelectedOption(filteredOptions);
+        if (filteredOptions && filteredOptions.length > 0) {
+          setSelectedOption(filteredOptions);
+        } else {
+          setSelectedOption(undefined);
+        }
 
         onChange && onChange(filteredOptions?.map((child) => child.props.value));
       },

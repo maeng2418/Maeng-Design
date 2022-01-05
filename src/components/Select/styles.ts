@@ -18,7 +18,6 @@ const selectStyle =
     // default
     const defaultStyle = css`
       position: relative;
-      display: flex;
 
       & > div.input-box {
         position: relative;
