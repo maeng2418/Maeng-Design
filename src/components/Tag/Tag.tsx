@@ -28,7 +28,7 @@ export interface TagProps {
 
 const Tag: React.FC<TagProps> = ({ children, color, style, size }) => {
   return (
-    <span css={createStyle(color, size)} style={style}>
+    <span className="tag" css={createStyle(color, size)} style={style}>
       {children}
     </span>
   );
