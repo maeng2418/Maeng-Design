@@ -39,3 +39,7 @@ const App = () => (
 ## 📕 Storybook
 
 - [Storybook Link](https://storybook-maeng-design.netlify.app/)
+
+## 🎨 Figma
+
+- [Figma Link](https://www.figma.com/file/HO5MJalfgtxxURpt66KCes/Maeng-Design?node-id=0%3A1)
