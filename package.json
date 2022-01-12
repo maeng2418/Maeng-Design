@@ -21,7 +21,7 @@
     "svgr": "svgr --icon --title-prop --typescript --replace-attr-values '#1D1D1D=currentColor' -d src/components/icons src/assets/icons"
   },
   "author": "Myeongseong Kim",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@emotion/babel-plugin": "^11.3.0",
