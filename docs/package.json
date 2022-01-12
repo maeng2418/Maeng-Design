@@ -23,6 +23,8 @@
     "prebuild": "npm run typecheck"
   },
   "dependencies": {
+    "@emotion/css": "^11.7.1",
+    "@emotion/react": "^11.7.1",
     "@types/react-helmet": "^6.1.5",
     "gatsby": "^4.5.0",
     "gatsby-plugin-emotion": "^7.5.0",
