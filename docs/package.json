@@ -18,9 +18,7 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "typecheck": "tsc --noEmit",
-    "prebuild": "npm run typecheck"
+    "clean": "gatsby clean"
   },
   "dependencies": {
     "@emotion/css": "^11.7.1",

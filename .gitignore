@@ -1,5 +1,6 @@
 node_modules
 .eslintcache
 .cache
-docs/public/page-data
+docs/public/
+!static
 /build
