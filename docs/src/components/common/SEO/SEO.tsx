@@ -1,6 +1,6 @@
+import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { graphql, useStaticQuery } from 'gatsby';
 
 interface IMeta {
   [key: string]: string;
@@ -18,6 +18,7 @@ const SEO: React.FC<ISEOProps> = ({ lang = 'kr', meta = [], title }) => {
     title: defaultTitle,
     description: defaultDesc,
     authorName: defaultAuthor,
+    icon: defaultIcon,
   } = useStaticQuery(
     graphql`
       query SEO {
@@ -27,6 +28,7 @@ const SEO: React.FC<ISEOProps> = ({ lang = 'kr', meta = [], title }) => {
             description
             siteUrl
             authorName
+            icon
           }
         }
       }
@@ -44,8 +46,9 @@ const SEO: React.FC<ISEOProps> = ({ lang = 'kr', meta = [], title }) => {
     <Helmet
       htmlAttributes={{ lang }}
       title={title || defaultTitle}
-      titleTemplate={`%s | ${title || defaultTitle}`}
+      titleTemplate={title ? `${title} - ${defaultTitle}` : defaultTitle}
       meta={[...defaultMeta, ...meta]}
+      link={[{ rel: 'shortcut icon', type: 'image/png', href: `${defaultIcon}` }]}
     />
   );
 };

@@ -1,10 +1,9 @@
 import React from 'react';
-import { Layout, SEO } from '../components';
+import { Layout } from '../components/common';
 
 const IndexPage: React.FC = () => {
   return (
-    <Layout>
-      <SEO />
+    <Layout title={'HOME'}>
       <div>Hello world</div>
     </Layout>
   );
