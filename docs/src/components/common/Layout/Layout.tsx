@@ -3,10 +3,10 @@
 import { css, Global, jsx } from '@emotion/react';
 import React from 'react';
 import globalStyle from '../../../styles/globals';
-import { SEO } from '../SEO';
 import Footer from './Footer';
 import Header from './Header';
 import Nav from './Nav';
+import SEO from './SEO';
 
 interface LayoutProps {
   title?: string;
@@ -15,7 +15,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ title, children }) => {
   return (
-    <>
+    <React.Fragment>
       <SEO title={title} />
       <Global styles={globalStyle} />
       <Header />
@@ -24,7 +24,7 @@ const Layout: React.FC<LayoutProps> = ({ title, children }) => {
         <section css={sectionStyles}>{children}</section>
       </main>
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 
