@@ -1,11 +1,11 @@
 import { PageProps } from 'gatsby';
 import React from 'react';
-import { Layout } from '../../../components/common';
+import { Colors, Layout } from '../../../components';
 
 const ColorsPage: React.FC<PageProps> = () => {
   return (
     <Layout title="Colors">
-      <div>Colors</div>
+      <Colors />
     </Layout>
   );
 };

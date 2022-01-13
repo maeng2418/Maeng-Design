@@ -55,15 +55,33 @@ const routes: Routes = {
         label: 'Input',
         href: '/dataEntry/input',
       },
+      select: {
+        label: 'Select',
+        href: '/dataEntry/select',
+      },
+      switch: {
+        label: 'Switch',
+        href: '/dataEntry/switch',
+      },
+    },
+  },
+  dataDisplay: {
+    label: 'Data Display',
+    href: '/dataDisplay',
+    subMenu: {
+      tag: {
+        label: 'Tag',
+        href: '/dataDisplay/tag',
+      },
     },
   },
   feedback: {
     label: 'Feedback',
     href: '/feedback',
     subMenu: {
-      message: {
-        label: 'Message',
-        href: '/feedback/message',
+      toast: {
+        label: 'Toast',
+        href: '/feedback/toast',
       },
       modal: {
         label: 'Modal',

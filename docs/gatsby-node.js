@@ -7,4 +7,34 @@ exports.createPages = async ({ actions }) => {
     redirectInBrowser: true,
     isPermanent: true,
   });
+  createRedirect({
+    fromPath: `/layout`,
+    toPath: `/layout/divider`,
+    redirectInBrowser: true,
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: `/navigation`,
+    toPath: `/navigation/menu`,
+    redirectInBrowser: true,
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: `/dataEntry`,
+    toPath: `/dataEntry/input`,
+    redirectInBrowser: true,
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: `/dataDisplay`,
+    toPath: `/dataDisplay/tag`,
+    redirectInBrowser: true,
+    isPermanent: true,
+  });
+  createRedirect({
+    fromPath: `/feedback`,
+    toPath: `/feedback/toast`,
+    redirectInBrowser: true,
+    isPermanent: true,
+  });
 };

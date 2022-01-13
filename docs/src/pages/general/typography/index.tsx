@@ -1,11 +1,11 @@
 import { PageProps } from 'gatsby';
 import React from 'react';
-import { Layout } from '../../../components/common';
+import { Layout, Typography } from '../../../components';
 
 const TypographyPage: React.FC<PageProps> = () => {
   return (
     <Layout title="Typography">
-      <div>Typography</div>
+      <Typography />
     </Layout>
   );
 };
