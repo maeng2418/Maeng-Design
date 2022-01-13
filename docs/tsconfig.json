@@ -8,16 +8,11 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "declaration": true,
-    "declarationDir": "types",
-    "outDir": "build",
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "emitDeclarationOnly": true,
-    "baseUrl": ".",
-    "typeRoots": ["@types, node_modules/@types"]
+    "baseUrl": "."
   },
-  "include": ["src/**/*", "@types/**/*"],
-  "exclude": ["node_modules", "es", "lib", "src/**/*.stories.tsx", "src/**/*.test.tsx", "docs"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
