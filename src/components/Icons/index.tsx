@@ -1,3 +1,4 @@
+export { default as CalendarOutlined } from './CalendarOutlined';
 export { default as CaretDownOutlined } from './CaretDownOutlined';
 export { default as CaretLeftOutlined } from './CaretLeftOutlined';
 export { default as CaretRightOutlined } from './CaretRightOutlined';

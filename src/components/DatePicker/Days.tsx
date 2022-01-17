@@ -1,14 +1,23 @@
 /** @jsxImportSource @emotion/react */
-import React, { useCallback } from 'react';
+import React, { MouseEvent, useCallback, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { calendarDays } from './styles';
 
 interface DaysProps {
+  day: number;
   month: number;
   year: number;
+  onChangeDay: (day: number) => (e: MouseEvent<HTMLDivElement>) => void;
+  onPreventMouseDownEvent: (e: MouseEvent) => void;
 }
 
-const Days: React.FC<DaysProps> = ({ month, year }) => {
+const Days: React.FC<DaysProps> = ({
+  day: d,
+  month,
+  year,
+  onChangeDay,
+  onPreventMouseDownEvent,
+}) => {
   const isLeapYear = useCallback((year: number) => {
     return (
       (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) ||
@@ -22,28 +31,40 @@ const Days: React.FC<DaysProps> = ({ month, year }) => {
     },
     [isLeapYear],
   );
-  const daysOfMonth = [31, getFebDays(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  const firstDay = new Date(year, month, 1);
+
+  const daysOfMonth = useMemo(
+    () => [31, getFebDays(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+    [getFebDays, year],
+  );
+
+  const firstDay = useMemo(() => new Date(year, month, 1), [month, year]);
 
   return (
     <div className={`calendar-days`} css={calendarDays}>
       {new Array(daysOfMonth[month] + firstDay.getDay()).fill(0).map((_, i) => {
+        const day = i - firstDay.getDay() + 1;
         if (i >= firstDay.getDay()) {
-          if (
-            i - firstDay.getDay() + 1 === new Date().getDate() &&
-            year === new Date().getFullYear() &&
-            month === new Date().getMonth()
-          ) {
+          if (d === day) {
             return (
-              <div key={uuidv4()} className="calendar-day-hover curr-date">
-                <span>{i - firstDay.getDay() + 1}</span>
+              <div
+                key={uuidv4()}
+                className="calendar-day-hover curr-date"
+                onClick={onChangeDay(day)}
+                onMouseDown={onPreventMouseDownEvent}
+              >
+                <span>{day}</span>
               </div>
             );
           }
 
           return (
-            <div key={uuidv4()} className="calendar-day-hover">
-              <span>{i - firstDay.getDay() + 1}</span>
+            <div
+              key={uuidv4()}
+              className="calendar-day-hover"
+              onClick={onChangeDay(day)}
+              onMouseDown={onPreventMouseDownEvent}
+            >
+              <span>{day}</span>
             </div>
           );
         }

@@ -2,7 +2,135 @@ import { css, Interpolation, Theme } from '@emotion/react';
 import { getColor, ThemeMode } from '../../styles';
 import { DatePickerProps } from './DatePicker';
 
-const createStyle =
+export const createStyle =
+  (
+    active: boolean,
+    color: DatePickerProps['color'],
+    size: DatePickerProps['size'],
+    disabled: DatePickerProps['disabled'],
+  ) =>
+  (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
+    // color
+    const primaryColor = getColor(theme, color);
+
+    // default
+    const defaultStyle = css`
+      position: relative;
+
+      & > section.input-box {
+        position: relative;
+        cursor: pointer;
+        color: ${active ? getColor(theme, 'gray6') : getColor(theme, 'gray10')};
+        border: 1px solid ${active ? primaryColor : getColor(theme, 'gray5')};
+        border-radius: 2px;
+        box-shadow: ${active ? '0 0 8px 2px rgb(0 0 0 / 12%)' : 'none'};
+        background: ${getColor(theme, 'gray1')};
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 calc(15px + 1em) 0 15px;
+        outline: none;
+        margin: 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        & > input {
+          pointer-events: none;
+          cursor: pointer;
+          box-sizing: border-box;
+          width: 100%;
+          font-size: 1em;
+          border: none;
+          outline: none;
+          margin: 0;
+          padding: 0;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+
+        & > svg {
+          position: absolute;
+          top: 50%;
+          right: 15px;
+          fill: ${getColor(theme, 'gray7')};
+          transform: translateY(-50%);
+        }
+
+        &:focus,
+        &:active,
+        &:hover {
+          border-color: ${primaryColor};
+          background: ${getColor(theme, 'gray1')};
+          box-shadow: 0 0 8px 2px rgb(0 0 0 / 12%);
+
+          & > svg {
+            fill: ${primaryColor};
+          }
+        }
+      }
+    `;
+
+    // size
+    const getSize = () => {
+      if (size === 'large')
+        return css`
+          & > section.input-box {
+            font-size: 16px;
+            height: 40px;
+            line-height: 40px;
+          }
+        `;
+      if (size === 'small')
+        return css`
+          & > section.input-box {
+            font-size: 14px;
+            height: 24px;
+            line-height: 22px;
+          }
+        `;
+      return css`
+        & > section.input-box {
+          font-size: 14px;
+          height: 32px;
+          line-height: 30px;
+        }
+      `;
+    };
+
+    // disabled
+    const getDisabled = () => {
+      if (disabled)
+        return css`
+          & > section.input-box {
+            cursor: not-allowed;
+            color: ${getColor(theme, 'gray6')} !important;
+            background: ${getColor(theme, 'gray3')} !important;
+            border-color: ${getColor(theme, 'gray5')} !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
+
+            input {
+              pointer-events: none;
+              background: none;
+            }
+
+            &:focus,
+            &:active,
+            &:hover {
+              svg {
+                fill: ${getColor(theme, 'gray7')};
+              }
+            }
+          }
+        `;
+      return css``;
+    };
+
+    return [defaultStyle, getSize, getDisabled];
+  };
+
+export const calendarStyle =
   (color?: DatePickerProps['color']) =>
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
     // color
@@ -11,12 +139,31 @@ const createStyle =
     return css`
       &.calendar {
         width: 280px;
+        margin: 0;
+        padding: 0;
         border-radius: 2px;
-        position: relative;
         overflow: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
         background: ${getColor(theme, 'gray1')};
         border-radius: 2px;
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+        transform: translateY(10px);
+        z-index: 1;
+
+        &::before {
+          content: '';
+          width: 100%;
+          height: 10px;
+          background-color: transparent;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: translateY(-100%);
+        }
 
         .calendar-header {
           display: flex;
