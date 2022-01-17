@@ -37,6 +37,7 @@ const selectStyle =
         overflow: hidden;
 
         & > input.hidden-input {
+          pointer-events: none;
           cursor: pointer;
           box-sizing: border-box;
           width: 100%;
@@ -79,7 +80,6 @@ const selectStyle =
         left: 0;
         right: 0;
         opacity: 1;
-        visibility: ${active ? 'visible' : 'hidden'};
         background-color: ${getColor(theme, 'gray1')};
         transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         transform: translateY(10px);

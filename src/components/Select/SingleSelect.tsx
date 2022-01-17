@@ -1,5 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import React, { MouseEvent, ReactElement, useCallback, useLayoutEffect, useState } from 'react';
+import React, {
+  FocusEvent,
+  MouseEvent,
+  ReactElement,
+  useCallback,
+  useLayoutEffect,
+  useState,
+} from 'react';
 import { CaretDownOutlined, CaretUpOutlined, Tag } from '..';
 import SelectOption from './Option';
 import { SelectProps } from './Select';
@@ -31,7 +38,8 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
 
   // Select 옵션 리스트 활성화
   const onSetActive = useCallback(
-    (value: boolean) => () => {
+    (value: boolean) => (e: FocusEvent | MouseEvent) => {
+      e.preventDefault();
       !disabled && setActive(value);
     },
     [disabled],
@@ -61,14 +69,18 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
     [onChange],
   );
 
+  const onPreventMouseDownEvent = useCallback((e: MouseEvent) => {
+    e.preventDefault();
+  }, []);
+
   return (
-    <div
-      className="select"
-      css={selectStyle(active, color, size, tagRender, disabled)}
-      tabIndex={0}
-      onBlur={onSetActive(false)}
-    >
-      <div className="input-box" onClick={onSetActive(!active)}>
+    <div className="select" css={selectStyle(active, color, size, tagRender, disabled)}>
+      <div
+        className="input-box"
+        tabIndex={0}
+        onBlur={onSetActive(false)}
+        onClick={onSetActive(!active)}
+      >
         {selectedOption && (tagRender ? <Tag size={size}>{selectedOption}</Tag> : selectedOption)}
         <input
           className="hidden-input"
@@ -81,7 +93,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
         />
         {active ? <CaretUpOutlined /> : <CaretDownOutlined />}
       </div>
-      {children && !disabled && (
+      {active && children && !disabled && (
         <ul className="option-list">
           {React.Children.map(children, (child: React.ReactElement) => {
             if (child.type !== SelectOption) {
@@ -97,6 +109,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
                 className={`option ${isSelected}`}
                 css={optionListStyle(optionColor || color, optionDisabled)}
                 onClick={isSelected ? onDeselectOption : onSelectOption(child)}
+                onMouseDown={onPreventMouseDownEvent}
               >
                 {child}
               </li>
