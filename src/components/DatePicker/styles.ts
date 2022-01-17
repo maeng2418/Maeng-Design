@@ -8,8 +8,7 @@ const createStyle =
     // color
     const primaryColor = getColor(theme, color);
 
-    // default
-    const defaultStyle = css`
+    return css`
       &.calendar {
         width: 280px;
         border-radius: 2px;
@@ -51,107 +50,119 @@ const createStyle =
 
         .calendar-body {
           padding: 10px 12px 20px;
+        }
+      }
+    `;
+  };
 
-          .calendar-week-day {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            font-weight: 600;
+export const calendarWeekDayStyle = (
+  theme: Theme = { mode: ThemeMode.LIGHT },
+): Interpolation<Theme> => css`
+  &.calendar-week-day {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: 600;
 
-            div {
-              width: 36px;
-              min-width: 24px;
-              height: 30px;
-              line-height: 30px;
-              display: grid;
-              place-items: center;
-              color: ${getColor(theme, 'gray6')};
-            }
-          }
+    div {
+      width: 36px;
+      min-width: 24px;
+      height: 30px;
+      line-height: 30px;
+      display: grid;
+      place-items: center;
+      color: ${getColor(theme, 'gray6')};
+    }
+  }
+`;
 
-          .calendar-days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 2px;
+export const calendarDays = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => css`
+  &.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
 
-            div {
-              display: flex;
-              flex: 1;
-              justify-content: center;
-              align-items: center;
-              animation: to-top 1s forwards;
+    div {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      animation: to-top 1s forwards;
 
-              &.calendar-day-hover {
-                cursor: pointer;
-                span {
-                  box-sizing: border-box;
-                  display: inline-block;
-                  padding: 3px 0;
-                  width: 24px;
-                  height: 24px;
-                  line-height: 24px;
-                  border-radius: 2px;
-                  text-align: center;
-                  transition: background 0.3s;
-                }
-
-                &:hover span {
-                  background: ${getColor(theme, 'gray3')};
-                }
-              }
-
-              &.calendar-day-hover.curr-date {
-                span,
-                &:hover span {
-                  color: ${getColor(theme, 'gray1')};
-                  background: ${getColor(theme, 'blue6')};
-                }
-              }
-            }
-          }
+      &.calendar-day-hover {
+        cursor: pointer;
+        span {
+          box-sizing: border-box;
+          display: inline-block;
+          padding: 3px 0;
+          width: 24px;
+          height: 24px;
+          line-height: 24px;
+          border-radius: 2px;
+          text-align: center;
+          transition: background 0.3s;
         }
 
-        .month-list,
-        .year-list {
-          position: absolute;
-          box-sizing: border-box;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          padding: 10px;
-          background-color: ${getColor(theme, 'gray1')};
-          grid-template-columns: repeat(3, auto);
-          gap: 5px;
-          display: grid;
-          animation: to-show 0.2s ease-in-out;
-
-          & > div {
-            display: grid;
-            place-items: center;
-
-            & > span {
-              width: 100%;
-              text-align: center;
-              cursor: pointer;
-
-              &.cur-month,
-              &.cur-year,
-              &:hover {
-                color: ${primaryColor};
-              }
-            }
-          }
+        &:hover span {
+          background: ${getColor(theme, 'gray3')};
         }
       }
 
-      @keyframes to-top {
-        0% {
-          transform: translateY(100%);
-          opacity: 0;
+      &.calendar-day-hover.curr-date {
+        span,
+        &:hover span {
+          color: ${getColor(theme, 'gray1')};
+          background: ${getColor(theme, 'blue6')};
         }
-        100% {
-          transform: translateY(0);
-          opacity: 1;
+      }
+    }
+
+    @keyframes to-top {
+      0% {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  }
+`;
+
+export const monthYearListStyle =
+  (color?: DatePickerProps['color']) =>
+  (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
+    // color
+    const primaryColor = getColor(theme, color);
+
+    return css`
+      position: absolute;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      padding: 10px;
+      background-color: ${getColor(theme, 'gray1')};
+      grid-template-columns: repeat(3, auto);
+      gap: 5px;
+      display: grid;
+      animation: to-show 0.2s ease-in-out;
+
+      & > div {
+        display: grid;
+        place-items: center;
+
+        & > span {
+          width: 100%;
+          text-align: center;
+          cursor: pointer;
+
+          &.cur-month,
+          &.cur-year,
+          &:hover {
+            color: ${primaryColor};
+          }
         }
       }
 
@@ -168,8 +179,6 @@ const createStyle =
         }
       }
     `;
-
-    return [defaultStyle];
   };
 
 export default createStyle;
