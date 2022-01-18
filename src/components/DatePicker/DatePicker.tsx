@@ -145,63 +145,27 @@ const DatePicker: React.FC<DatePickerProps> = ({
           onMouseDown={onPreventMouseDownEvent}
         >
           <header className="calendar-header">
-            <span
-              className="prev-month"
-              onClick={onClickPrevBtn}
-              onMouseDown={onPreventMouseDownEvent}
-            >
+            <span className="prev-month" onClick={onClickPrevBtn}>
               <LeftOutlined className="month-change" id="prev-month" />
             </span>
-            <span
-              className="month-picker"
-              id="month-picker"
-              onClick={onClickMonth}
-              onMouseDown={onPreventMouseDownEvent}
-            >
+            <span className="month-picker" id="month-picker" onClick={onClickMonth}>
               {monthNames[month]}
             </span>
-            <span
-              className="year-picker"
-              id="year-picker"
-              onClick={onClickYear}
-              onMouseDown={onPreventMouseDownEvent}
-            >
+            <span className="year-picker" id="year-picker" onClick={onClickYear}>
               {year}
             </span>
-            <span
-              className="next-month"
-              onClick={onClickNextBtn}
-              onMouseDown={onPreventMouseDownEvent}
-            >
+            <span className="next-month" onClick={onClickNextBtn}>
               <RightOutlined className="month-change" id="next-month" />
             </span>
           </header>
           <section className="calendar-body">
             <WeekDays />
-            <Days
-              day={day}
-              month={month}
-              year={year}
-              onChangeDay={onChangeDay}
-              onPreventMouseDownEvent={onPreventMouseDownEvent}
-            />
+            <Days day={day} month={month} year={year} onChangeDay={onChangeDay} />
           </section>
           {openMonthList && (
-            <MonthPicker
-              color={color}
-              month={month}
-              onChangeMonth={onChangeMonth}
-              onPreventMouseDownEvent={onPreventMouseDownEvent}
-            />
+            <MonthPicker color={color} month={month} onChangeMonth={onChangeMonth} />
           )}
-          {openYearList && (
-            <YearPicker
-              color={color}
-              year={year}
-              onChangeYear={onChangeYear}
-              onPreventMouseDownEvent={onPreventMouseDownEvent}
-            />
-          )}
+          {openYearList && <YearPicker color={color} year={year} onChangeYear={onChangeYear} />}
         </section>
       )}
     </article>

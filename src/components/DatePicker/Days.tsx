@@ -8,16 +8,9 @@ interface DaysProps {
   month: number;
   year: number;
   onChangeDay: (day: number) => (e: MouseEvent<HTMLDivElement>) => void;
-  onPreventMouseDownEvent: (e: MouseEvent) => void;
 }
 
-const Days: React.FC<DaysProps> = ({
-  day: d,
-  month,
-  year,
-  onChangeDay,
-  onPreventMouseDownEvent,
-}) => {
+const Days: React.FC<DaysProps> = ({ day: d, month, year, onChangeDay }) => {
   const isLeapYear = useCallback((year: number) => {
     return (
       (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) ||
@@ -50,7 +43,6 @@ const Days: React.FC<DaysProps> = ({
                 key={uuidv4()}
                 className="calendar-day-hover curr-date"
                 onClick={onChangeDay(day)}
-                onMouseDown={onPreventMouseDownEvent}
               >
                 <span>{day}</span>
               </div>
@@ -58,12 +50,7 @@ const Days: React.FC<DaysProps> = ({
           }
 
           return (
-            <div
-              key={uuidv4()}
-              className="calendar-day-hover"
-              onClick={onChangeDay(day)}
-              onMouseDown={onPreventMouseDownEvent}
-            >
+            <div key={uuidv4()} className="calendar-day-hover" onClick={onChangeDay(day)}>
               <span>{day}</span>
             </div>
           );

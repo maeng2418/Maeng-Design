@@ -7,15 +7,9 @@ interface MonthPickerProps {
   color?: DatePickerProps['color'];
   month: number;
   onChangeMonth: (month: number) => (e: MouseEvent<HTMLDivElement>) => void;
-  onPreventMouseDownEvent: (e: MouseEvent) => void;
 }
 
-const MonthPicker: React.FC<MonthPickerProps> = ({
-  color,
-  month: m,
-  onChangeMonth,
-  onPreventMouseDownEvent,
-}) => {
+const MonthPicker: React.FC<MonthPickerProps> = ({ color, month: m, onChangeMonth }) => {
   return (
     <div className="month-list" css={monthYearListStyle(color)}>
       {[
@@ -32,12 +26,7 @@ const MonthPicker: React.FC<MonthPickerProps> = ({
         'November',
         'December',
       ].map((month, idx) => (
-        <div
-          key={month}
-          data-month={idx}
-          onClick={onChangeMonth(idx)}
-          onMouseDown={onPreventMouseDownEvent}
-        >
+        <div key={month} data-month={idx} onClick={onChangeMonth(idx)}>
           <span className={m === idx ? 'cur-month' : ''}>{month}</span>
         </div>
       ))}

@@ -94,7 +94,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
         {active ? <CaretUpOutlined /> : <CaretDownOutlined />}
       </div>
       {active && children && !disabled && (
-        <ul className="option-list">
+        <ul className="option-list" onMouseDown={onPreventMouseDownEvent}>
           {React.Children.map(children, (child: React.ReactElement) => {
             if (child.type !== SelectOption) {
               console.warn(
@@ -109,7 +109,6 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
                 className={`option ${isSelected}`}
                 css={optionListStyle(optionColor || color, optionDisabled)}
                 onClick={isSelected ? onDeselectOption : onSelectOption(child)}
-                onMouseDown={onPreventMouseDownEvent}
               >
                 {child}
               </li>
