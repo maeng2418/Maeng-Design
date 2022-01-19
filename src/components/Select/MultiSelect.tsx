@@ -1,5 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import React, { ReactElement, useCallback, useLayoutEffect, useState } from 'react';
+import React, {
+  FocusEvent,
+  MouseEvent,
+  ReactElement,
+  useCallback,
+  useLayoutEffect,
+  useState,
+} from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { CaretDownOutlined, CaretUpOutlined, CloseOutlined, Tag } from '..';
 import SelectOption from './Option';
@@ -37,7 +44,8 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
   // Select 옵션 리스트 활성화
   const onSetActive = useCallback(
-    (value: boolean) => () => {
+    (value: boolean) => (e: FocusEvent | MouseEvent) => {
+      e.preventDefault();
       !disabled && setActive(value);
     },
     [disabled],
@@ -76,14 +84,18 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     [onChange, selectedOption],
   );
 
+  const onPreventMouseDownEvent = useCallback((e: MouseEvent) => {
+    e.preventDefault();
+  }, []);
+
   return (
-    <div
-      className="select"
-      css={selectStyle(active, color, size, tagRender, disabled)}
-      tabIndex={0}
-      onBlur={onSetActive(false)}
-    >
-      <div className="input-box" onClick={onSetActive(!active)}>
+    <div className="select" css={selectStyle(active, color, size, tagRender, disabled)}>
+      <div
+        className="input-box"
+        tabIndex={0}
+        onBlur={onSetActive(false)}
+        onClick={onSetActive(!active)}
+      >
         {selectedOption?.map((option) =>
           tagRender ? (
             <Tag key={uuidv4()} size={size}>
@@ -108,8 +120,8 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
         />
         {active ? <CaretUpOutlined /> : <CaretDownOutlined />}
       </div>
-      {children && !disabled && (
-        <ul className="option-list">
+      {active && children && !disabled && (
+        <ul className="option-list" onMouseDown={onPreventMouseDownEvent}>
           {React.Children.map(children, (child: React.ReactElement) => {
             if (child.type !== SelectOption) {
               console.warn(
