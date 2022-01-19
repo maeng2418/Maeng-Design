@@ -1,6 +1,6 @@
 {
   "name": "maeng-design",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Maeng Design is for building Design system with React, Typescript and Storybook",
   "repository": {
     "type": "git",
@@ -79,7 +79,8 @@
     "@emotion/styled": ">=11.3.0",
     "prismjs": ">=1.25.0",
     "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react-dom": ">=16.8.0",
+    "uuid": ">=8.3.2"
   },
   "husky": {
     "hooks": {}
