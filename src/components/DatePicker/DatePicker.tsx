@@ -1,55 +1,58 @@
 /** @jsxImportSource @emotion/react */
-import React, { FocusEvent, MouseEvent, useCallback, useMemo, useState } from 'react';
-import { CalendarOutlined, LeftOutlined, RightOutlined } from '..';
+import React, {
+  FocusEvent,
+  MouseEvent,
+  useCallback,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from 'react';
+import { CalendarOutlined } from '..';
 import { DarkColorType, LightColorType } from '../../styles/colors';
-import Days from './Days';
-import MonthPicker from './MonthPicker';
-import createStyle, { calendarStyle } from './styles';
-import WeekDays from './WeekDays';
-import YearPicker from './YearPicker';
+import Calendar from './Calendar';
+import datePickerStyle from './styles';
 
 export interface DatePickerProps {
   color?: LightColorType | DarkColorType;
   disabled?: boolean;
   placeholder?: string;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'large' | 'medium' | 'small';
+  value?: Date;
+  onChange?: (value: Date) => void;
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({
   color = 'blue6',
   disabled = false,
-  placeholder = 'yyyy.mm.dd',
+  placeholder = 'YYYY-MM-DD',
   size = 'medium',
+  value,
+  onChange,
 }) => {
   const [active, setActive] = useState<boolean>(false);
   const [openMonthList, setOpenMonthList] = useState(false);
   const [openYearList, setOpenYearList] = useState(false);
-  const [day, setDay] = useState(new Date().getDate());
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
 
-  const date = useMemo(
-    () => `${year}-${`0${month + 1}`.slice(-2)}-${`0${day}`.slice(-2)}`,
-    [day, month, year],
-  );
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(value);
 
-  const monthNames = useMemo(
-    () => [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ],
-    [],
-  );
+  useLayoutEffect(() => {
+    if (value) {
+      setMonth(value.getMonth());
+      setYear(value.getFullYear());
+
+      setSelectedDate(value);
+    }
+  }, [value]);
+
+  const date = useMemo(() => {
+    if (selectedDate instanceof Date)
+      return `${selectedDate.getFullYear()}-${`0${selectedDate.getMonth() + 1}`.slice(
+        -2,
+      )}-${`0${selectedDate.getDate()}`.slice(-2)}`;
+    return '';
+  }, [selectedDate]);
 
   // 달력 활성화
   const onSetActive = useCallback(
@@ -60,19 +63,20 @@ const DatePicker: React.FC<DatePickerProps> = ({
     [disabled],
   );
 
+  const onClickDay = useCallback(
+    (date: Date) => (e: MouseEvent<HTMLSpanElement>) => {
+      e.preventDefault();
+      setSelectedDate(date);
+      onChange && onChange(date);
+      setActive(false);
+    },
+    [onChange],
+  );
+
   const onClickMonth = useCallback((e: MouseEvent<HTMLSpanElement>) => {
     e.preventDefault();
     setOpenMonthList(true);
   }, []);
-
-  const onChangeDay = useCallback(
-    (day: number) => (e: MouseEvent<HTMLSpanElement>) => {
-      e.preventDefault();
-      setDay(day);
-      setActive(false);
-    },
-    [],
-  );
 
   const onChangeMonth = useCallback(
     (month: number) => (e: MouseEvent<HTMLDivElement>) => {
@@ -100,27 +104,27 @@ const DatePicker: React.FC<DatePickerProps> = ({
   const onClickPrevBtn = useCallback(
     (e: MouseEvent<HTMLSpanElement>) => {
       e.preventDefault();
-      if (month - 1 > 0) {
+      if (month - 1 >= 0) {
         setMonth((prev) => prev - 1);
       } else {
-        setYear(year - 1);
+        setYear((prev) => prev - 1);
         setMonth(11);
       }
     },
-    [month, year],
+    [month],
   );
 
   const onClickNextBtn = useCallback(
     (e: MouseEvent<HTMLSpanElement>) => {
       e.preventDefault();
-      if (month < 11) {
+      if (month + 1 <= 11) {
         setMonth((prev) => prev + 1);
       } else {
-        setYear(year + 1);
+        setYear((prev) => prev + 1);
         setMonth(0);
       }
     },
-    [month, year],
+    [month],
   );
 
   const onPreventMouseDownEvent = useCallback((e: MouseEvent) => {
@@ -128,47 +132,35 @@ const DatePicker: React.FC<DatePickerProps> = ({
   }, []);
 
   return (
-    <article className="date-picker" css={createStyle(active, color, size, disabled)}>
-      <section
+    <div className="date-picker" css={datePickerStyle(active, color, size, disabled)}>
+      <div
         className="input-box"
         onClick={onSetActive(!active)}
         tabIndex={0}
         onBlur={onSetActive(false)}
       >
         <input readOnly value={date} placeholder={placeholder} disabled={disabled} />
-        <CalendarOutlined />
-      </section>
+        <CalendarOutlined className="ic-calendar-outlined" />
+      </div>
       {active && (
-        <section
-          className="calendar"
-          css={calendarStyle(color)}
-          onMouseDown={onPreventMouseDownEvent}
-        >
-          <header className="calendar-header">
-            <span className="prev-month" onClick={onClickPrevBtn}>
-              <LeftOutlined className="month-change" id="prev-month" />
-            </span>
-            <span className="month-picker" id="month-picker" onClick={onClickMonth}>
-              {monthNames[month]}
-            </span>
-            <span className="year-picker" id="year-picker" onClick={onClickYear}>
-              {year}
-            </span>
-            <span className="next-month" onClick={onClickNextBtn}>
-              <RightOutlined className="month-change" id="next-month" />
-            </span>
-          </header>
-          <section className="calendar-body">
-            <WeekDays />
-            <Days day={day} month={month} year={year} onChangeDay={onChangeDay} />
-          </section>
-          {openMonthList && (
-            <MonthPicker color={color} month={month} onChangeMonth={onChangeMonth} />
-          )}
-          {openYearList && <YearPicker color={color} year={year} onChangeYear={onChangeYear} />}
-        </section>
+        <Calendar
+          onPreventMouseDownEvent={onPreventMouseDownEvent}
+          color={color}
+          onClickPrevBtn={onClickPrevBtn}
+          onClickMonth={onClickMonth}
+          month={month}
+          year={year}
+          onClickYear={onClickYear}
+          selectedDates={[selectedDate]}
+          onClickNextBtn={onClickNextBtn}
+          onClickDay={onClickDay}
+          openMonthList={openMonthList}
+          openYearList={openYearList}
+          onChangeMonth={onChangeMonth}
+          onChangeYear={onChangeYear}
+        />
       )}
-    </article>
+    </div>
   );
 };
 

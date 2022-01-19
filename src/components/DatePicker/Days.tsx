@@ -1,16 +1,24 @@
 /** @jsxImportSource @emotion/react */
 import React, { MouseEvent, useCallback, useMemo } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { calendarDays } from './styles';
 
 interface DaysProps {
-  day: number;
+  selectedDates?: (Date | undefined)[];
   month: number;
   year: number;
-  onChangeDay: (day: number) => (e: MouseEvent<HTMLDivElement>) => void;
+  minDate?: Date;
+  maxDate?: Date;
+  onClickDay: (date: Date) => (e: MouseEvent<HTMLDivElement>) => void;
 }
 
-const Days: React.FC<DaysProps> = ({ day: d, month, year, onChangeDay }) => {
+const Days: React.FC<DaysProps> = ({
+  selectedDates = [undefined, undefined],
+  month,
+  year,
+  minDate,
+  maxDate,
+  onClickDay,
+}) => {
   const isLeapYear = useCallback((year: number) => {
     return (
       (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) ||
@@ -37,25 +45,25 @@ const Days: React.FC<DaysProps> = ({ day: d, month, year, onChangeDay }) => {
       {new Array(daysOfMonth[month] + firstDay.getDay()).fill(0).map((_, i) => {
         const day = i - firstDay.getDay() + 1;
         if (i >= firstDay.getDay()) {
-          if (d === day) {
-            return (
-              <div
-                key={uuidv4()}
-                className="calendar-day-hover curr-date"
-                onClick={onChangeDay(day)}
-              >
-                <span>{day}</span>
-              </div>
-            );
-          }
-
+          const date = new Date(year, month, day);
+          const classNames = ['calendar-day-hover'];
+          // selected
+          if (selectedDates?.some((d) => d?.toDateString() === date.toDateString()))
+            classNames.push('curr-date');
+          // disabled
+          if ((minDate && +date < +minDate) || (maxDate && +date > +maxDate))
+            classNames.push('disabled');
           return (
-            <div key={uuidv4()} className="calendar-day-hover" onClick={onChangeDay(day)}>
+            <div
+              key={date.toDateString()}
+              className={classNames.join(' ')}
+              onClick={onClickDay(date)}
+            >
               <span>{day}</span>
             </div>
           );
         }
-        return <div key={uuidv4()}></div>;
+        return <div key={i}></div>;
       })}
     </div>
   );

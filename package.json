@@ -1,6 +1,6 @@
 {
   "name": "maeng-design",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Maeng Design is for building Design system with React, Typescript and Storybook",
   "repository": {
     "type": "git",
