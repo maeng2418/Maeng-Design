@@ -63,6 +63,10 @@ const routes: Routes = {
         label: 'Switch',
         href: '/dataEntry/switch',
       },
+      datePicker: {
+        label: 'DatePicker',
+        href: '/dataEntry/datePicker',
+      },
     },
   },
   dataDisplay: {
