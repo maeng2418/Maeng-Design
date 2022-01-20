@@ -2,6 +2,7 @@ import { css, Interpolation, Theme } from '@emotion/react';
 import { getColor, ThemeMode } from '../../styles';
 import { NOT_STRING_REGEX } from '../../utils/regex';
 import { MenuProps } from './Menu';
+
 const createStyle =
   (color?: MenuProps['color'], mode?: MenuProps['mode'], collapsed?: MenuProps['collapsed']) =>
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
@@ -30,6 +31,7 @@ const createStyle =
     const mainMenuItemStyle = css`
       & ul.main-menu {
         & > li {
+          cursor: pointer;
           float: left; // 메뉴를 왼쪽부터 표시
           position: relative;
 
@@ -96,6 +98,7 @@ const createStyle =
 
     const subMenuItemStyle = css`
       & ul.sub-menu li {
+        cursor: pointer;
         float: none;
         padding: 0;
         margin: 0;
@@ -130,6 +133,7 @@ const createStyle =
     const verticalNavStyle = css`
       border-right: 1px solid ${getColor(theme, 'gray4')};
       width: 256px;
+      height: 100vh;
     `;
 
     const verticalMainMenuStyle = css`
@@ -142,6 +146,7 @@ const createStyle =
 
     const verticalMainMenuItemStyle = css`
       & ul.main-menu li {
+        cursor: pointer;
         padding: 0;
         margin: 0;
 
@@ -208,6 +213,7 @@ const createStyle =
 
     const verticalSubMenuItemStyle = css`
       & ul.sub-menu li {
+        cursor: pointer;
         padding: 0;
         margin: 0;
 
@@ -240,6 +246,7 @@ const createStyle =
     const collapsedNavStyle = css`
       border-right: 1px solid ${getColor(theme, 'gray4')};
       width: 80px;
+      height: 100vh;
     `;
 
     const collapsedMainMenuStyle = css`
@@ -252,6 +259,7 @@ const createStyle =
 
     const collapsedMainMenuItemStyle = css`
       & ul.main-menu > li {
+        cursor: pointer;
         position: relative;
         padding: 0;
         margin: 0;
@@ -325,6 +333,7 @@ const createStyle =
 
     const collapsedSubMenuItemStyle = css`
       & ul.sub-menu li {
+        cursor: pointer;
         padding: 0;
         margin: 0;
         background: ${getColor(theme, 'gray2')};

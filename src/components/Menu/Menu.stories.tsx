@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
-import React from 'react';
+import React, { MouseEvent, useState } from 'react';
 import Menu from '.';
 import { MenuProps } from './Menu';
 
@@ -11,26 +11,46 @@ export default {
   component: Menu,
 } as Meta;
 
-const Template: Story = (args) => (
-  <Menu {...args}>
-    <ItemGroup title="메인메뉴 1" href="#1" icon="A" disabled>
-      <Item href="#2">메뉴 1-1</Item>
-      <Item href="#3" disabled>
-        메뉴 1-2sdfsdfefwefwefwefwef
+const Template: Story = (args) => {
+  const [select, setSelect] = useState<string>('');
+
+  const onClickItem = (value: string) => (e: MouseEvent) => {
+    e.preventDefault();
+    setSelect(value);
+  };
+  return (
+    <Menu {...args}>
+      <ItemGroup
+        title="메인메뉴 1"
+        icon="A"
+        disabled
+        isSelected={select === '#1'}
+        onClick={onClickItem('#1')}
+      >
+        <Item isSelected={select === '#1-1'} onClick={onClickItem('#1-1')}>
+          메뉴 1-1
+        </Item>
+        <Item isSelected={select === '#1-2'} onClick={onClickItem('#1-2')} disabled>
+          메뉴 1-2sdfsdfefwefwefwefwef
+        </Item>
+      </ItemGroup>
+      <Item isSelected={select === '#2'} onClick={onClickItem('#2')}>
+        메뉴 2-1
       </Item>
-    </ItemGroup>
-    <Item href="#4">메뉴 2-1</Item>
-    <Item href="#5" disabled>
-      메뉴 3-1
-    </Item>
-    <ItemGroup title="메인메뉴 3" href="#6">
-      <Item href="#7" disabled>
+      <Item isSelected={select === '#3-1'} onClick={onClickItem('#3-1')} disabled>
         메뉴 3-1
       </Item>
-      <Item href="#8">메뉴 3-2</Item>
-    </ItemGroup>
-  </Menu>
-);
+      <ItemGroup isSelected={select === '#3'} onClick={onClickItem('#3')} title="메인메뉴 3">
+        <Item isSelected={select === '#3-1'} onClick={onClickItem('#3-1')} disabled>
+          메뉴 3-1
+        </Item>
+        <Item isSelected={select === '#3-2'} onClick={onClickItem('#3-2')}>
+          메뉴 3-2
+        </Item>
+      </ItemGroup>
+    </Menu>
+  );
+};
 
 export const DefaultMenu = Template.bind({});
 DefaultMenu.args = {

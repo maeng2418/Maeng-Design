@@ -7,12 +7,11 @@ import Item from './Item';
 interface ItemGroupProps {
   mode?: 'horizontal' | 'vertical';
   key?: React.Key;
-  title: string;
-  href?: string;
+  title: React.ReactNode;
   children?: ReactElement | readonly ReactElement[];
   onSelectKey?: (key: React.Key[]) => void;
   isSelected?: boolean;
-  onClick?: (e: MouseEvent, title?: string, key?: React.Key) => void;
+  onClick?: (e: MouseEvent) => void;
   selectKeys?: React.Key[];
   collapsed?: boolean;
   icon?: React.ReactNode;
@@ -42,9 +41,9 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
         return;
       }
       onSelectKey && onSelectKey([groupKey]);
-      onClick && onClick(e, title, groupKey);
+      onClick && onClick(e);
     },
-    [disabled, groupKey, onClick, onSelectKey, title],
+    [disabled, groupKey, onClick, onSelectKey],
   );
 
   return (
@@ -57,7 +56,8 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
       `}
     >
       <span>
-        {mode === 'vertical' && !collapsed && children}
+        {mode === 'horizontal' && title}
+        {mode === 'vertical' && !collapsed && title}
         {mode === 'vertical' && collapsed && icon && icon}
         {mode === 'vertical' && collapsed && !icon && typeof title === 'string' && title[0]}
         {mode === 'vertical' && collapsed && !icon && typeof title !== 'string' && title}

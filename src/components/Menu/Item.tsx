@@ -7,11 +7,10 @@ interface ItemProps {
   key?: React.Key;
   groupKey?: React.Key;
   children: React.ReactNode;
-  href: string;
   disabled?: boolean;
   onSelectKey?: (key: React.Key[]) => (event: MouseEvent<HTMLElement>) => void;
   isSelected?: boolean;
-  onClick?: (e: MouseEvent, title?: React.ReactNode, key?: React.Key) => void;
+  onClick?: (e: MouseEvent) => void;
   selectKeys?: React.Key[];
   collapsed?: boolean;
   icon?: React.ReactNode;
@@ -44,9 +43,9 @@ const Item: React.FC<ItemProps> = ({
         e.preventDefault();
         return;
       }
-      onClick && onClick(e, children, itemKey);
+      onClick && onClick(e);
     },
-    [children, disabled, itemKey, mergedKey, onClick, onSelectKey],
+    [disabled, mergedKey, onClick, onSelectKey],
   );
 
   return (
