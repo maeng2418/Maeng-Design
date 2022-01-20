@@ -20,7 +20,6 @@ const Item: React.FC<ItemProps> = ({
   mode,
   key,
   children,
-  href,
   disabled,
   onSelectKey,
   isSelected,
@@ -59,12 +58,13 @@ const Item: React.FC<ItemProps> = ({
       key={itemKey}
       onClick={onClickItem}
     >
-      <a href={href}>
+      <span>
         {icon}
         {mode === 'vertical' && !collapsed && children}
         {mode === 'vertical' && collapsed && !icon && typeof children === 'string' && children[0]}
+        {mode === 'vertical' && collapsed && !icon && typeof children !== 'string' && children}
         {mode === 'horizontal' && children}
-      </a>
+      </span>
     </li>
   );
 };

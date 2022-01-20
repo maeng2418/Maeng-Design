@@ -23,7 +23,6 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
   mode,
   key,
   title,
-  href,
   children,
   onSelectKey,
   isSelected,
@@ -57,11 +56,14 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
         ${disabled ? 'disabled' : ''}
       `}
     >
-      <a href={href || '#'}>
-        {mode === 'vertical' && collapsed ? (icon ? icon : title[0]) : title}
+      <span>
+        {mode === 'vertical' && !collapsed && children}
+        {mode === 'vertical' && collapsed && icon && icon}
+        {mode === 'vertical' && collapsed && !icon && typeof title === 'string' && title[0]}
+        {mode === 'vertical' && collapsed && !icon && typeof title !== 'string' && title}
         {mode === 'vertical' &&
           (selectKeys?.includes(groupKey) || isSelected ? <UpOutlined /> : <DownOutlined />)}
-      </a>
+      </span>
       <ul className="sub-menu">
         {children &&
           React.Children.map(children, (child: React.ReactElement) => {

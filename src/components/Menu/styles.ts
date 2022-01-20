@@ -33,7 +33,7 @@ const createStyle =
           float: left; // 메뉴를 왼쪽부터 표시
           position: relative;
 
-          & > a {
+          & > span {
             display: flex;
             font-size: 14px;
             padding: 0 20px;
@@ -45,7 +45,7 @@ const createStyle =
           &:hover {
             border-bottom: 2px solid ${primaryColor};
 
-            & > a {
+            & > span {
               color: ${primaryColor};
             }
 
@@ -57,7 +57,7 @@ const createStyle =
 
           &.selected {
             border-bottom: 2px solid ${primaryColor};
-            & > a {
+            & > span {
               color: ${primaryColor};
               background: ${getColor(theme, 'gray1')};
             }
@@ -68,7 +68,7 @@ const createStyle =
             ul {
               opacity: 0;
             }
-            a {
+            span {
               cursor: not-allowed !important;
               color: ${getColor(theme, 'gray6')} !important;
             }
@@ -100,7 +100,7 @@ const createStyle =
         padding: 0;
         margin: 0;
 
-        & a {
+        & span {
           display: flex;
           font-size: 14px;
           padding: 4px 15px;
@@ -115,12 +115,12 @@ const createStyle =
           }
         }
 
-        &.selected a {
+        &.selected span {
           color: ${primaryColor};
           background: ${getColor(theme, 'gray1')};
         }
 
-        &.disabled > a {
+        &.disabled > span {
           cursor: not-allowed !important;
           color: ${getColor(theme, 'gray6')} !important;
         }
@@ -145,7 +145,7 @@ const createStyle =
         padding: 0;
         margin: 0;
 
-        a {
+        span {
           display: flex;
           height: 40px;
           line-height: 40px;
@@ -161,7 +161,7 @@ const createStyle =
             margin-right: 8px;
           }
         }
-        &:hover > a {
+        &:hover > span {
           color: ${primaryColor};
 
           & svg {
@@ -174,7 +174,7 @@ const createStyle =
             border-right: 3px solid ${primaryColor};
             background: ${subColor};
           }
-          & > a {
+          & > span {
             color: ${primaryColor};
           }
           & ul.sub-menu {
@@ -184,7 +184,7 @@ const createStyle =
         &.disabled {
           border: 0 !important;
           background-color: ${getColor(theme, 'gray2')} !important;
-          & > a {
+          & > span {
             cursor: not-allowed !important;
             color: ${getColor(theme, 'gray6')} !important;
 
@@ -211,7 +211,7 @@ const createStyle =
         padding: 0;
         margin: 0;
 
-        a {
+        span {
           display: flex;
           height: 40px;
           line-height: 40px;
@@ -223,14 +223,14 @@ const createStyle =
           white-space: nowrap;
         }
 
-        &:hover a {
+        &:hover span {
           color: ${primaryColor};
         }
 
-        &.selected a {
+        &.selected span {
           color: ${primaryColor};
         }
-        &.disabled > a {
+        &.disabled > span {
           cursor: not-allowed !important;
           color: ${getColor(theme, 'gray6')} !important;
         }
@@ -256,7 +256,7 @@ const createStyle =
         padding: 0;
         margin: 0;
 
-        a {
+        span {
           display: flex;
           height: 40px;
           line-height: 40px;
@@ -276,7 +276,7 @@ const createStyle =
         &:hover,
         &.selected {
           background: ${subColor};
-          & > a {
+          & > span {
             color: ${primaryColor};
           }
         }
@@ -290,7 +290,7 @@ const createStyle =
         &.disabled {
           background: ${getColor(theme, 'gray1')};
           border: none;
-          a {
+          span {
             cursor: not-allowed !important;
             color: ${getColor(theme, 'gray6')} !important;
           }
@@ -329,7 +329,7 @@ const createStyle =
         margin: 0;
         background: ${getColor(theme, 'gray2')};
 
-        a {
+        span {
           display: flex;
           height: 40px;
           line-height: 40px;
@@ -344,11 +344,11 @@ const createStyle =
 
         &:hover,
         &.selected {
-          a {
+          span {
             color: ${primaryColor};
           }
         }
-        &.disabled > a {
+        &.disabled > span {
           cursor: not-allowed !important;
           color: ${getColor(theme, 'gray6')} !important;
         }
