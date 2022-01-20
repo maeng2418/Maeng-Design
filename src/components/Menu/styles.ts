@@ -133,7 +133,6 @@ const createStyle =
     const verticalNavStyle = css`
       border-right: 1px solid ${getColor(theme, 'gray4')};
       width: 256px;
-      height: 100vh;
     `;
 
     const verticalMainMenuStyle = css`
@@ -246,7 +245,6 @@ const createStyle =
     const collapsedNavStyle = css`
       border-right: 1px solid ${getColor(theme, 'gray4')};
       width: 80px;
-      height: 100vh;
     `;
 
     const collapsedMainMenuStyle = css`
