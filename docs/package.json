@@ -25,6 +25,7 @@
     "gatsby": "^4.5.0",
     "gatsby-plugin-emotion": "^7.5.0",
     "gatsby-plugin-gatsby-cloud": "^4.5.1",
+    "gatsby-plugin-netlify": "^4.0.0",
     "gatsby-plugin-netlify-cms": "^6.5.0",
     "gatsby-plugin-react-helmet": "^5.5.0",
     "gatsby-plugin-resolve-src": "^2.1.0",
@@ -38,7 +39,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "typescript": "^4.5.4",
-    "@types/react-helmet": "^6.1.5"
+    "@types/react-helmet": "^6.1.5",
+    "typescript": "^4.5.4"
   }
 }

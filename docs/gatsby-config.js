@@ -11,6 +11,7 @@ module.exports = {
     'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-resolve-src',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-netlify',
     {
       resolve: `gatsby-plugin-emotion`,
       options: {

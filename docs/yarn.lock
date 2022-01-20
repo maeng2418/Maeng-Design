@@ -975,7 +975,7 @@
     core-js-pure "^3.20.2"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.15.4", "@babel/runtime@^7.16.3", "@babel/runtime@^7.2.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.15.4", "@babel/runtime@^7.16.3", "@babel/runtime@^7.16.7", "@babel/runtime@^7.2.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
   version "7.16.7"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.7.tgz#03ff99f64106588c9c403c6ecb8c3bafbbdff1fa"
   integrity sha512-9E9FJowqAsytyOY6LG+1KuueckRL+aQW+mKvXRXnuFGyRAyepJPmEo9vgMfXUA6O9u3IeEdv9MAkppFcaQwogQ==
@@ -5002,6 +5002,23 @@ gatsby-core-utils@^3.5.1:
     tmp "^0.2.1"
     xdg-basedir "^4.0.0"
 
+gatsby-core-utils@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-3.5.2.tgz#f95e1d9034811029a1db85479a1a2bfd456818db"
+  integrity sha512-sY7BD6VlbWwrV892x9/yJPtXYaGC/GLyhabd9j2xP6zsIOW0XBHXZ4jJ+xEPaRn3CJxYgBd8KdCyoc4h1ZEFzg==
+  dependencies:
+    "@babel/runtime" "^7.15.4"
+    ci-info "2.0.0"
+    configstore "^5.0.1"
+    file-type "^16.5.3"
+    fs-extra "^10.0.0"
+    got "^11.8.3"
+    lock "^1.1.0"
+    node-object-hash "^2.3.10"
+    proper-lockfile "^4.1.2"
+    tmp "^0.2.1"
+    xdg-basedir "^4.0.0"
+
 gatsby-graphiql-explorer@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/gatsby-graphiql-explorer/-/gatsby-graphiql-explorer-2.5.0.tgz#0584f31226bd097e27650bd98e387668058a13f9"
@@ -5076,6 +5093,18 @@ gatsby-plugin-netlify-cms@^6.5.0:
     lodash "^4.17.21"
     mini-css-extract-plugin "1.6.2"
     netlify-identity-widget "^1.9.2"
+
+gatsby-plugin-netlify@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-4.0.0.tgz#5509e8e4bf7eda5bd7ccafffe1ecdbe6e4860447"
+  integrity sha512-QsuRqBWYAOqnY2DXMP5puVhb9NhLfj6srClCMXwaIduDjSRQpEP6/R0LjOf7yg3Kj8j4qP+fhiAGPns7kRBkoA==
+  dependencies:
+    "@babel/runtime" "^7.16.7"
+    fs-extra "^10.0.0"
+    gatsby-core-utils "^3.5.2"
+    kebab-hash "^0.1.2"
+    lodash "^4.17.21"
+    webpack-assets-manifest "^5.0.6"
 
 gatsby-plugin-page-creator@^4.5.1:
   version "4.5.1"
@@ -7061,10 +7090,10 @@ lru-queue@^0.1.0:
   dependencies:
     es5-ext "~0.10.2"
 
-maeng-design@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/maeng-design/-/maeng-design-1.2.0.tgz#21901f4d4345eb982387d0f7b620b86fe0196d28"
-  integrity sha512-tFRia0uYBWtU6xZlFrjilVuOCb7PAYemdJ86y8eLGzk1BzuMXOL8YRf80jfJGXfeAbt5LVMRBu7UyPu9Kj5upg==
+maeng-design@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/maeng-design/-/maeng-design-1.2.1.tgz#c2ae99bb1b24ee09bed5efb27bf2954c3e4a7869"
+  integrity sha512-XT7vxSZeuAfts+nOtJkg4eL4dK2lcxvwNlclqSsA2U4zmoMy4ZG7d73e+7bMQno3LJeuJSEADSCjZ52ppeMs7g==
 
 make-dir@^3.0.0, make-dir@^3.0.2, make-dir@^3.1.0:
   version "3.1.0"
