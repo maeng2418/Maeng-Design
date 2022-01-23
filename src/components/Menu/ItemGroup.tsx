@@ -7,7 +7,7 @@ import Item from './Item';
 interface ItemGroupProps {
   mode?: 'horizontal' | 'vertical';
   key?: React.Key;
-  title: React.ReactNode;
+  title: string | ReactElement | readonly ReactElement[];
   children?: ReactElement | readonly ReactElement[];
   onSelectKey?: (key: React.Key[]) => void;
   isSelected?: boolean;
@@ -35,9 +35,9 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
 
   const onClickItemGroup = useCallback(
     (e: MouseEvent<HTMLElement>) => {
+      e.preventDefault();
       e.stopPropagation();
       if (disabled) {
-        e.preventDefault();
         return;
       }
       onSelectKey && onSelectKey([groupKey]);
@@ -51,19 +51,28 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
       key={groupKey}
       onClick={onClickItemGroup}
       className={`
-        ${selectKeys?.includes(groupKey) || isSelected ? 'selected' : ''}
+        ${
+          selectKeys?.includes(groupKey) || isSelected
+            ? 'item-group-list selected'
+            : 'item-group-list'
+        }
         ${disabled ? 'disabled' : ''}
       `}
     >
-      <span>
+      <span className="group-item">
         {mode === 'horizontal' && title}
         {mode === 'vertical' && !collapsed && title}
         {mode === 'vertical' && collapsed && icon && icon}
         {mode === 'vertical' && collapsed && !icon && typeof title === 'string' && title[0]}
         {mode === 'vertical' && collapsed && !icon && typeof title !== 'string' && title}
         {mode === 'vertical' &&
-          (selectKeys?.includes(groupKey) || isSelected ? <UpOutlined /> : <DownOutlined />)}
+          (selectKeys?.includes(groupKey) || isSelected ? (
+            <UpOutlined className="item-group-icon" />
+          ) : (
+            <DownOutlined className="item-group-icon" />
+          ))}
       </span>
+
       <ul className="sub-menu">
         {children &&
           React.Children.map(children, (child: React.ReactElement) => {

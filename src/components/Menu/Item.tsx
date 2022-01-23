@@ -37,12 +37,12 @@ const Item: React.FC<ItemProps> = ({
 
   const onClickItem = useCallback(
     (e: MouseEvent<HTMLElement>) => {
+      e.preventDefault();
       e.stopPropagation();
-      onSelectKey && onSelectKey(mergedKey);
       if (disabled) {
-        e.preventDefault();
         return;
       }
+      onSelectKey && onSelectKey(mergedKey);
       onClick && onClick(e);
     },
     [disabled, mergedKey, onClick, onSelectKey],
@@ -51,13 +51,15 @@ const Item: React.FC<ItemProps> = ({
   return (
     <li
       className={`
-        ${selectKeys?.includes(itemKey) || isSelected ? 'item selected' : 'item'}
+        ${
+          selectKeys?.includes(itemKey) || isSelected ? 'menu-item-list selected' : 'menu-item-list'
+        }
         ${disabled ? 'disabled' : ''}
       `}
       key={itemKey}
       onClick={onClickItem}
     >
-      <span>
+      <span className="item">
         {icon}
         {mode === 'vertical' && !collapsed && children}
         {mode === 'vertical' && collapsed && !icon && typeof children === 'string' && children[0]}
