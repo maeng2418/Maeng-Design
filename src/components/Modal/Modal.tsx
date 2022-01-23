@@ -72,8 +72,8 @@ const Modal: React.FC<ModalProps> = ({
     ? createPortal(
         <>
           <Global styles={globalStyle} />
-          <article css={createStyle(width, color)}>
-            <section className="modal">
+          <div css={createStyle(width, color)}>
+            <div className="modal">
               {(title || closeIcon || onClose) && (
                 <header className="modal-header">
                   {title && <h3>{title}</h3>}
@@ -100,9 +100,9 @@ const Modal: React.FC<ModalProps> = ({
                   </Button>
                 </footer>
               )}
-            </section>
+            </div>
             <div className="background" onClick={onClickBG} />
-          </article>
+          </div>
         </>,
         document.body,
       )
