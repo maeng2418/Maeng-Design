@@ -11,6 +11,14 @@ module.exports = {
     'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-resolve-src',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-netlify',
+    'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        icon: 'public/static/images/logo.png',
+      },
+    },
     {
       resolve: `gatsby-plugin-emotion`,
       options: {

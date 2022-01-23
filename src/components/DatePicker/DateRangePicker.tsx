@@ -231,7 +231,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     >
       <div className="input-box">
         <span
-          className="start-date"
+          className={`start-date ${startActive ? 'active' : ''}`}
           onClick={onSetStartActive(!startActive)}
           tabIndex={0}
           onBlur={onSetStartActive(false)}
@@ -243,7 +243,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
           <RightOutlined className="ic-right-outlined" />
         </span>
         <span
-          className="end-date"
+          className={`end-date  ${endActive ? 'active' : ''}`}
           onClick={onSetEndActive(!endActive)}
           tabIndex={0}
           onBlur={onSetEndActive(false)}

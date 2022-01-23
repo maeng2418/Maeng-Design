@@ -7,11 +7,10 @@ interface ItemProps {
   key?: React.Key;
   groupKey?: React.Key;
   children: React.ReactNode;
-  href: string;
   disabled?: boolean;
   onSelectKey?: (key: React.Key[]) => (event: MouseEvent<HTMLElement>) => void;
   isSelected?: boolean;
-  onClick?: (e: MouseEvent, title?: React.ReactNode, key?: React.Key) => void;
+  onClick?: (e: MouseEvent) => void;
   selectKeys?: React.Key[];
   collapsed?: boolean;
   icon?: React.ReactNode;
@@ -20,7 +19,6 @@ const Item: React.FC<ItemProps> = ({
   mode,
   key,
   children,
-  href,
   disabled,
   onSelectKey,
   isSelected,
@@ -39,32 +37,35 @@ const Item: React.FC<ItemProps> = ({
 
   const onClickItem = useCallback(
     (e: MouseEvent<HTMLElement>) => {
+      e.preventDefault();
       e.stopPropagation();
-      onSelectKey && onSelectKey(mergedKey);
       if (disabled) {
-        e.preventDefault();
         return;
       }
-      onClick && onClick(e, children, itemKey);
+      onSelectKey && onSelectKey(mergedKey);
+      onClick && onClick(e);
     },
-    [children, disabled, itemKey, mergedKey, onClick, onSelectKey],
+    [disabled, mergedKey, onClick, onSelectKey],
   );
 
   return (
     <li
       className={`
-        ${selectKeys?.includes(itemKey) || isSelected ? 'item selected' : 'item'}
+        ${
+          selectKeys?.includes(itemKey) || isSelected ? 'menu-item-list selected' : 'menu-item-list'
+        }
         ${disabled ? 'disabled' : ''}
       `}
       key={itemKey}
       onClick={onClickItem}
     >
-      <a href={href}>
+      <span className="item">
         {icon}
         {mode === 'vertical' && !collapsed && children}
         {mode === 'vertical' && collapsed && !icon && typeof children === 'string' && children[0]}
+        {mode === 'vertical' && collapsed && !icon && typeof children !== 'string' && children}
         {mode === 'horizontal' && children}
-      </a>
+      </span>
     </li>
   );
 };

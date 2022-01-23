@@ -2,6 +2,7 @@ import { css, Interpolation, Theme } from '@emotion/react';
 import { getColor, ThemeMode } from '../../styles';
 import { NOT_STRING_REGEX } from '../../utils/regex';
 import { MenuProps } from './Menu';
+
 const createStyle =
   (color?: MenuProps['color'], mode?: MenuProps['mode'], collapsed?: MenuProps['collapsed']) =>
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
@@ -19,7 +20,7 @@ const createStyle =
     `;
 
     const mainMenuStyle = css`
-      & ul.main-menu {
+      ul.main-menu {
         list-style: none;
         height: 46px;
         line-height: 46px;
@@ -28,57 +29,77 @@ const createStyle =
     `;
 
     const mainMenuItemStyle = css`
-      & ul.main-menu {
-        & > li {
-          float: left; // 메뉴를 왼쪽부터 표시
+      ul.main-menu > li.item-group-list,
+      ul.main-menu > li.menu-item-list {
+        cursor: pointer;
+        float: left; // 메뉴를 왼쪽부터 표시
+        position: relative;
+
+        span.group-item,
+        & > span.item {
           position: relative;
+          display: flex;
+          font-size: 14px;
+          padding: 0 20px;
+          color: ${getColor(theme, 'gray13')};
+          text-decoration: none;
+          align-items: center;
 
-          & > a {
-            display: flex;
-            font-size: 14px;
-            padding: 0 20px;
-            color: ${getColor(theme, 'gray13')};
+          a {
+            color: inherit;
             text-decoration: none;
-            align-items: center;
-          }
 
-          &:hover {
-            border-bottom: 2px solid ${primaryColor};
-
-            & > a {
-              color: ${primaryColor};
-            }
-
-            // 서브 메뉴 노출
-            ul {
-              opacity: 1;
+            &::before {
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              background-color: transparent;
+              content: '';
             }
           }
+        }
 
-          &.selected {
-            border-bottom: 2px solid ${primaryColor};
-            & > a {
-              color: ${primaryColor};
-              background: ${getColor(theme, 'gray1')};
-            }
+        &:hover {
+          border-bottom: 2px solid ${primaryColor};
+
+          span.group-item,
+          & > span.item {
+            color: ${primaryColor};
           }
 
-          &.disabled {
-            border: none !important;
-            ul {
-              opacity: 0;
-            }
-            a {
-              cursor: not-allowed !important;
-              color: ${getColor(theme, 'gray6')} !important;
-            }
+          // 서브 메뉴 노출
+          ul.sub-menu {
+            opacity: 1;
+          }
+        }
+
+        &.selected {
+          border-bottom: 2px solid ${primaryColor};
+          span.group-item,
+          & > span.item {
+            color: ${primaryColor};
+            background: ${getColor(theme, 'gray1')};
+          }
+        }
+
+        &.disabled {
+          border: none !important;
+          span.group-item,
+          & > span.item {
+            cursor: not-allowed !important;
+            color: ${getColor(theme, 'gray6')} !important;
+          }
+          ul.sub-menu {
+            opacity: 0;
           }
         }
       }
     `;
 
     const subMenuStyle = css`
-      & ul.sub-menu {
+      ul.sub-menu {
         min-width: 100%;
         list-style: none;
         margin: 0;
@@ -95,12 +116,13 @@ const createStyle =
     `;
 
     const subMenuItemStyle = css`
-      & ul.sub-menu li {
-        float: none;
-        padding: 0;
-        margin: 0;
+      ul.sub-menu > li.menu-item-list {
+        cursor: pointer;
+        float: left; // 메뉴를 왼쪽부터 표시
+        position: relative;
 
-        & a {
+        & > span.item {
+          position: relative;
           display: flex;
           font-size: 14px;
           padding: 4px 15px;
@@ -109,18 +131,31 @@ const createStyle =
           align-items: center;
           white-space: nowrap;
 
-          &:hover {
-            color: ${primaryColor};
-            background: ${getColor(theme, 'gray1')};
+          a {
+            color: inherit;
+            text-decoration: none;
+
+            &::before {
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              background-color: transparent;
+              content: '';
+            }
           }
         }
 
-        &.selected a {
+        &:hover > span.item {
           color: ${primaryColor};
-          background: ${getColor(theme, 'gray1')};
         }
 
-        &.disabled > a {
+        &.selected > span.item {
+          color: ${primaryColor};
+        }
+
+        &.disabled > span.item {
           cursor: not-allowed !important;
           color: ${getColor(theme, 'gray6')} !important;
         }
@@ -133,7 +168,7 @@ const createStyle =
     `;
 
     const verticalMainMenuStyle = css`
-      & ul.main-menu {
+      ul.main-menu {
         margin: 0;
         padding: 0;
         list-style: none;
@@ -141,11 +176,15 @@ const createStyle =
     `;
 
     const verticalMainMenuItemStyle = css`
-      & ul.main-menu li {
+      ul.main-menu > li.item-group-list,
+      ul.main-menu > li.menu-item-list {
+        cursor: pointer;
         padding: 0;
         margin: 0;
 
-        a {
+        span.group-item,
+        & > span.item {
+          position: relative;
           display: flex;
           height: 40px;
           line-height: 40px;
@@ -157,38 +196,62 @@ const createStyle =
           white-space: nowrap;
           justify-content: space-between;
 
-          & svg {
+          a {
+            color: inherit;
+            text-decoration: none;
+
+            &::before {
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              background-color: transparent;
+              content: '';
+            }
+          }
+
+          & svg.item-group-icon {
             margin-right: 8px;
           }
         }
-        &:hover > a {
-          color: ${primaryColor};
 
-          & svg {
-            fill: ${primaryColor};
+        &:hover {
+          span.group-item,
+          & > span.item {
+            color: ${primaryColor};
+
+            svg.item-group-icon {
+              fill: ${primaryColor};
+            }
           }
         }
 
         &.selected {
-          &.item {
+          &.menu-item-list {
             border-right: 3px solid ${primaryColor};
             background: ${subColor};
           }
-          & > a {
+          span.group-item,
+          & > span.item {
             color: ${primaryColor};
           }
-          & ul.sub-menu {
+
+          ul.sub-menu {
             display: block;
           }
         }
+
         &.disabled {
           border: 0 !important;
           background-color: ${getColor(theme, 'gray2')} !important;
-          & > a {
+
+          span.group-item,
+          & > span.item {
             cursor: not-allowed !important;
             color: ${getColor(theme, 'gray6')} !important;
 
-            svg {
+            svg.item-group-icon {
               fill: ${getColor(theme, 'gray6')} !important;
             }
           }
@@ -197,7 +260,7 @@ const createStyle =
     `;
 
     const verticalSubMenuStyle = css`
-      & ul.sub-menu {
+      ul.sub-menu {
         margin: 0;
         padding: 0;
         list-style: none;
@@ -207,11 +270,13 @@ const createStyle =
     `;
 
     const verticalSubMenuItemStyle = css`
-      & ul.sub-menu li {
+      ul.sub-menu > li.menu-item-list {
+        cursor: pointer;
         padding: 0;
         margin: 0;
 
-        a {
+        & > span.item {
+          position: relative;
           display: flex;
           height: 40px;
           line-height: 40px;
@@ -221,16 +286,36 @@ const createStyle =
           text-decoration: none;
           align-items: center;
           white-space: nowrap;
+
+          a {
+            color: inherit;
+            text-decoration: none;
+
+            &::before {
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              background-color: transparent;
+              content: '';
+            }
+          }
         }
 
-        &:hover a {
+        &:hover > span.item {
           color: ${primaryColor};
         }
 
-        &.selected a {
-          color: ${primaryColor};
+        &.selected {
+          border-right: 3px solid ${primaryColor};
+          background: ${subColor};
+
+          & > span.item {
+            color: ${primaryColor};
+          }
         }
-        &.disabled > a {
+        &.disabled > span.item {
           cursor: not-allowed !important;
           color: ${getColor(theme, 'gray6')} !important;
         }
@@ -243,7 +328,7 @@ const createStyle =
     `;
 
     const collapsedMainMenuStyle = css`
-      & ul.main-menu {
+      ul.main-menu {
         margin: 0;
         padding: 0;
         list-style: none;
@@ -251,12 +336,16 @@ const createStyle =
     `;
 
     const collapsedMainMenuItemStyle = css`
-      & ul.main-menu > li {
+      ul.main-menu > li.item-group-list,
+      ul.main-menu > li.menu-item-list {
+        cursor: pointer;
         position: relative;
         padding: 0;
         margin: 0;
 
-        a {
+        span.group-item,
+        & > span.item {
+          position: relative;
           display: flex;
           height: 40px;
           line-height: 40px;
@@ -268,68 +357,92 @@ const createStyle =
           justify-content: center;
           white-space: nowrap;
 
-          & svg {
+          a {
+            color: inherit;
+            text-decoration: none;
+
+            &::before {
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              background-color: transparent;
+              content: '';
+            }
+          }
+
+          & svg.item-group-icon {
             display: none;
           }
         }
 
-        &:hover,
-        &.selected {
+        &:hover {
           background: ${subColor};
-          & > a {
+
+          &.item-group-list {
+            border-right: 3px solid ${primaryColor};
+
+            ul.sub-menu {
+              display: block;
+              position: absolute;
+              top: 0;
+              padding-left: 90px;
+              background: transparent;
+            }
+          }
+          span.group-item,
+          & > span.item {
             color: ${primaryColor};
           }
         }
 
-        &:hover {
-          border-right: 3px solid ${primaryColor};
-          &.item {
-            border: 0;
+        &.selected {
+          background: ${subColor};
+
+          span.group-item,
+          & > span.item {
+            color: ${primaryColor};
           }
         }
-        &.disabled {
+
+        &.disabled,
+        &.disabled:hover {
           background: ${getColor(theme, 'gray1')};
           border: none;
-          a {
+
+          span.group-item,
+          & > span.item {
             cursor: not-allowed !important;
             color: ${getColor(theme, 'gray6')} !important;
+          }
+
+          ul.sub-menu {
+            display: none;
           }
         }
       }
     `;
 
     const collapsedSubMenuStyle = css`
-      & ul.sub-menu {
+      ul.sub-menu {
         margin: 0;
         padding: 0;
         list-style: none;
         background: ${getColor(theme, 'gray2')};
         display: none;
       }
-
-      & ul.main-menu li {
-        &:hover {
-          ul {
-            display: block;
-            position: absolute;
-            top: 0;
-            padding-left: 90px;
-            background: transparent;
-          }
-        }
-        &.disabled ul {
-          display: none;
-        }
-      }
     `;
 
     const collapsedSubMenuItemStyle = css`
       & ul.sub-menu li {
+        cursor: pointer;
         padding: 0;
         margin: 0;
         background: ${getColor(theme, 'gray2')};
 
-        a {
+        span {
+          position: relative;
           display: flex;
           height: 40px;
           line-height: 40px;
@@ -340,15 +453,25 @@ const createStyle =
           align-items: center;
           justify-content: left;
           white-space: nowrap;
+
+          & a::before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: transparent;
+            content: '';
+          }
         }
 
         &:hover,
         &.selected {
-          a {
+          span {
             color: ${primaryColor};
           }
         }
-        &.disabled > a {
+        &.disabled > span {
           cursor: not-allowed !important;
           color: ${getColor(theme, 'gray6')} !important;
         }

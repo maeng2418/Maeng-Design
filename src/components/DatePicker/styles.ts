@@ -400,8 +400,7 @@ export const dateRangePickerStyle =
             transform: translateY(-50%);
           }
 
-          &:focus,
-          &:active,
+          &.active,
           &:hover {
             border-bottom: 1px solid ${primaryColor};
             background: ${getColor(theme, 'gray1')};
