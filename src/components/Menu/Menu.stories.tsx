@@ -52,7 +52,7 @@ const Template: Story = (args) => {
           메뉴 3-2
         </Item>
         <Item isSelected={select === '#3-3'} onClick={onClickItem('#3-3')}>
-          메뉴 3-2
+          메뉴 3-3
         </Item>
       </ItemGroup>
     </Menu>

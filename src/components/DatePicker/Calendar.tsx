@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import React, { useMemo } from 'react';
 import { LeftOutlined, RightOutlined } from '..';
+import { rangeCalendarStyle } from './DateRangePicker/styles';
 import Days from './Days';
 import MonthPicker from './MonthPicker';
-import { calendarStyle, rangeCalendarStyle } from './styles';
+import { calendarStyle } from './styles';
 import WeekDays from './WeekDays';
 import YearPicker from './YearPicker';
 

@@ -31,6 +31,10 @@ const routes: Routes = {
     label: 'Layout',
     href: '/layout',
     subMenu: {
+      grid: {
+        label: 'Grid',
+        href: '/layout/grid',
+      },
       divider: {
         label: 'Divider',
         href: '/layout/divider',

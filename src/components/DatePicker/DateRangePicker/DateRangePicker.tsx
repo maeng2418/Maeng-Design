@@ -7,9 +7,9 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { CalendarOutlined, Divider, RightOutlined } from '..';
-import { DarkColorType, LightColorType } from '../../styles/colors';
-import Calendar from './Calendar';
+import { CalendarOutlined, Divider, RightOutlined } from '../..';
+import { DarkColorType, LightColorType } from '../../../styles/colors';
+import Calendar from '../Calendar';
 import { dateRangePickerStyle, rangeCalendarContainerStyle } from './styles';
 
 export interface DateRangePickerProps {
