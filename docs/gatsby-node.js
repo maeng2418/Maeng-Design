@@ -9,7 +9,7 @@ exports.createPages = async ({ actions }) => {
   });
   createRedirect({
     fromPath: `/layout`,
-    toPath: `/layout/divider`,
+    toPath: `/layout/grid`,
     redirectInBrowser: true,
     isPermanent: true,
   });
