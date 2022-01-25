@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { MouseEvent } from 'react';
-import { DarkColorType, LightColorType } from '../../styles/colors';
+import { DarkColorType, LightColorType } from '../../../styles/colors';
 
 interface OptionProps {
   children: React.ReactNode;

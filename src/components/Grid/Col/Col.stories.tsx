@@ -7,9 +7,16 @@ export default {
   component: Col,
 } as Meta;
 
-const Template: Story = (args) => <Col {...args} />;
+const Template: Story = (args) => (
+  <Col {...args}>
+    <div style={{ border: '1px solid black' }}>Hello</div>
+  </Col>
+);
 
 export const DefaultCol = Template.bind({});
 DefaultCol.args = {
   // props를 넣어주세요.
+  xs: 24,
+  md: 12,
+  xl: 6,
 } as ColProps;
