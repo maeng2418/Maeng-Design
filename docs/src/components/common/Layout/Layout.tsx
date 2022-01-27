@@ -38,7 +38,13 @@ const sectionStyles = css`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 32px 46px;
+  padding: 0 46px 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  & > article {
+    margin-bottom: 32px;
+  }
 `;
 
 export default Layout;
