@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import Checkbox, { CheckboxProps } from './Checkbox';
 
 export default {

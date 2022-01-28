@@ -1,5 +1,4 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
-import React from 'react';
 import Col, { ColProps } from './Col';
 
 export default {

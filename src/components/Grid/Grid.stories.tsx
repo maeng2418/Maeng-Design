@@ -1,5 +1,4 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
-import React from 'react';
 import Grid from '.';
 import { GridProps } from './Grid';
 
