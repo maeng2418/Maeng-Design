@@ -127,10 +127,6 @@ const DatePicker: React.FC<DatePickerProps> = ({
     [month],
   );
 
-  const onPreventMouseDownEvent = useCallback((e: MouseEvent) => {
-    e.preventDefault();
-  }, []);
-
   return (
     <div className="date-picker" css={datePickerStyle(active, color, size, disabled)}>
       <div
@@ -144,7 +140,6 @@ const DatePicker: React.FC<DatePickerProps> = ({
       </div>
       {active && (
         <Calendar
-          onPreventMouseDownEvent={onPreventMouseDownEvent}
           color={color}
           onClickPrevBtn={onClickPrevBtn}
           onClickMonth={onClickMonth}

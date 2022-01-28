@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { MouseEvent } from 'react';
 import { DatePickerProps } from './DatePicker';
-import { monthYearListStyle } from './styles';
+import { monthListStyle } from './styles';
 
 interface MonthPickerProps {
   color?: DatePickerProps['color'];
@@ -11,7 +11,7 @@ interface MonthPickerProps {
 
 const MonthPicker: React.FC<MonthPickerProps> = ({ color, month: m, onChangeMonth }) => {
   return (
-    <div className="month-list" css={monthYearListStyle(color)}>
+    <div className="month-picker month-list" css={monthListStyle(color)}>
       {[
         'January',
         'February',

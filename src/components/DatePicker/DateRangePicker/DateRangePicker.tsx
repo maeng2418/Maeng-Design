@@ -145,10 +145,16 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   const onChangeLeftYear = useCallback(
     (year: number) => (e: MouseEvent<HTMLDivElement>) => {
       e.preventDefault();
-      setYears([year, year]);
+      if (months[1] === 0) {
+        // 우측 달력이 1월인 경우
+        setYears([year, year + 1]);
+      } else {
+        setYears([year, year]);
+      }
+
       setOpenLeftYearList(false);
     },
-    [],
+    [months],
   );
 
   const onClickPrevBtn = useCallback(
@@ -214,10 +220,16 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   const onChangeRightYear = useCallback(
     (year: number) => (e: MouseEvent<HTMLDivElement>) => {
       e.preventDefault();
-      setYears([year, year]);
+      if (months[0] === 11) {
+        // 좌측 달력이 12월인 경우,
+        setYears([year - 1, year]);
+      } else {
+        setYears([year, year]);
+      }
+
       setOpenRightYearList(false);
     },
-    [],
+    [months],
   );
 
   const onPreventMouseDownEvent = useCallback((e: MouseEvent) => {

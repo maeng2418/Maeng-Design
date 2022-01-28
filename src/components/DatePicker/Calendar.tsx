@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import React, { useMemo } from 'react';
+import React, { MouseEvent, useCallback, useMemo } from 'react';
 import { LeftOutlined, RightOutlined } from '..';
+import { DatePickerProps } from './DatePicker';
 import { rangeCalendarStyle } from './DateRangePicker/styles';
 import Days from './Days';
 import MonthPicker from './MonthPicker';
@@ -8,7 +9,26 @@ import { calendarStyle } from './styles';
 import WeekDays from './WeekDays';
 import YearPicker from './YearPicker';
 
-const Calendar: React.FC<any> = ({
+interface CalendarProps {
+  color?: DatePickerProps['color'];
+  onClickPrevBtn?: (e: MouseEvent<HTMLSpanElement>) => void;
+  onClickMonth: (e: MouseEvent<HTMLSpanElement>) => void;
+  className?: string;
+  month: number;
+  year: number;
+  onClickYear: (e: MouseEvent<HTMLSpanElement>) => void;
+  selectedDates: (Date | undefined)[];
+  onClickNextBtn?: (e: MouseEvent<HTMLSpanElement>) => void;
+  onClickDay: (date: Date) => (e: MouseEvent<HTMLSpanElement>) => void;
+  openMonthList: boolean;
+  openYearList: boolean;
+  onChangeMonth: (month: number) => (e: MouseEvent<HTMLDivElement>) => void;
+  onChangeYear: (year: number) => (e: MouseEvent<HTMLDivElement>) => void;
+  minDate?: Date;
+  maxDate?: Date;
+}
+
+const Calendar: React.FC<CalendarProps> = ({
   color,
   onClickPrevBtn,
   onClickMonth,
@@ -23,7 +43,6 @@ const Calendar: React.FC<any> = ({
   openYearList,
   onChangeMonth,
   onChangeYear,
-  onPreventMouseDownEvent,
   minDate,
   maxDate,
 }) => {
@@ -44,6 +63,11 @@ const Calendar: React.FC<any> = ({
     ],
     [],
   );
+
+  const onPreventMouseDownEvent = useCallback((e: MouseEvent) => {
+    e.preventDefault();
+  }, []);
+
   return (
     <div
       className={className}

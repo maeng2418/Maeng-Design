@@ -283,7 +283,7 @@ export const calendarDays = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpol
   }
 `;
 
-export const monthYearListStyle =
+export const monthListStyle =
   (color?: DatePickerProps['color']) =>
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
     // color
@@ -330,6 +330,87 @@ export const monthYearListStyle =
           transform: scale(1);
           visibility: visible;
           pointer-events: visible;
+        }
+      }
+    `;
+  };
+
+export const yearListStyle =
+  (color?: DatePickerProps['color']) =>
+  (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
+    // color
+    const primaryColor = getColor(theme, color);
+
+    return css`
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      animation: to-show 0.2s ease-in-out;
+
+      .year-header {
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        background-color: white;
+        align-items: center;
+        font-weight: 500;
+        font-size: 18px;
+        padding: 20px 22px 0px;
+        line-height: 1;
+
+        svg.year-change {
+          cursor: pointer;
+          width: 16px;
+          height: 16px;
+
+          fill: ${getColor(theme, 'gray6')};
+
+          &:hover {
+            fill: ${primaryColor};
+          }
+        }
+      }
+
+      .year-list {
+        box-sizing: border-box;
+        width: 100%;
+        height: calc(100% - 40px);
+        padding: 10px;
+        background-color: ${getColor(theme, 'gray1')};
+        grid-template-columns: repeat(3, auto);
+        gap: 5px;
+        display: grid;
+
+        div {
+          display: grid;
+          place-items: center;
+
+          span {
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+
+            &.cur-month,
+            &.cur-year,
+            &:hover {
+              color: ${primaryColor};
+            }
+          }
+        }
+
+        @keyframes to-show {
+          0% {
+            transform: scale(1.5);
+            visibility: hidden;
+            pointer-events: none;
+          }
+          100% {
+            transform: scale(1);
+            visibility: visible;
+            pointer-events: visible;
+          }
         }
       }
     `;
