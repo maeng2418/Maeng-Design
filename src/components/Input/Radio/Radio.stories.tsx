@@ -1,5 +1,4 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
-import React from 'react';
 import { InputProps } from '../Input';
 import Radio, { RadioProps } from './Radio';
 import RadioGroup from './RadioGroup';

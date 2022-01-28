@@ -6,6 +6,7 @@ import ItemGroup from './ItemGroup';
 import createStyle from './styles';
 
 export interface MenuProps {
+  className?: string;
   children?: ReactElement | readonly ReactElement[];
   color?: LightColorType | DarkColorType;
   mode?: 'horizontal' | 'vertical';
@@ -13,6 +14,7 @@ export interface MenuProps {
 }
 
 const Menu: React.FC<MenuProps> = ({
+  className = '',
   children,
   color = 'blue6',
   mode = 'horizontal',
@@ -25,7 +27,7 @@ const Menu: React.FC<MenuProps> = ({
   }, []);
 
   return (
-    <nav css={createStyle(color, mode, collapsed)}>
+    <nav className={className} css={createStyle(color, mode, collapsed)}>
       <ul className="main-menu">
         {children &&
           React.Children.map(children, (child: React.ReactElement) => {

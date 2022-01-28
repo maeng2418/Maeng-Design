@@ -1,5 +1,4 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
-import React from 'react';
 import { CloseOutlined } from '../Icons';
 import Tag, { TagProps } from './Tag';
 

@@ -4,6 +4,7 @@ import { DarkColorType, LightColorType } from '../../styles/colors';
 import createStyle from './styles';
 
 export interface ButtonProps {
+  className?: string;
   children?: React.ReactNode;
   color?: LightColorType | DarkColorType;
   size?: 'large' | 'medium' | 'small';
@@ -15,6 +16,7 @@ export interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
+  className = '',
   children,
   color = 'blue6',
   size = 'medium',
@@ -26,6 +28,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
+      className={className}
       css={createStyle(color, size, shape, type, disabled)}
       onClick={onClick}
       onMouseDown={(e) => e.preventDefault()}

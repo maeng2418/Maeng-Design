@@ -5,6 +5,7 @@ import { DownOutlined, UpOutlined } from '../../Icons';
 import Item from '../Item';
 
 interface ItemGroupProps {
+  className?: string;
   mode?: 'horizontal' | 'vertical';
   key?: React.Key;
   title: string | ReactElement | readonly ReactElement[];
@@ -19,6 +20,7 @@ interface ItemGroupProps {
 }
 
 const ItemGroup: React.FC<ItemGroupProps> = ({
+  className = '',
   mode,
   key,
   title,
@@ -51,6 +53,7 @@ const ItemGroup: React.FC<ItemGroupProps> = ({
       key={groupKey}
       onClick={onClickItemGroup}
       className={`
+        ${className}
         ${
           selectKeys?.includes(groupKey) || isSelected
             ? 'item-group-list selected'

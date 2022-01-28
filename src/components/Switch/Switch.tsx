@@ -4,6 +4,7 @@ import { DarkColorType, LightColorType } from '../../styles/colors';
 import createStyle from './styles';
 
 export interface SwitchProps {
+  className?: string;
   color?: LightColorType | DarkColorType;
   checked?: boolean;
   onChange?: (checked: boolean, event: MouseEvent) => void;
@@ -12,6 +13,7 @@ export interface SwitchProps {
 }
 
 const Switch: React.FC<SwitchProps> = ({
+  className = '',
   color = 'blue6',
   checked = false,
   onChange,
@@ -34,7 +36,12 @@ const Switch: React.FC<SwitchProps> = ({
   );
 
   return (
-    <button css={createStyle(color, size, on)} disabled={disabled} onClick={onClickSwitch}>
+    <button
+      className={className}
+      css={createStyle(color, size, on)}
+      disabled={disabled}
+      onClick={onClickSwitch}
+    >
       <div className="handle" />
     </button>
   );

@@ -4,6 +4,7 @@ import { ChangeInputEvent, InputProps } from '../Input';
 import createStyle from './styles';
 
 export interface CheckboxProps {
+  className?: string;
   children?: React.ReactNode;
   checked?: InputProps['checked'];
   disabled?: InputProps['disabled'];
@@ -13,6 +14,7 @@ export interface CheckboxProps {
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({
+  className = '',
   children,
   checked = false,
   disabled = false,
@@ -34,7 +36,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
     [onChange],
   );
   return (
-    <label css={createStyle(color, isChecked, disabled)}>
+    <label className={className} css={createStyle(color, isChecked, disabled)}>
       <input
         {...props}
         type="checkbox"

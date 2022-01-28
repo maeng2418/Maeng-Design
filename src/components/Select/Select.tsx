@@ -5,6 +5,7 @@ import MultiSelector from './MultiSelect';
 import SingleSelect from './SingleSelect';
 
 export interface SelectProps {
+  className?: string;
   children?: ReactElement | readonly ReactElement[];
   onSelect?: (value?: string | number) => void; // 선택한 옵션에 대한 동작
   onChange?: (value?: (string | number)[] | string | number) => void; // 선택한 후 셀렉터에 대한 동작

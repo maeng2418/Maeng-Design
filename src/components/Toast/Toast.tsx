@@ -7,6 +7,7 @@ import createStyle, { toastContainerStyle } from './styles';
 export type ToastMessageType = 'success' | 'error' | 'warning';
 
 export interface ToastMessage {
+  className?: string;
   type: ToastMessageType;
   message: string;
   duration?: number;
@@ -28,6 +29,7 @@ export const ToastMsgContainer = forwardRef<HTMLDivElement>(({ children }, ref) 
 });
 
 export const ToastMsg: React.FC<ToastMsgProps> = ({
+  className = '',
   type,
   message,
   container,
@@ -48,7 +50,7 @@ export const ToastMsg: React.FC<ToastMsgProps> = ({
 
   if (type === 'success')
     return (
-      <div ref={ref} css={createStyle(type)}>
+      <div className={className} ref={ref} css={createStyle(type)}>
         <span className="icon-wrapper">
           <CheckCircleFilled />
         </span>
@@ -57,7 +59,7 @@ export const ToastMsg: React.FC<ToastMsgProps> = ({
     );
   if (type === 'error')
     return (
-      <div ref={ref} css={createStyle(type)}>
+      <div className={className} ref={ref} css={createStyle(type)}>
         <span className="icon-wrapper">
           <CloseCircleFilled />
         </span>
@@ -66,7 +68,7 @@ export const ToastMsg: React.FC<ToastMsgProps> = ({
     );
   if (type === 'warning')
     return (
-      <div ref={ref} css={createStyle(type)}>
+      <div className={className} ref={ref} css={createStyle(type)}>
         <span className="icon-wrapper">
           <InfoCircleFilled />
         </span>
@@ -75,7 +77,7 @@ export const ToastMsg: React.FC<ToastMsgProps> = ({
     );
 
   return (
-    <div ref={ref} css={createStyle(type)}>
+    <div className={className} ref={ref} css={createStyle(type)}>
       <span>{message}</span>
     </div>
   );

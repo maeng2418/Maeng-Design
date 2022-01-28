@@ -19,6 +19,7 @@ export type TagColorType =
   | 'gray';
 
 export interface TagProps {
+  className?: string;
   children?: React.ReactNode;
   color?: LightColorType | DarkColorType | TagColorType;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
@@ -26,9 +27,9 @@ export interface TagProps {
   style?: React.CSSProperties;
 }
 
-const Tag: React.FC<TagProps> = ({ children, color, style, size }) => {
+const Tag: React.FC<TagProps> = ({ className = '', children, color, style, size }) => {
   return (
-    <span className="tag" css={createStyle(color, size)} style={style}>
+    <span className={`tag ${className}`} css={createStyle(color, size)} style={style}>
       {children}
     </span>
   );

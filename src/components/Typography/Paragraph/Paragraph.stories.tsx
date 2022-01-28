@@ -1,5 +1,4 @@
-import React from 'react';
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react/types-6-0';
 import Paragraph, { ParagraphProps } from './Paragraph';
 
 export default {

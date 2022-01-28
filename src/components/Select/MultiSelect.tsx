@@ -16,6 +16,7 @@ import selectStyle, { multiSelectedValueStyle, optionListStyle } from './styles'
 type MultiSelectProps = Omit<SelectProps, 'multiple'>;
 
 const MultiSelect: React.FC<MultiSelectProps> = ({
+  className = '',
   children,
   onSelect,
   onChange,
@@ -89,7 +90,10 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   }, []);
 
   return (
-    <div className="select" css={selectStyle(active, color, size, tagRender, disabled)}>
+    <div
+      className={`select ${className}`}
+      css={selectStyle(active, color, size, tagRender, disabled)}
+    >
       <div
         className="input-box"
         tabIndex={0}
@@ -129,7 +133,11 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
               );
               return <></>;
             }
-            const { color: optionColor, disabled: optionDisabled } = child.props;
+            const {
+              color: optionColor,
+              disabled: optionDisabled,
+              className: optionClassName,
+            } = child.props;
             const isSelected = selectedOption?.some(
               (option) => option.props.value === child.props.value,
             )
@@ -137,7 +145,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
               : '';
             return (
               <li
-                className={`option ${isSelected}`}
+                className={`option ${isSelected} ${optionClassName}`}
                 css={optionListStyle(optionColor || color, optionDisabled)}
                 onClick={isSelected ? onDeselectOption(child) : onSelectValue(child)}
               >

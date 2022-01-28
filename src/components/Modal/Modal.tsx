@@ -8,6 +8,7 @@ import { ButtonProps } from '../Button/Button';
 import createStyle, { globalStyle } from './styles';
 
 export interface ModalProps {
+  className?: string;
   color?: LightColorType | DarkColorType;
   width?: string | number;
   visible: boolean;
@@ -23,6 +24,7 @@ export interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({
+  className = '',
   width,
   visible = false,
   title,
@@ -72,7 +74,7 @@ const Modal: React.FC<ModalProps> = ({
     ? createPortal(
         <>
           <Global styles={globalStyle} />
-          <div css={createStyle(width, color)}>
+          <div className={className} css={createStyle(width, color)}>
             <div className="modal">
               {(title || closeIcon || onClose) && (
                 <header className="modal-header">

@@ -3,6 +3,7 @@ import React, { MouseEvent } from 'react';
 import { DarkColorType, LightColorType } from '../../../styles/colors';
 
 interface OptionProps {
+  className?: string;
   children: React.ReactNode;
   value?: number | string;
   label?: number | string;

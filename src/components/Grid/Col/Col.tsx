@@ -3,6 +3,7 @@ import React from 'react';
 import colStyle from './styles';
 
 export interface ColProps {
+  className?: string;
   children?: React.ReactNode;
   xs?: number;
   sm?: number;
@@ -13,9 +14,9 @@ export interface ColProps {
   space?: number;
 }
 
-const Col: React.FC<ColProps> = ({ children, ...props }) => {
+const Col: React.FC<ColProps> = ({ className = '', children, ...props }) => {
   return (
-    <div className="col" css={colStyle(props)}>
+    <div className={`col ${className}`} css={colStyle(props)}>
       {children}
     </div>
   );

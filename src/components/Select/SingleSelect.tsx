@@ -15,6 +15,7 @@ import selectStyle, { optionListStyle } from './styles';
 type SingleSelectProps = Omit<SelectProps, 'multiple'>;
 
 const SingleSelect: React.FC<SingleSelectProps> = ({
+  className = '',
   children,
   onSelect,
   onChange,
@@ -74,7 +75,10 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
   }, []);
 
   return (
-    <div className="select" css={selectStyle(active, color, size, tagRender, disabled)}>
+    <div
+      className={`select ${className}`}
+      css={selectStyle(active, color, size, tagRender, disabled)}
+    >
       <div
         className="input-box"
         tabIndex={0}
@@ -102,11 +106,15 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
               );
               return <></>;
             }
-            const { color: optionColor, disabled: optionDisabled } = child.props;
+            const {
+              color: optionColor,
+              disabled: optionDisabled,
+              className: optionClassName,
+            } = child.props;
             const isSelected = selectedOption?.props.value === child.props.value ? 'selected' : '';
             return (
               <li
-                className={`option ${isSelected}`}
+                className={`option ${isSelected} ${optionClassName}`}
                 css={optionListStyle(optionColor || color, optionDisabled)}
                 onClick={isSelected ? onDeselectOption : onSelectOption(child)}
               >

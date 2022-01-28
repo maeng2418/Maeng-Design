@@ -11,6 +11,7 @@ import { ChangeInputValueEvent, InputProps } from '../Input';
 import createStyle from './styles';
 
 export interface InputNumberProps {
+  className?: string;
   disabled?: InputProps['disabled'];
   value?: InputProps['value'];
   name?: InputProps['name'];
@@ -22,6 +23,7 @@ export interface InputNumberProps {
 }
 
 const InputNumber: React.FC<InputNumberProps> = ({
+  className = '',
   disabled = false,
   value,
   onChange,
@@ -75,7 +77,7 @@ const InputNumber: React.FC<InputNumberProps> = ({
 
   return (
     <span
-      className={`number ${isFocused ? 'focused' : ''} ${disabled ? 'disabled' : ''}`}
+      className={`${className} number ${isFocused ? 'focused' : ''} ${disabled ? 'disabled' : ''}`}
       css={createStyle(color, size)}
     >
       <input

@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
-import React, { MouseEvent, useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import Menu from '.';
 import { MenuProps } from './Menu';
 

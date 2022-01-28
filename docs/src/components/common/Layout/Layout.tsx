@@ -11,9 +11,10 @@ import SEO from './SEO';
 interface LayoutProps {
   title?: string;
   children: React.ReactNode;
+  className?: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({ title, children }) => {
+const Layout: React.FC<LayoutProps> = ({ title, children, className }) => {
   return (
     <React.Fragment>
       <SEO title={title} />
@@ -21,7 +22,9 @@ const Layout: React.FC<LayoutProps> = ({ title, children }) => {
       <Header />
       <main css={mainStyles}>
         <Nav />
-        <section css={sectionStyles}>{children}</section>
+        <section className={className} css={sectionStyles}>
+          {children}
+        </section>
       </main>
       <Footer />
     </React.Fragment>
