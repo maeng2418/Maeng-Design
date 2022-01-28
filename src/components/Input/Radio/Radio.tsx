@@ -8,6 +8,7 @@ import createStyle from './styles';
 // );
 
 export interface RadioProps {
+  className?: string;
   children?: React.ReactNode;
   checked?: InputProps['checked'];
   disabled?: InputProps['disabled'];
@@ -18,6 +19,7 @@ export interface RadioProps {
 }
 
 const Radio: React.FC<RadioProps> = ({
+  className = '',
   children,
   checked = false,
   disabled = false,
@@ -38,7 +40,7 @@ const Radio: React.FC<RadioProps> = ({
   }, [onChange, value]);
 
   return (
-    <label css={createStyle(color, isChecked, disabled)}>
+    <label className={className} css={createStyle(color, isChecked, disabled)}>
       <input
         {...props}
         type="radio"

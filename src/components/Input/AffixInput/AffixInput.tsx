@@ -5,6 +5,7 @@ import { ChangeInputEvent, InputProps } from '../Input';
 import createStyle from './styles';
 
 export interface AffixInputProps {
+  className?: string;
   type?: 'text' | 'email' | 'password' | 'tel';
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
@@ -18,6 +19,7 @@ export interface AffixInputProps {
 }
 
 const AffixInput: React.FC<AffixInputProps> = ({
+  className = '',
   type = 'text',
   prefix,
   suffix,
@@ -39,7 +41,7 @@ const AffixInput: React.FC<AffixInputProps> = ({
 
   return (
     <span
-      className={`affix ${isFocused ? 'focused' : ''} ${disabled ? 'disabled' : ''}`}
+      className={`${className} affix ${isFocused ? 'focused' : ''} ${disabled ? 'disabled' : ''}`}
       css={createStyle(color, size)}
     >
       <span className="prefix">{prefix}</span>

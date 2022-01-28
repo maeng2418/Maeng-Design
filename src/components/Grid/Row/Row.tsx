@@ -4,11 +4,12 @@ import Col from '../Col';
 import rowStyle from './styles';
 
 export interface RowProps {
+  className?: string;
   children?: ReactElement | readonly ReactElement[];
   gutter?: number | number[];
 }
 
-const Row: React.FC<RowProps> = ({ children, gutter = [0, 0] }) => {
+const Row: React.FC<RowProps> = ({ className = '', children, gutter = [0, 0] }) => {
   const horizontalSpace = useMemo(
     () => (Array.isArray(gutter) && gutter[0] ? gutter[0] : (gutter as number)),
     [gutter],
@@ -18,7 +19,7 @@ const Row: React.FC<RowProps> = ({ children, gutter = [0, 0] }) => {
     [gutter],
   );
   return (
-    <div className="row" css={rowStyle(horizontalSpace, verticalSpace)}>
+    <div className={`row ${className}`} css={rowStyle(horizontalSpace, verticalSpace)}>
       {children &&
         React.Children.map(children, (child: React.ReactElement) => {
           if (child.type !== Col) {

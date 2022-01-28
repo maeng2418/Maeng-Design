@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
+import { Global } from '@emotion/react';
+import Prism from 'prismjs';
 import React, { MouseEvent, ReactNode, useEffect } from 'react';
 import { DarkColorType, LightColorType } from '../../../styles';
 import createStyle, { codeStyle, markStyle } from './styles';
-import Prism from 'prismjs';
-import { Global } from '@emotion/react';
 
 export interface EllipsisOptions {
   rows: number;
@@ -379,6 +379,7 @@ export interface CodeOptions {
 }
 
 export interface TextProps {
+  className?: string;
   children?: ReactNode;
   color?: LightColorType | DarkColorType;
   disabled?: boolean;
@@ -393,6 +394,7 @@ export interface TextProps {
 }
 
 const Text: React.FC<TextProps> = ({
+  className = '',
   children,
   color = 'gray13',
   disabled = false,
@@ -413,7 +415,7 @@ const Text: React.FC<TextProps> = ({
     return (
       <>
         <Global styles={codeStyle} />
-        <span css={createStyle('gray13', false, false)} onClick={onClick}>
+        <span className={className} css={createStyle('gray13', false, false)} onClick={onClick}>
           <pre className={`language-${code.language}`}>
             <code className={`language-${code.language}`}>{children}</code>
           </pre>
@@ -428,7 +430,7 @@ const Text: React.FC<TextProps> = ({
   if (italic) children = <i>{children}</i>;
 
   return (
-    <span css={createStyle(color, ellipsis, disabled)} onClick={onClick}>
+    <span className={className} css={createStyle(color, ellipsis, disabled)} onClick={onClick}>
       {children}
     </span>
   );

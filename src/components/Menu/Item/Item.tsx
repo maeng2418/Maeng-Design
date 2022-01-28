@@ -3,6 +3,7 @@ import React, { MouseEvent, useCallback, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 interface ItemProps {
+  className?: string;
   mode?: 'horizontal' | 'vertical';
   key?: React.Key;
   groupKey?: React.Key;
@@ -16,6 +17,7 @@ interface ItemProps {
   icon?: React.ReactNode;
 }
 const Item: React.FC<ItemProps> = ({
+  className = '',
   mode,
   key,
   children,
@@ -51,6 +53,7 @@ const Item: React.FC<ItemProps> = ({
   return (
     <li
       className={`
+        ${className}
         ${
           selectKeys?.includes(itemKey) || isSelected ? 'menu-item-list selected' : 'menu-item-list'
         }

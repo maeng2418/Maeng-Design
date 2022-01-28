@@ -15,6 +15,7 @@ const useToast = () => {
     message: ToastMessage['message'],
     duration: ToastMessage['duration'],
     onClose: ToastMessage['onClose'],
+    className: ToastMessage['className'] = '',
   ): void | Element | React.Component => {
     const messageDiv = document.createElement('div');
 
@@ -29,6 +30,7 @@ const useToast = () => {
         render(
           createPortal(
             <ToastMsg
+              className={className}
               type={type}
               message={message}
               container={containerDiv}
@@ -48,17 +50,20 @@ const useToast = () => {
       msg: ToastMessage['message'],
       duration?: ToastMessage['duration'],
       onClose?: ToastMessage['onClose'],
-    ) => message('success', msg, duration, onClose),
+      className?: ToastMessage['className'],
+    ) => message('success', msg, duration, onClose, className),
     error: (
       msg: ToastMessage['message'],
       duration?: ToastMessage['duration'],
       onClose?: ToastMessage['onClose'],
-    ) => message('error', msg, duration, onClose),
+      className?: ToastMessage['className'],
+    ) => message('error', msg, duration, onClose, className),
     warning: (
       msg: ToastMessage['message'],
       duration?: ToastMessage['duration'],
       onClose?: ToastMessage['onClose'],
-    ) => message('warning', msg, duration, onClose),
+      className?: ToastMessage['className'],
+    ) => message('warning', msg, duration, onClose, className),
   };
 
   return toast;

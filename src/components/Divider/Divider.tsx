@@ -3,6 +3,7 @@ import React from 'react';
 import createStyle, { getChildrenStyle } from './styles';
 
 export interface DividerProps {
+  className?: string;
   children?: React.ReactNode;
   dashed?: boolean;
   position?: 'left' | 'right' | 'center';
@@ -10,13 +11,14 @@ export interface DividerProps {
 }
 
 const Divider: React.FC<DividerProps> = ({
+  className = '',
   children,
   dashed = false,
   position = 'center',
   type = 'horizontal',
 }) => {
   return (
-    <div css={createStyle(children, dashed, position, type)}>
+    <div className={className} css={createStyle(children, dashed, position, type)}>
       {children && <span css={getChildrenStyle}>{children}</span>}
     </div>
   );

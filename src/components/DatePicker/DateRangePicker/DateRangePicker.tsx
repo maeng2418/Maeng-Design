@@ -13,6 +13,7 @@ import Calendar from '../Calendar';
 import { dateRangePickerStyle, rangeCalendarContainerStyle } from './styles';
 
 export interface DateRangePickerProps {
+  className?: string;
   color?: LightColorType | DarkColorType;
   disabled?: boolean;
   placeholder?: string;
@@ -24,6 +25,7 @@ export interface DateRangePickerProps {
 }
 
 const DateRangePicker: React.FC<DateRangePickerProps> = ({
+  className = '',
   color = 'blue6',
   disabled = false,
   placeholder = 'YYYY-MM-DD',
@@ -238,7 +240,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
 
   return (
     <div
-      className="date-range-picker"
+      className={`date-range-picker ${className}`}
       css={dateRangePickerStyle(startActive || endActive, color, size, disabled)}
     >
       <div className="input-box">

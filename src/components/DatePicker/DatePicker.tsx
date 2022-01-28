@@ -13,6 +13,7 @@ import Calendar from './Calendar';
 import datePickerStyle from './styles';
 
 export interface DatePickerProps {
+  className?: string;
   color?: LightColorType | DarkColorType;
   disabled?: boolean;
   placeholder?: string;
@@ -22,6 +23,7 @@ export interface DatePickerProps {
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({
+  className = '',
   color = 'blue6',
   disabled = false,
   placeholder = 'YYYY-MM-DD',
@@ -128,7 +130,10 @@ const DatePicker: React.FC<DatePickerProps> = ({
   );
 
   return (
-    <div className="date-picker" css={datePickerStyle(active, color, size, disabled)}>
+    <div
+      className={`date-picker ${className}`}
+      css={datePickerStyle(active, color, size, disabled)}
+    >
       <div
         className="input-box"
         onClick={onSetActive(!active)}

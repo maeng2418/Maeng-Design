@@ -11,6 +11,7 @@ export type ChangeInputEvent = (e?: ChangeEvent<HTMLInputElement>) => void;
 export type ChangeInputValueEvent = (value?: any) => void;
 
 export interface InputProps {
+  className?: string;
   color?: LightColorType | DarkColorType;
   type?: 'text' | 'email' | 'checkbox' | 'radio' | 'file' | 'number' | 'password' | 'tel';
   onChange?: ChangeInputEvent | ChangeInputValueEvent;

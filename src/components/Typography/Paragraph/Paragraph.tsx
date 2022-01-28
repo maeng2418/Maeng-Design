@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
+import { Global } from '@emotion/react';
+import Prism from 'prismjs';
 import React, { MouseEvent, ReactNode, useEffect } from 'react';
 import { DarkColorType, LightColorType } from '../../../styles';
 import createStyle, { codeStyle, markStyle } from './styles';
-import Prism from 'prismjs';
-import { Global } from '@emotion/react';
 
 export interface EllipsisOptions {
   rows: number;
@@ -379,6 +379,7 @@ export interface CodeOptions {
 }
 
 export interface ParagraphProps {
+  className?: string;
   children?: ReactNode;
   color?: LightColorType | DarkColorType;
   disabled?: boolean;
@@ -393,6 +394,7 @@ export interface ParagraphProps {
 }
 
 const Paragraph: React.FC<ParagraphProps> = ({
+  className = '',
   children,
   color = 'gray13',
   disabled = false,
@@ -413,7 +415,7 @@ const Paragraph: React.FC<ParagraphProps> = ({
     return (
       <>
         <Global styles={codeStyle} />
-        <div css={createStyle('gray13', false, false)} onClick={onClick}>
+        <div className={className} css={createStyle('gray13', false, false)} onClick={onClick}>
           <pre className={`language-${code.language}`}>
             <code className={`language-${code.language}`}>{children}</code>
           </pre>
@@ -428,7 +430,7 @@ const Paragraph: React.FC<ParagraphProps> = ({
   if (italic) children = <i>{children}</i>;
 
   return (
-    <div css={createStyle(color, ellipsis, disabled)} onClick={onClick}>
+    <div className={className} css={createStyle(color, ellipsis, disabled)} onClick={onClick}>
       {children}
     </div>
   );
