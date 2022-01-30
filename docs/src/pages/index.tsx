@@ -2,7 +2,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
 import React from 'react';
-import { Guide, Intro, Layout, Supplement } from '../components';
+import { Layout } from '../components/common';
+import { Guide, Intro, Supplement } from '../components/home';
 
 const IndexPage: React.FC = () => {
   return (
