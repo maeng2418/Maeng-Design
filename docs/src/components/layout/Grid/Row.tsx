@@ -53,7 +53,7 @@ const App = () => (
         <div className="content">Col</div>
       </Col>
     </Row>
-    </Grid>
+  </Grid>
 );`}
         </Paragraph>
       </Typography>

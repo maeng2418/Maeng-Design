@@ -33,7 +33,9 @@ const Column: React.FC = () => {
         </Grid>
         <Paragraph className="code" code={{ language: 'javascript' }}>
           {`import React from 'react';
-import { Col } from 'maeng-design';
+import { Grid } from 'maeng-design';
+
+const { Row, Col } = Grid;
 
 const App = () => (
   <Grid className="example">
@@ -51,7 +53,7 @@ const App = () => (
         <div className="content">Col</div>
       </Col>
     </Row>
-    </Grid>
+  </Grid>
 );`}
         </Paragraph>
       </Typography>

@@ -29,7 +29,7 @@ const Children: React.FC = () => {
           {`import React from 'react';
 import { Typography } from 'maeng-design';
 
-const { Paragraph } = Typography;
+const { Paragraph, Text } = Typography;
 
 const App = () => (
   <Paragraph>
