@@ -1,11 +1,16 @@
 import { PageProps } from 'gatsby';
 import React from 'react';
-import { Button, Layout } from '../../../components';
+import { Layout } from '../../../components';
+import { API, Intro, Shape, Size, Type } from '../../../components/general/button';
 
 const ButtonPage: React.FC<PageProps> = () => {
   return (
     <Layout title="Button">
-      <Button />
+      <Intro />
+      <Type />
+      <Shape />
+      <Size />
+      <API />
     </Layout>
   );
 };

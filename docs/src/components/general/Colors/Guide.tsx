@@ -34,8 +34,7 @@ import { getColor, ThemeMode } from 'maeng-design';
 
 const style = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => css\`
     background: \${getColor(theme, 'gray1')};
-  \`;
-`}
+  \`;`}
         </Paragraph>
       </Typography>
     </article>
