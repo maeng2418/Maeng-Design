@@ -8,8 +8,8 @@ const { Title, Text, Paragraph } = Typography;
 
 const Dashed: React.FC = () => {
   return (
-    <article className="position" css={positionStyle}>
-      <Typography className="typography-position">
+    <article className="dashed" css={dashedStyle}>
+      <Typography className="divider-dashed">
         <Title level={4}>Dashed</Title>
         <Text className="description">구분선을 점선 스타일로 나타낼 수 있습니다.</Text>
         <div className="example">
@@ -30,7 +30,7 @@ const App = () => (
   );
 };
 
-const positionStyle = css`
+const dashedStyle = css`
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 2px 12px rgb(0 0 0 / 8%);
