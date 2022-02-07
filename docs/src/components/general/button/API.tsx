@@ -84,7 +84,7 @@ const API: React.FC = () => {
               <Tag color="magenta">large</Tag>
             </React.Fragment>
           ),
-          default: <Tag color="magenta">default</Tag>,
+          default: <Tag color="magenta">medium</Tag>,
         },
         {
           property: 'htmlType',
