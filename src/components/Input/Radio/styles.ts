@@ -3,11 +3,7 @@ import { getColor, ThemeMode } from '../../../styles';
 import { RadioProps } from './Radio';
 
 const createStyle =
-  (
-    color?: RadioProps['color'],
-    checked?: RadioProps['checked'],
-    disabled?: RadioProps['disabled'],
-  ) =>
+  (color?: RadioProps['color'], disabled?: RadioProps['disabled']) =>
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
     // color
     const primaryColor = getColor(theme, color);
@@ -74,15 +70,14 @@ const createStyle =
     `;
 
     const getChecked = () => {
-      if (checked)
-        return css`
-          .radio {
-            border-color: ${primaryColor};
-            &::after {
-              opacity: 1;
-            }
+      return css`
+        input[type='radio']:checked + .radio {
+          border-color: ${primaryColor};
+          &::after {
+            opacity: 1;
           }
-        `;
+        }
+      `;
       return css``;
     };
 
@@ -101,9 +96,14 @@ const createStyle =
             &::after {
               border-color: ${getColor(theme, 'gray6')};
               background-color: ${getColor(theme, 'gray6')};
-              ${!checked && `opacity: 0;`};
+              opacity: 0;
             }
           }
+
+          input[type='radio']:checked + .radio::after {
+            opacity: 1;
+          }
+
           .label {
             color: ${getColor(theme, 'gray6')};
             cursor: not-allowed;

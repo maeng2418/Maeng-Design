@@ -1,11 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import React, { useCallback, useLayoutEffect, useState } from 'react';
+import React, { useCallback, useLayoutEffect, useRef } from 'react';
 import { ChangeInputValueEvent, InputProps } from '../Input';
 import createStyle from './styles';
-
-// url(
-//   "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><linearGradient id='gradient'><stop offset='10%' stop-color='%23F00'/><stop offset='90%' stop-color='%23fcc'/> </linearGradient><rect fill='url(%23gradient)' x='0' y='0' width='100%' height='100%'/></svg>",
-// );
 
 export interface RadioProps {
   className?: string;
@@ -28,24 +24,24 @@ const Radio: React.FC<RadioProps> = ({
   value,
   ...props
 }) => {
-  const [isChecked, setIsChecked] = useState(checked);
+  const ref = useRef<HTMLInputElement>(null);
 
   useLayoutEffect(() => {
-    setIsChecked(checked);
+    if (ref.current) ref.current.checked = true;
   }, [checked]);
 
   const onChangeCheck = useCallback(() => {
-    setIsChecked(true);
     onChange && onChange(value);
   }, [onChange, value]);
 
   return (
-    <label className={className} css={createStyle(color, isChecked, disabled)}>
+    <label className={className} css={createStyle(color, disabled)}>
       <input
         {...props}
+        ref={ref}
+        value={value}
         type="radio"
         onChange={onChangeCheck}
-        checked={isChecked}
         disabled={disabled}
       />
       <span className="radio"></span>
