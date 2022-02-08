@@ -8,8 +8,8 @@ const { Title, Text, Paragraph } = Typography;
 
 const Color: React.FC = () => {
   return (
-    <article className="size" css={sizeStyle}>
-      <Typography className="switch-size">
+    <article className="color" css={colorStyle}>
+      <Typography className="tag-color">
         <Title level={4}>Color</Title>
         <Text className="description">
           Maeng Design의 프리셋 색상(133가지)외의 red, volcano, orange, gold, yellow, lime, green,
@@ -39,7 +39,7 @@ const App = () => (
   );
 };
 
-const sizeStyle = css`
+const colorStyle = css`
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 2px 12px rgb(0 0 0 / 8%);

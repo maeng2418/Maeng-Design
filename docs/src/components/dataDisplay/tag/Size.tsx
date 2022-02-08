@@ -9,7 +9,7 @@ const { Title, Text, Paragraph } = Typography;
 const Size: React.FC = () => {
   return (
     <article className="size" css={sizeStyle}>
-      <Typography className="switch-size">
+      <Typography className="tag-size">
         <Title level={4}>Size</Title>
         <Text className="description">small, medium, large 3가지의 size가 존재합니다.</Text>
         <Paragraph className="example">
