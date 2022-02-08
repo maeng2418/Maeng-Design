@@ -8,7 +8,7 @@ export interface SwitchProps {
   color?: LightColorType | DarkColorType;
   checked?: boolean;
   onChange?: (checked: boolean, event: MouseEvent) => void;
-  size?: 'large' | 'middle' | 'small';
+  size?: 'large' | 'medium' | 'small';
   disabled?: boolean;
 }
 
@@ -17,7 +17,7 @@ const Switch: React.FC<SwitchProps> = ({
   color = 'blue6',
   checked = false,
   onChange,
-  size = 'middle',
+  size = 'medium',
   disabled = false,
 }) => {
   const [on, setOn] = useState(checked);
