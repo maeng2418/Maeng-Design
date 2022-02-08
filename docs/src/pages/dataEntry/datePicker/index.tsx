@@ -1,11 +1,22 @@
 import { PageProps } from 'gatsby';
 import React from 'react';
-import { DatePicker, Layout } from '../../../components';
+import { Layout } from '../../../components';
+import {
+  DatePickerAPI,
+  DateRangePicker,
+  DateRnagePickerAPI,
+  Intro,
+  Size,
+} from '../../../components/dataEntry/datePicker';
 
 const DatePickerPage: React.FC<PageProps> = () => {
   return (
     <Layout title="DatePicker">
-      <DatePicker />
+      <Intro />
+      <Size />
+      <DateRangePicker />
+      <DatePickerAPI />
+      <DateRnagePickerAPI />
     </Layout>
   );
 };
