@@ -1,13 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx, useTheme } from '@emotion/react';
-import { getColor, Typography } from 'maeng-design';
+import { getColor, Tag, Typography } from 'maeng-design';
 import React, { useMemo } from 'react';
 import { Table } from '../../common';
 
 const { Title, Text } = Typography;
 
-const API: React.FC = () => {
+const OptionAPI: React.FC = () => {
   const theme = useTheme();
 
   const columns = useMemo(
@@ -53,28 +53,22 @@ const API: React.FC = () => {
     () =>
       [
         {
-          property: 'title',
-          description: '메뉴의 그룹 항목의 이름을 설정할 수 있습니다.',
-          type: String,
+          property: 'value',
+          description: '옵션 값',
+          type: 'string | number',
           default: '-',
-        },
-        {
-          property: 'icon',
-          description: '메뉴를 축소할 때 나타나는 메뉴의 그룹 항목 아이콘을 지정할 수 있습니다.',
-          type: 'ReactNode',
-          default: '-',
-        },
-        {
-          property: 'isSelected',
-          description: 'selected 스타일이 적용되는 조건을 명시할 수 있습니다.',
-          type: 'boolean',
-          default: 'false',
         },
         {
           property: 'disabled',
-          description: '메뉴의 그릅 항목을 비활성화 시킬 수 있습니다.',
+          description: '옵션을 비활성화 시킬 수 있습니다.',
           type: 'boolean',
           default: 'false',
+        },
+        {
+          property: 'color',
+          description: '옵션 컴포넌트의 색상을 지정할 수 있습니다.',
+          type: 'ColorName',
+          default: <Tag color="magenta">blue6</Tag>,
         },
         {
           property: 'onClick',
@@ -89,8 +83,8 @@ const API: React.FC = () => {
   return (
     <article className="api" css={apiStyle}>
       <Typography className="api-guide">
-        <Title level={4}>ItemGroup API</Title>
-        <Text className="description"></Text>
+        <Title level={4}>Option API</Title>
+        <Text>Select의 옵션 컴포넌트입니다.</Text>
         <Table columns={columns} data={data} />
       </Typography>
     </article>
@@ -109,4 +103,4 @@ const apiStyle = css`
   }
 `;
 
-export default API;
+export default OptionAPI;

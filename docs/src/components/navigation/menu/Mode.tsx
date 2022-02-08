@@ -191,10 +191,6 @@ const modeStyle = css`
   div.example {
     margin-top: 24px;
     margin-bottom: 24px;
-    span.ellipsis {
-      width: 150px;
-      line-height: 1.5em;
-    }
   }
 
   div.code {

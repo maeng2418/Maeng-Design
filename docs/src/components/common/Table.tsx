@@ -24,7 +24,6 @@ export interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ columns, data, className = '' }) => {
-  console.log(columns);
   return (
     <table className={className} css={tableStyle}>
       <thead className="header">
