@@ -19,22 +19,20 @@ const Radio: React.FC = () => {
         <div className="example1">
           <RadioGroup value={3}>
             <RadioBtn value={1}>Radio 1</RadioBtn>
-            <Input type="radio" value={2}>
-              Radio 2
-            </Input>
+            <RadioBtn value={2}>Radio 2</RadioBtn>
             <RadioBtn value={3}>Radio 3</RadioBtn>
           </RadioGroup>
         </div>
         <div className="example2">
-          <RadioBtn name="radio" value={1}>
+          <Input name="radio" type="radio" value={1}>
             Radio 1
-          </RadioBtn>
+          </Input>
           <Input name="radio" type="radio" value={2}>
             Radio 2
           </Input>
-          <RadioBtn name="radio" value={3}>
+          <Input name="radio" type="radio" value={3}>
             Radio 3
-          </RadioBtn>
+          </Input>
         </div>
         <Paragraph className="code" code={{ language: 'javascript' }}>
           {`import React from 'react';
@@ -46,13 +44,13 @@ const App = () => (
   <div>
     <RadioGroup value={3}>
       <Radio value={1} >Radio 1</Radio>
-      <Input type="radio" value={2}>Radio 2</Input>
+      <Radio value={2} >Radio 2</Radio>
       <Radio value={3}>Radio 3</Radio>
     </RadioGroup>
 
-    <Radio name="radio" value={1}>Radio 1</Radio>
+    <Input name="radio" type="radio" value={1}>Radio 1</Input>
     <Input name="radio" type="radio" value={2}>Radio 2</Input>
-    <Radio name="radio" value={3}>Radio 3</Radio>
+    <Input name="radio" type="radio" value={3}>Radio 3</Input>
   </div>
 );`}
         </Paragraph>
