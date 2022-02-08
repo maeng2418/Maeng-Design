@@ -6,7 +6,6 @@ interface OptionProps {
   className?: string;
   children: React.ReactNode;
   value?: number | string;
-  label?: number | string;
   color?: LightColorType | DarkColorType;
   disabled?: boolean;
   onClick?: (e: MouseEvent<HTMLLIElement>) => void;

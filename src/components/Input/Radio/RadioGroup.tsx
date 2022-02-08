@@ -58,7 +58,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
           color: child.props.color || color,
           onChange: onChangeRadioGroupValue,
           disabled: disabled || child.props.disabled,
-          checked: child.props.value === radioGroupValue || child.props.checked,
+          checked: child.props.value === radioGroupValue,
         });
       })}
     </div>

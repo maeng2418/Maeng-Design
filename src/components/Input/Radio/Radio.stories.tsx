@@ -13,13 +13,26 @@ const Template: Story = (args) => {
     console.log(value);
   };
   return (
-    <RadioGroup {...args} value={1} onChange={onChange}>
-      <Radio value={1}>1 번</Radio>
-      <Radio value={2} color="red5">
+    <>
+      <Radio name="1" value={1}>
+        1 번
+      </Radio>
+      <Radio name="1" value={2} color="red5">
         2 번
       </Radio>
-      <Radio value={3}>3 번</Radio>
-    </RadioGroup>
+      <Radio name="1" value={3} checked>
+        3 번
+      </Radio>
+      <RadioGroup {...args} value={1} onChange={onChange}>
+        <Radio value={1}>1 번</Radio>
+        <Radio value={2} color="red5">
+          2 번
+        </Radio>
+        <Radio value={3} checked>
+          3 번
+        </Radio>
+      </RadioGroup>
+    </>
   );
 };
 

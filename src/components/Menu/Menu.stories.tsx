@@ -15,7 +15,7 @@ const Template: Story = (args) => {
   const [select, setSelect] = useState<string>('');
 
   const onClickItem = (value: string) => (e: MouseEvent) => {
-    // e.preventDefault();
+    e.preventDefault();
     setSelect(value);
   };
   return (
@@ -24,35 +24,43 @@ const Template: Story = (args) => {
         title={'메인메뉴 1'}
         icon="A"
         disabled
-        isSelected={select === '#1'}
-        onClick={onClickItem('#1')}
+        isSelected={select === '#horizontal-1'}
+        onClick={onClickItem('#horizontal-1')}
       >
-        <Item isSelected={select === '#1-1'} onClick={onClickItem('#1-1')}>
+        <Item isSelected={select === '#horizontal-1-1'} onClick={onClickItem('#horizontal-1-1')}>
           메뉴 1-1
         </Item>
-        <Item isSelected={select === '#1-2'} onClick={onClickItem('#1-2')} disabled>
-          메뉴 1-2sdfsdfefwefwefwefwef
+        <Item
+          isSelected={select === '#horizontal-1-2'}
+          onClick={onClickItem('#horizontal-1-2')}
+          disabled
+        >
+          메뉴 1-2
         </Item>
       </ItemGroup>
-      <Item isSelected={select === '#2'} onClick={onClickItem('#2')}>
-        메뉴 2-1
+      <Item isSelected={select === '#horizontal-2'} onClick={onClickItem('#horizontal-2')}>
+        메인메뉴 2
       </Item>
-      <Item isSelected={select === '#3-1'} onClick={onClickItem('#3-1')} disabled>
-        메뉴 3-1
+      <Item isSelected={select === '#horizontal-3'} onClick={onClickItem('#horizontal-3')} disabled>
+        메인메뉴 3
       </Item>
       <ItemGroup
-        isSelected={select === '#3'}
-        onClick={onClickItem('#3')}
-        title={<a href="http://www.naver.com">메인메뉴 3</a>}
+        isSelected={select === '#horizontal-4'}
+        onClick={onClickItem('#horizontal-4')}
+        title={<a href="https://maeng-design-docs.netlify.app">메인메뉴 4</a>}
       >
-        <Item isSelected={select === '#3-1'} onClick={onClickItem('#3-1')} disabled>
-          메뉴 3-1
+        <Item
+          isSelected={select === '#horizontal-4-1'}
+          onClick={onClickItem('#horizontal-4-1')}
+          disabled
+        >
+          메뉴 4-1
         </Item>
-        <Item isSelected={select === '#3-2'} onClick={onClickItem('#3-2')}>
-          메뉴 3-2
+        <Item isSelected={select === '#horizontal-4-2'} onClick={onClickItem('#horizontal-4-2')}>
+          메뉴 4-2
         </Item>
-        <Item isSelected={select === '#3-3'} onClick={onClickItem('#3-3')}>
-          메뉴 3-3
+        <Item isSelected={select === '#horizontal-4-3'} onClick={onClickItem('#horizontal-4-3')}>
+          메뉴 4-3
         </Item>
       </ItemGroup>
     </Menu>

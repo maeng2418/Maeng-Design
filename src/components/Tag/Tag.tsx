@@ -27,9 +27,9 @@ export interface TagProps {
   style?: React.CSSProperties;
 }
 
-const Tag: React.FC<TagProps> = ({ className = '', children, color, style, size }) => {
+const Tag: React.FC<TagProps> = ({ className = '', children, color, size, ...props }) => {
   return (
-    <span className={`tag ${className}`} css={createStyle(color, size)} style={style}>
+    <span className={`tag ${className}`} css={createStyle(color, size)} {...props}>
       {children}
     </span>
   );

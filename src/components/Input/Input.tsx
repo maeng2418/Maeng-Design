@@ -49,7 +49,9 @@ const Input: React.FC<InputProps> = ({
         color={color}
         onChange={onChange as ChangeInputValueEvent}
         checked={checked}
-      />
+      >
+        {children}
+      </Radio>
     );
   }
 
