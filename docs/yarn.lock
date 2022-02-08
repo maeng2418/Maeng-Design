@@ -6299,10 +6299,10 @@ lru-queue@^0.1.0:
   dependencies:
     es5-ext "~0.10.2"
 
-maeng-design@^1.4.4:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/maeng-design/-/maeng-design-1.4.4.tgz#56ac1055910b085f60e4806d346902d21e61a3a2"
-  integrity sha512-b+BnDfpEHrD9wUb+8ROPRvT7l7yPaLPlIoA2/P7EcZ7tbEkjoBLqwMhb6voFTaiqR2p8oXhZrex54EMJQRxPnw==
+maeng-design@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/maeng-design/-/maeng-design-1.4.5.tgz#3e44b255f000b043a0c7faf02104b4c6a20be5e7"
+  integrity sha512-6Pd8Y/hbO1QP1xULxJJU7sK0VPz5FAlVwW3EmNlT0mVpMwCdORJzII3b3giQwdjm3umbSUbCaX8S6osXu1Ofdw==
 
 make-dir@^3.0.0, make-dir@^3.0.2, make-dir@^3.1.0:
   version "3.1.0"
