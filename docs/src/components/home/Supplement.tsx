@@ -14,7 +14,11 @@ const Supplement: React.FC = () => {
         <Paragraph>
           <Text className="link">
             👉
-            <a href="https://storybook-maeng-design.netlify.app/" rel="noopener noreferrer">
+            <a
+              href="https://storybook-maeng-design.netlify.app/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               Storybook Link
             </a>
           </Text>
@@ -28,6 +32,7 @@ const Supplement: React.FC = () => {
             <a
               href="https://www.figma.com/file/HO5MJalfgtxxURpt66KCes/Maeng-Design"
               rel="noopener noreferrer"
+              target="_blank"
             >
               Figma Link
             </a>

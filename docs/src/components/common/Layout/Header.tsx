@@ -3,6 +3,7 @@
 import { css, jsx } from '@emotion/react';
 import { Link } from 'gatsby';
 import React from 'react';
+import GithubLogo from './GithubLogo';
 
 const Header: React.FC = () => {
   return (
@@ -11,6 +12,14 @@ const Header: React.FC = () => {
         <img src="/static/images/logo.png" alt="logo" width="40" height="40" />
         <h1>Maeng Design</h1>
       </Link>
+      <a
+        className="github-link"
+        href="https://github.com/maeng2418/Maeng-Design"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <GithubLogo className="github-logo" width="36" height="36" />
+      </a>
     </header>
   );
 };
