@@ -11,7 +11,9 @@ const createStyle =
       box-sizing: border-box;
       margin: 0 8px 0 0;
       padding: 0;
-      color: #000000d9;
+      color: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray1')
+        : getColor(theme, 'gray13')}d9;
       font-size: 14px;
       line-height: 1.5715;
       position: relative;
@@ -35,8 +37,11 @@ const createStyle =
         display: inline-block;
         width: 16px;
         height: 16px;
-        border: 1px solid ${getColor(theme, 'gray5')};
-        background-color: ${getColor(theme, 'gray1')};
+        border: 1px solid
+          ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray9') : getColor(theme, 'gray5')};
+        background-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray13')
+          : getColor(theme, 'gray1')};
         border-style: solid;
         border-width: 1px;
         border-radius: 50%;
@@ -69,17 +74,14 @@ const createStyle =
       }
     `;
 
-    const getChecked = () => {
-      return css`
-        input[type='radio']:checked + .radio {
-          border-color: ${primaryColor};
-          &::after {
-            opacity: 1;
-          }
+    const getChecked = css`
+      input[type='radio']:checked + .radio {
+        border-color: ${primaryColor};
+        &::after {
+          opacity: 1;
         }
-      `;
-      return css``;
-    };
+      }
+    `;
 
     const getDisabled = () => {
       if (disabled)
@@ -89,23 +91,41 @@ const createStyle =
             cursor: not-allowed;
           }
           .radio {
-            background-color: ${getColor(theme, 'gray3')};
-            border-color: ${getColor(theme, 'gray5')};
+            background-color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray11')
+              : getColor(theme, 'gray3')};
+            border-color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray9')
+              : getColor(theme, 'gray5')};
             cursor: not-allowed;
 
             &::after {
-              border-color: ${getColor(theme, 'gray6')};
-              background-color: ${getColor(theme, 'gray6')};
+              border-color: ${theme.mode === ThemeMode.DARK
+                ? getColor(theme, 'gray8')
+                : getColor(theme, 'gray6')};
+              background-color: ${theme.mode === ThemeMode.DARK
+                ? getColor(theme, 'gray8')
+                : getColor(theme, 'gray6')};
               opacity: 0;
             }
           }
 
-          input[type='radio']:checked + .radio::after {
-            opacity: 1;
+          input[type='radio']:checked + .radio {
+            background-color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray11')
+              : getColor(theme, 'gray3')};
+            border-color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray9')
+              : getColor(theme, 'gray5')};
+            &::after {
+              opacity: 1;
+            }
           }
 
           .label {
-            color: ${getColor(theme, 'gray6')};
+            color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray8')
+              : getColor(theme, 'gray6')};
             cursor: not-allowed;
           }
         `;
