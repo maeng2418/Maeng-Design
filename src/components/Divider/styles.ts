@@ -11,13 +11,17 @@ const createStyle =
   ) =>
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
     // color
-    const primaryColor = getColor(theme, 'gray5');
+    const primaryColor =
+      theme.mode === ThemeMode.DARK ? getColor(theme, 'gray9') : getColor(theme, 'gray5');
 
     // dashed
     const borderStyle = `1px ${dashed ? 'dashed' : 'solid'} ${primaryColor}`;
 
     // default
     const defaultStyle = css`
+      color: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray1')
+        : getColor(theme, 'gray13')};
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -54,7 +58,6 @@ const createStyle =
         return css`
           display: flex;
           margin: 16px 0;
-          color: ${getColor(theme, 'gray13')};
           font-size: 16px;
           white-space: nowrap;
           text-align: center;

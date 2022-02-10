@@ -1,4 +1,6 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
+import { useDarkMode } from 'storybook-dark-mode';
+import { ThemeMode, ThemeProvider } from '../../styles';
 import Divider, { DividerProps } from './Divider';
 
 export default {
@@ -6,7 +8,11 @@ export default {
   component: Divider,
 } as Meta;
 
-const Template: Story = (args) => <Divider {...args} />;
+const Template: Story = (args) => (
+  <ThemeProvider theme={{ mode: useDarkMode() ? ThemeMode.DARK : ThemeMode.LIGHT }}>
+    <Divider {...args} />
+  </ThemeProvider>
+);
 
 export const DefaultDevider = Template.bind({});
 DefaultDevider.args = {
