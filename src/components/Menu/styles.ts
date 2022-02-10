@@ -15,8 +15,12 @@ const createStyle =
     })();
 
     const navStyle = css`
-      border-bottom: 1px solid ${getColor(theme, 'gray4')};
+      border-bottom: 1px solid
+        ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray10') : getColor(theme, 'gray4')};
       box-shadow: none;
+      background: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray12')
+        : getColor(theme, 'gray1')};
     `;
 
     const mainMenuStyle = css`
@@ -41,7 +45,9 @@ const createStyle =
           display: flex;
           font-size: 14px;
           padding: 0 20px;
-          color: ${getColor(theme, 'gray13')};
+          color: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray1')
+            : getColor(theme, 'gray13')};
           text-decoration: none;
           align-items: center;
 
@@ -80,7 +86,9 @@ const createStyle =
           span.group-item,
           & > span.item {
             color: ${primaryColor};
-            background: ${getColor(theme, 'gray1')};
+            background: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray12')
+              : getColor(theme, 'gray1')};
           }
         }
 
@@ -89,7 +97,9 @@ const createStyle =
           span.group-item,
           & > span.item {
             cursor: not-allowed !important;
-            color: ${getColor(theme, 'gray6')} !important;
+            color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray8')
+              : getColor(theme, 'gray6')} !important;
           }
           ul.sub-menu {
             opacity: 0;
@@ -107,7 +117,9 @@ const createStyle =
         border-radius: 4px;
         position: absolute;
         top: 50px;
-        background-color: ${getColor(theme, 'gray1')};
+        background-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray12')
+          : getColor(theme, 'gray1')};
         transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
           0 9px 28px 8px rgb(0 0 0 / 5%);
@@ -126,7 +138,9 @@ const createStyle =
           display: flex;
           font-size: 14px;
           padding: 4px 15px;
-          color: ${getColor(theme, 'gray13')};
+          color: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray1')
+            : getColor(theme, 'gray13')};
           text-decoration: none;
           align-items: center;
           white-space: nowrap;
@@ -157,13 +171,19 @@ const createStyle =
 
         &.disabled > span.item {
           cursor: not-allowed !important;
-          color: ${getColor(theme, 'gray6')} !important;
+          color: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray8')
+            : getColor(theme, 'gray6')} !important;
         }
       }
     `;
 
     const verticalNavStyle = css`
-      border-right: 1px solid ${getColor(theme, 'gray4')};
+      border-right: 1px solid
+        ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray10') : getColor(theme, 'gray4')};
+      background: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray12')
+        : getColor(theme, 'gray1')};
       width: 256px;
     `;
 
@@ -190,7 +210,10 @@ const createStyle =
           line-height: 40px;
           font-size: 14px;
           padding: 4px 16px;
-          color: ${getColor(theme, 'gray13')};
+          color: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray1')
+            : getColor(theme, 'gray13')};
+
           text-decoration: none;
           align-items: center;
           white-space: nowrap;
@@ -244,15 +267,21 @@ const createStyle =
 
         &.disabled {
           border: 0 !important;
-          background-color: ${getColor(theme, 'gray2')} !important;
+          background-color: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray11')
+            : getColor(theme, 'gray2')} !important;
 
           span.group-item,
           & > span.item {
             cursor: not-allowed !important;
-            color: ${getColor(theme, 'gray6')} !important;
+            color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray8')
+              : getColor(theme, 'gray6')} !important;
 
             svg.item-group-icon {
-              fill: ${getColor(theme, 'gray6')} !important;
+              fill: ${theme.mode === ThemeMode.DARK
+                ? getColor(theme, 'gray8')
+                : getColor(theme, 'gray6')} !important;
             }
           }
         }
@@ -264,7 +293,9 @@ const createStyle =
         margin: 0;
         padding: 0;
         list-style: none;
-        background: ${getColor(theme, 'gray2')};
+        background: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray11')
+          : getColor(theme, 'gray2')};
         display: none;
       }
     `;
@@ -282,7 +313,9 @@ const createStyle =
           line-height: 40px;
           font-size: 14px;
           padding: 4px 16px 4px 48px;
-          color: ${getColor(theme, 'gray13')};
+          color: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray1')
+            : getColor(theme, 'gray13')};
           text-decoration: none;
           align-items: center;
           white-space: nowrap;
@@ -317,13 +350,19 @@ const createStyle =
         }
         &.disabled > span.item {
           cursor: not-allowed !important;
-          color: ${getColor(theme, 'gray6')} !important;
+          color: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray8')
+            : getColor(theme, 'gray6')} !important;
         }
       }
     `;
 
     const collapsedNavStyle = css`
-      border-right: 1px solid ${getColor(theme, 'gray4')};
+      border-right: 1px solid
+        ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray10') : getColor(theme, 'gray4')};
+      background: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray12')
+        : getColor(theme, 'gray1')};
       width: 80px;
     `;
 
@@ -351,7 +390,9 @@ const createStyle =
           line-height: 40px;
           font-size: 14px;
           padding: 4px 16px;
-          color: ${getColor(theme, 'gray13')};
+          color: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray1')
+            : getColor(theme, 'gray13')};
           text-decoration: none;
           align-items: center;
           justify-content: center;
@@ -408,13 +449,17 @@ const createStyle =
 
         &.disabled,
         &.disabled:hover {
-          background: ${getColor(theme, 'gray1')};
+          background: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray12')
+            : getColor(theme, 'gray1')};
           border: none;
 
           span.group-item,
           & > span.item {
             cursor: not-allowed !important;
-            color: ${getColor(theme, 'gray6')} !important;
+            color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray8')
+              : getColor(theme, 'gray6')} !important;
           }
 
           ul.sub-menu {
@@ -429,7 +474,9 @@ const createStyle =
         margin: 0;
         padding: 0;
         list-style: none;
-        background: ${getColor(theme, 'gray2')};
+        background: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray11')
+          : getColor(theme, 'gray2')};
         display: none;
       }
     `;
@@ -439,8 +486,9 @@ const createStyle =
         cursor: pointer;
         padding: 0;
         margin: 0;
-        background: ${getColor(theme, 'gray2')};
-
+        background: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray11')
+          : getColor(theme, 'gray2')};
         span {
           position: relative;
           display: flex;
@@ -448,7 +496,9 @@ const createStyle =
           line-height: 40px;
           font-size: 14px;
           padding: 4px 16px;
-          color: ${getColor(theme, 'gray13')};
+          color: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray1')
+            : getColor(theme, 'gray13')};
           text-decoration: none;
           align-items: center;
           justify-content: left;
@@ -473,7 +523,9 @@ const createStyle =
         }
         &.disabled > span {
           cursor: not-allowed !important;
-          color: ${getColor(theme, 'gray6')} !important;
+          color: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray8')
+            : getColor(theme, 'gray6')} !important;
         }
       }
     `;
