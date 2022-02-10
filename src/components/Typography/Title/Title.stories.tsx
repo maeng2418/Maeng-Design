@@ -1,4 +1,6 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
+import { useDarkMode } from 'storybook-dark-mode';
+import { ThemeMode, ThemeProvider } from '../../../styles';
 import Title, { TitleProps } from './Title';
 
 export default {
@@ -21,14 +23,17 @@ export default {
   },
 } as Meta;
 
-const Template: Story = (args) => <Title {...args} />;
+const Template: Story = (args) => (
+  <ThemeProvider theme={{ mode: useDarkMode() ? ThemeMode.DARK : ThemeMode.LIGHT }}>
+    <Title {...args} />
+  </ThemeProvider>
+);
 
 export const DefaultTitle = Template.bind({});
 DefaultTitle.args = {
   // props를 넣어주세요.
   children: '타이틀',
   level: 5,
-  color: 'gray13',
   disabled: false,
   ellipsis: false,
   mark: false,

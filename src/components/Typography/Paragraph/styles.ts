@@ -21,7 +21,9 @@ const createStyle =
       ${disabled &&
       `
       cursor: not-allowed !important;
-      color: ${getColor(theme, 'gray6')} !important;
+      color: ${
+        theme.mode === ThemeMode.DARK ? getColor(theme, 'gray8') : getColor(theme, 'gray6')
+      } !important;
       background: none !important;
       text-shadow: none !important;
       box-shadow: none !important;
@@ -56,7 +58,9 @@ export const markStyle =
   () =>
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
     return css`
-      background-color: ${getColor(theme, 'gold3')};
+      background-color: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gold8')
+        : getColor(theme, 'gold3')};
     `;
   };
 

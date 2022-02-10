@@ -396,7 +396,7 @@ export interface TextProps {
 const Text: React.FC<TextProps> = ({
   className = '',
   children,
-  color = 'gray13',
+  color,
   disabled = false,
   ellipsis = false,
   mark = false,
@@ -415,7 +415,7 @@ const Text: React.FC<TextProps> = ({
     return (
       <>
         <Global styles={codeStyle} />
-        <span className={className} css={createStyle('gray13', false, false)} onClick={onClick}>
+        <span className={className} css={createStyle(color, false, false)} onClick={onClick}>
           <pre className={`language-${code.language}`}>
             <code className={`language-${code.language}`}>{children}</code>
           </pre>

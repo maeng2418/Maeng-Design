@@ -1,4 +1,6 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
+import { useDarkMode } from 'storybook-dark-mode';
+import { ThemeMode, ThemeProvider } from '../../../styles';
 import Paragraph, { ParagraphProps } from './Paragraph';
 
 export default {
@@ -20,7 +22,11 @@ export default {
   },
 } as Meta;
 
-const Template: Story = (args) => <Paragraph {...args} />;
+const Template: Story = (args) => (
+  <ThemeProvider theme={{ mode: useDarkMode() ? ThemeMode.DARK : ThemeMode.LIGHT }}>
+    <Paragraph {...args} />
+  </ThemeProvider>
+);
 
 export const DefaultParagraph = Template.bind({});
 DefaultParagraph.args = {
@@ -32,7 +38,6 @@ DefaultParagraph.args = {
       console.log('hello');
     };
   `,
-  color: 'gray13',
   disabled: false,
   ellipsis: false,
   mark: false,

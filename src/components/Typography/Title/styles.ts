@@ -21,7 +21,9 @@ const createStyle =
       ${disabled &&
       `
       cursor: not-allowed !important;
-      color: ${getColor(theme, 'gray6')} !important;
+      color: ${
+        theme.mode === ThemeMode.DARK ? getColor(theme, 'gray8') : getColor(theme, 'gray6')
+      } !important;
       background: none !important;
       text-shadow: none !important;
       box-shadow: none !important;
@@ -33,7 +35,6 @@ const createStyle =
       if (level === 1)
         return css`
           margin-bottom: 0.5em;
-          color: ${primaryColor};
           font-weight: 600;
           font-size: 38px;
           line-height: 1.23;
@@ -41,7 +42,6 @@ const createStyle =
       if (level === 2)
         return css`
           margin-bottom: 0.5em;
-          color: ${primaryColor};
           font-weight: 600;
           font-size: 30px;
           line-height: 1.35;
@@ -49,7 +49,6 @@ const createStyle =
       if (level === 3)
         return css`
           margin-bottom: 0.5em;
-          color: ${primaryColor};
           font-weight: 600;
           font-size: 24px;
           line-height: 1.35;
@@ -57,14 +56,12 @@ const createStyle =
       if (level === 4)
         return css`
           margin-bottom: 0.5em;
-          color: ${primaryColor};
           font-weight: 600;
           font-size: 20px;
           line-height: 1.4;
         `;
       return css`
         margin-bottom: 0.5em;
-        color: ${primaryColor};
         font-weight: 600;
         font-size: 16px;
         line-height: 1.5;
@@ -99,7 +96,9 @@ export const markStyle =
   () =>
   (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => {
     return css`
-      background-color: ${getColor(theme, 'gold3')};
+      background-color: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gold8')
+        : getColor(theme, 'gold3')};
     `;
   };
 

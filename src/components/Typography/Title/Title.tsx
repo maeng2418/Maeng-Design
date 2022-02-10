@@ -24,7 +24,7 @@ const Title: React.FC<TitleProps> = ({
   className = '',
   children,
   level = 5,
-  color = 'gray13',
+  color,
   disabled = false,
   ellipsis = false,
   mark = false,
