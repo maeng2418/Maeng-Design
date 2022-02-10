@@ -1,4 +1,6 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
+import { useDarkMode } from 'storybook-dark-mode';
+import { ThemeMode, ThemeProvider } from '../../styles';
 import Switch, { SwitchProps } from './Switch';
 
 export default {
@@ -6,7 +8,11 @@ export default {
   component: Switch,
 } as Meta;
 
-const Template: Story = (args) => <Switch {...args} />;
+const Template: Story = (args) => (
+  <ThemeProvider theme={{ mode: useDarkMode() ? ThemeMode.DARK : ThemeMode.LIGHT }}>
+    <Switch {...args} />
+  </ThemeProvider>
+);
 
 export const DefaultSwitch = Template.bind({});
 DefaultSwitch.args = {
