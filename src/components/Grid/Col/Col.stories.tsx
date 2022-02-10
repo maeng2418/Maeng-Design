@@ -1,4 +1,6 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
+import { useDarkMode } from 'storybook-dark-mode';
+import { ThemeMode, ThemeProvider } from '../../../styles';
 import Col, { ColProps } from './Col';
 
 export default {
@@ -7,9 +9,11 @@ export default {
 } as Meta;
 
 const Template: Story = (args) => (
-  <Col {...args}>
-    <div style={{ border: '1px solid black' }}>Hello</div>
-  </Col>
+  <ThemeProvider theme={{ mode: useDarkMode() ? ThemeMode.DARK : ThemeMode.LIGHT }}>
+    <Col {...args}>
+      <div style={{ border: '1px solid black' }}>Hello</div>
+    </Col>
+  </ThemeProvider>
 );
 
 export const DefaultCol = Template.bind({});
