@@ -20,9 +20,11 @@ const createStyle =
       font-weight: 400;
       white-space: nowrap;
       text-align: center;
-      border: 1px solid ${getColor(theme, 'gray5')};
+      border: 1px solid
+        ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray9') : getColor(theme, 'gray5')};
       box-sizing: border-box;
-      box-shadow: 0 2px 0 rgb(0 0 0 / 2%);
+      box-shadow: 0 2px 0
+        ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray9') : getColor(theme, 'gray5')}05;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
       user-select: none;
@@ -31,23 +33,36 @@ const createStyle =
       padding: 4px 15px;
       font-size: 14px;
       border-radius: 2px;
-      color: ${getColor(theme, 'gray10')};
-      background: ${getColor(theme, 'gray1')};
+      color: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray4')
+        : getColor(theme, 'gray10')};
+      background: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray13')
+        : getColor(theme, 'gray1')};
 
       &:focus,
       &:active,
       &:hover {
         color: ${primaryColor};
         border-color: ${primaryColor};
-        background: ${getColor(theme, 'gray1')};
-        box-shadow: 0 0 8px 2px rgb(0 0 0 / 12%);
+        background: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray13')
+          : getColor(theme, 'gray1')};
+        box-shadow: 0 0 8px 2px
+          ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray1') : getColor(theme, 'gray13')}1F;
       }
 
       &[disabled] {
         cursor: not-allowed !important;
-        color: ${getColor(theme, 'gray6')} !important;
-        border-color: ${getColor(theme, 'gray5')} !important;
-        background: ${getColor(theme, 'gray3')} !important;
+        color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray8')
+          : getColor(theme, 'gray6')} !important;
+        border-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray9')
+          : getColor(theme, 'gray5')} !important;
+        background: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray11')
+          : getColor(theme, 'gray3')} !important;
         text-shadow: none !important;
         box-shadow: none !important;
       }
@@ -124,16 +139,23 @@ const createStyle =
     const getType = () => {
       if (type === 'primary')
         return css`
-          color: ${getColor(theme, 'gray1')};
+          color: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray13')
+            : getColor(theme, 'gray1')};
           border-color: ${primaryColor};
           background: ${primaryColor};
-          text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
-          box-shadow: 0 2px #0000000b;
+          text-shadow: 0 -1px 0 ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray1') : getColor(theme, 'gray13')}1F;
+          box-shadow: 0 2px
+            ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray1')
+              : getColor(theme, 'gray13')}0b;
 
           &:focus,
           &:hover,
           &:active {
-            color: ${getColor(theme, 'gray1')};
+            color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray13')
+              : getColor(theme, 'gray1')};
             border-color: ${primaryColor};
             background: ${primaryColor};
             opacity: 0.8;
@@ -141,8 +163,12 @@ const createStyle =
         `;
       if (type === 'dashed')
         return css`
-          border-color: ${getColor(theme, 'gray5')};
-          background: ${getColor(theme, 'gray1')};
+          border-color: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray9')
+            : getColor(theme, 'gray5')};
+          background: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray13')
+            : getColor(theme, 'gray1')};
           border-style: dashed;
         `;
       if (type === 'text')
@@ -154,8 +180,12 @@ const createStyle =
           &:focus,
           &:hover,
           &:active {
-            color: ${getColor(theme, 'gray10')};
-            background: rgba(0, 0, 0, 0.018);
+            color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray4')
+              : getColor(theme, 'gray10')};
+            background: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray1')
+              : getColor(theme, 'gray13')}05;
             border-color: transparent;
           }
 
@@ -172,7 +202,9 @@ const createStyle =
           &:active {
             color: ${primaryColor};
             border-color: transparent;
-            background: 0 0;
+            background: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray1')
+              : getColor(theme, 'gray13')};
             box-shadow: none;
             text-decoration: none;
           }
