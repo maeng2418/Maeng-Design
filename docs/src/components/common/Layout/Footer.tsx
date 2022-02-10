@@ -17,7 +17,6 @@ const footerStyles = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<T
     ? getColor(theme, 'gray10')
     : getColor(theme, 'gray4')};
   font-size: 14px;
-  color: #8c8c8c;
   color: ${getColor(theme, 'gray7')};
 `;
 

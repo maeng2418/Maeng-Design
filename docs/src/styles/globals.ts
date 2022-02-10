@@ -16,6 +16,9 @@ const globalStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Th
     background-color: ${(theme as MaengTheme).mode === ThemeMode.DARK
       ? getColor(theme, 'gray12')
       : getColor(theme, 'gray1')};
+    color: ${(theme as MaengTheme).mode === ThemeMode.DARK
+      ? getColor(theme, 'gray1')
+      : getColor(theme, 'gray13')};
 
     &#___gatsby div#gatsby-focus-wrapper {
       display: flex;
@@ -35,9 +38,6 @@ const globalStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Th
     padding: 0;
     box-sizing: border-box;
     font-family: 'Noto Sans KR', sans-serif;
-    color: ${(theme as MaengTheme).mode === ThemeMode.DARK
-      ? getColor(theme, 'gray1')
-      : getColor(theme, 'gray13')};
   }
 `;
 

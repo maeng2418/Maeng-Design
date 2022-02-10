@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, Interpolation, jsx, Theme } from '@emotion/react';
-import { getColor, ThemeMode } from 'maeng-design';
+import { getColor, Theme as MaengTheme, ThemeMode } from 'maeng-design';
 import React from 'react';
 
 export interface TableProps {
@@ -59,17 +59,28 @@ const Table: React.FC<TableProps> = ({ columns, data, className = '' }) => {
 const tableStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => css`
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid ${getColor(theme, 'gray4')};
+  border: 1px solid
+    ${(theme as MaengTheme).mode === ThemeMode.DARK
+      ? getColor(theme, 'gray10')
+      : getColor(theme, 'gray4')};
   thead.header {
-    color: ${getColor(theme, 'gray8')};
-    background: ${getColor(theme, 'gray3')};
+    color: ${(theme as MaengTheme).mode === ThemeMode.DARK
+      ? getColor(theme, 'gray6')
+      : getColor(theme, 'gray8')};
+    background: ${(theme as MaengTheme).mode === ThemeMode.DARK
+      ? getColor(theme, 'gray11')
+      : getColor(theme, 'gray3')};
+
     tr th {
       text-align: center;
       font-weight: 500;
     }
   }
   tbody.body tr {
-    border-bottom: 1px solid ${getColor(theme, 'gray4')};
+    border-bottom: 1px solid
+      ${(theme as MaengTheme).mode === ThemeMode.DARK
+        ? getColor(theme, 'gray10')
+        : getColor(theme, 'gray4')};
   }
 `;
 
