@@ -36,9 +36,7 @@ const createStyle =
           box-sizing: border-box;
           position: absolute;
           inset: 0;
-          background-color: ${theme.mode === ThemeMode.DARK
-            ? getColor(theme, 'gray13')
-            : getColor(theme, 'gray1')};
+          background-color: ${getColor(theme, 'gray1')};
 
           box-shadow: 0 2px 4px
             ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray13') : '#00230b33'};
