@@ -1,5 +1,7 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
+import { useDarkMode } from 'storybook-dark-mode';
 import { useToast } from '../../hooks';
+import { ThemeMode, ThemeProvider } from '../../styles';
 import Button from '../Button';
 import { ToastMessage } from './Toast';
 
@@ -16,20 +18,29 @@ export default {
   },
 } as Meta;
 
-const Template: Story = (args) => {
+const ToastContainer: React.FC<any> = (props) => {
   const toast = useToast();
+
   return (
-    <div {...args}>
+    <div>
       <Button
         onClick={() => {
-          args.type === 'success' && toast.success(args.message, args.duration, args.onClose);
-          args.type === 'error' && toast.error(args.message, args.duration, args.onClose);
-          args.type === 'warning' && toast.warning(args.message, args.duration, args.onClose);
+          props.type === 'success' && toast.success(props.message, props.duration, props.onClose);
+          props.type === 'error' && toast.error(props.message, props.duration, props.onClose);
+          props.type === 'warning' && toast.warning(props.message, props.duration, props.onClose);
         }}
       >
-        {args.children}
+        {props.children}
       </Button>
     </div>
+  );
+};
+
+const Template: Story = (args) => {
+  return (
+    <ThemeProvider theme={{ mode: useDarkMode() ? ThemeMode.DARK : ThemeMode.LIGHT }}>
+      <ToastContainer {...args} />
+    </ThemeProvider>
   );
 };
 
