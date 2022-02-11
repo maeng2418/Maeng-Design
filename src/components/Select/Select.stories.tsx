@@ -1,5 +1,7 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
+import { useDarkMode } from 'storybook-dark-mode';
 import Select from '.';
+import { ThemeMode, ThemeProvider } from '../../styles';
 import { SelectProps } from './Select';
 export default {
   title: 'Design System/Select',
@@ -16,15 +18,17 @@ export default {
 const { Option } = Select;
 
 const Template: Story = (args) => (
-  <Select {...args}>
-    {Array(999)
-      .fill(1)
-      .map((_i, i) => (
-        <Option key={i + 1} value={i + 1}>
-          {i + 1} 번
-        </Option>
-      ))}
-  </Select>
+  <ThemeProvider theme={{ mode: useDarkMode() ? ThemeMode.DARK : ThemeMode.LIGHT }}>
+    <Select {...args}>
+      {Array(999)
+        .fill(1)
+        .map((_i, i) => (
+          <Option key={i + 1} value={i + 1}>
+            {i + 1} 번
+          </Option>
+        ))}
+    </Select>
+  </ThemeProvider>
 );
 
 export const DefaultSelect = Template.bind({});

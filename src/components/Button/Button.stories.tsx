@@ -1,4 +1,6 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
+import { useDarkMode } from 'storybook-dark-mode';
+import { ThemeMode, ThemeProvider } from '../../styles';
 import Button, { ButtonProps } from './Button';
 
 export default {
@@ -6,7 +8,11 @@ export default {
   component: Button,
 } as Meta;
 
-const Template: Story = (args) => <Button {...args} />;
+const Template: Story = (args) => (
+  <ThemeProvider theme={{ mode: useDarkMode() ? ThemeMode.DARK : ThemeMode.LIGHT }}>
+    <Button {...args} />
+  </ThemeProvider>
+);
 
 export const DefaultButton = Template.bind({});
 DefaultButton.args = {

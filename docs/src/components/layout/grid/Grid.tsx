@@ -1,7 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, Interpolation, jsx, Theme } from '@emotion/react';
-import { getColor, Grid as GridBox, ThemeMode, Typography } from 'maeng-design';
+import {
+  getColor,
+  Grid as GridBox,
+  Theme as MaengTheme,
+  ThemeMode,
+  Typography,
+} from 'maeng-design';
 import React from 'react';
 
 const { Title, Text, Paragraph } = Typography;
@@ -37,13 +43,16 @@ const App = () => (
 const gridStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => css`
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 2px 12px rgb(0 0 0 / 8%);
+  box-shadow: 0 2px 12px
+    ${(theme as MaengTheme).mode === ThemeMode.DARK ? getColor(theme, 'gray13') : `rgb(0 0 0 / 8%)`};
   span.description {
     line-height: 2;
   }
   div.example,
   section.example {
-    color: ${getColor(theme, 'gray1')};
+    color: ${(theme as MaengTheme).mode === ThemeMode.DARK
+      ? getColor(theme, 'gray13')
+      : getColor(theme, 'gray1')};
     background: ${getColor(theme, 'magenta5')}B3;
     padding: 14px 16px;
     margin-top: 24px;

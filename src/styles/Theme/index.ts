@@ -3,19 +3,6 @@ export enum ThemeMode {
   LIGHT = 'LIGHT',
 }
 
-export interface ThemeConfig {
-  mode: ThemeMode;
+export interface Theme {
+  mode: ThemeMode.DARK | ThemeMode.LIGHT;
 }
-
-const dark: ThemeConfig = {
-  mode: ThemeMode.DARK,
-};
-
-const light: ThemeConfig = {
-  mode: ThemeMode.LIGHT,
-};
-
-export const Theme = {
-  dark,
-  light,
-};

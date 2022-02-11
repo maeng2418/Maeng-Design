@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { css, jsx } from '@emotion/react';
-import { Divider, Typography } from 'maeng-design';
+import { css, Interpolation, jsx, Theme } from '@emotion/react';
+import { Divider, getColor, Theme as MaengTheme, ThemeMode, Typography } from 'maeng-design';
 import React from 'react';
 
 const { Title, Text, Paragraph } = Typography;
@@ -30,10 +30,11 @@ const App = () => (
   );
 };
 
-const dashedStyle = css`
+const dashedStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => css`
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 2px 12px rgb(0 0 0 / 8%);
+  box-shadow: 0 2px 12px
+    ${(theme as MaengTheme).mode === ThemeMode.DARK ? getColor(theme, 'gray13') : `rgb(0 0 0 / 8%)`};
   span.description {
     line-height: 2;
   }

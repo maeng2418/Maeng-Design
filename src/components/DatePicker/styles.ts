@@ -20,11 +20,28 @@ const datePickerStyle =
       &.date-picker div.input-box {
         position: relative;
         cursor: pointer;
-        color: ${active ? getColor(theme, 'gray6') : getColor(theme, 'gray10')};
-        border: 1px solid ${active ? primaryColor : getColor(theme, 'gray5')};
+        color: ${active
+          ? theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray8')
+            : getColor(theme, 'gray6')
+          : theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray4')
+          : getColor(theme, 'gray10')};
+        border: 1px solid
+          ${active
+            ? primaryColor
+            : theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray9')
+            : getColor(theme, 'gray5')};
         border-radius: 2px;
-        box-shadow: ${active ? '0 0 8px 2px rgb(0 0 0 / 12%)' : 'none'};
-        background: ${getColor(theme, 'gray1')};
+        box-shadow: ${active
+          ? `0 0 8px 2px ${
+              theme.mode === ThemeMode.DARK ? getColor(theme, 'gray13') : 'rgb(0 0 0 / 12%)'
+            }`
+          : 'none'};
+        background: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray13')
+          : getColor(theme, 'gray1')};
         width: 100%;
         box-sizing: border-box;
         padding: 0 calc(15px + 1em) 0 15px;
@@ -35,6 +52,8 @@ const datePickerStyle =
         overflow: hidden;
 
         input {
+          color: inherit;
+          background: inherit;
           pointer-events: none;
           cursor: pointer;
           box-sizing: border-box;
@@ -61,9 +80,11 @@ const datePickerStyle =
         &.input-box:active,
         &.input-box:hover {
           border-color: ${primaryColor};
-          background: ${getColor(theme, 'gray1')};
-          box-shadow: 0 0 8px 2px rgb(0 0 0 / 12%);
-
+          background: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray13')
+            : getColor(theme, 'gray1')};
+          box-shadow: 0 0 8px 2px
+            ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray13') : 'rgb(0 0 0 / 12%'};
           svg.ic-calendar-outlined {
             fill: ${primaryColor};
           }
@@ -104,9 +125,15 @@ const datePickerStyle =
         return css`
           &.date-picker div.input-box {
             cursor: not-allowed;
-            color: ${getColor(theme, 'gray6')};
-            background: ${getColor(theme, 'gray3')};
-            border-color: ${getColor(theme, 'gray5')};
+            color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray8')
+              : getColor(theme, 'gray6')};
+            background: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray11')
+              : getColor(theme, 'gray3')};
+            border-color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray9')
+              : getColor(theme, 'gray5')};
             text-shadow: none;
             box-shadow: none;
 
@@ -118,8 +145,12 @@ const datePickerStyle =
             &.input-box:focus,
             &.input-box:active,
             &.input-box:hover {
-              background: ${getColor(theme, 'gray3')};
-              border-color: ${getColor(theme, 'gray5')};
+              background: ${theme.mode === ThemeMode.DARK
+                ? getColor(theme, 'gray11')
+                : getColor(theme, 'gray3')};
+              border-color: ${theme.mode === ThemeMode.DARK
+                ? getColor(theme, 'gray9')
+                : getColor(theme, 'gray5')};
               box-shadow: none !important;
               svg.ic-calendar-outlined {
                 fill: ${getColor(theme, 'gray7')};
@@ -150,10 +181,17 @@ export const calendarStyle =
         top: 100%;
         left: 0;
         right: 0;
-        background: ${getColor(theme, 'gray1')};
+        color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray1')
+          : getColor(theme, 'gray13')};
+        background: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray13')
+          : getColor(theme, 'gray1')};
         border-radius: 2px;
         transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-        box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+        box-shadow: ${theme.mode === ThemeMode.DARK
+          ? `0 3px 16px -4px ${getColor(theme, 'gray13')}`
+          : '0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d'};
         transform: translateY(10px);
         z-index: 1;
 
@@ -189,8 +227,9 @@ export const calendarStyle =
             cursor: pointer;
             width: 16px;
             height: 16px;
-
-            fill: ${getColor(theme, 'gray6')};
+            fill: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray8')
+              : getColor(theme, 'gray6')};
 
             &:hover {
               fill: ${primaryColor};
@@ -220,7 +259,7 @@ export const calendarWeekDayStyle = (
       line-height: 30px;
       display: grid;
       place-items: center;
-      color: ${getColor(theme, 'gray6')};
+      color: ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray8') : getColor(theme, 'gray6')};
     }
   }
 `;
@@ -253,20 +292,33 @@ export const calendarDays = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpol
         }
 
         &:hover span {
-          background: ${getColor(theme, 'gray3')};
+          background: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray9')
+            : getColor(theme, 'gray3')};
         }
 
         &.curr-date span {
-          color: ${getColor(theme, 'gray1')};
+          color: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray13')
+            : getColor(theme, 'gray1')};
           background: ${getColor(theme, 'blue6')};
         }
       }
 
       &.disabled {
         cursor: not-allowed;
-        color: ${getColor(theme, 'gray6')};
-        background-color: ${getColor(theme, 'gray3')};
-        border-color: ${getColor(theme, 'gray5')};
+        color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray8')
+          : getColor(theme, 'gray6')};
+        background-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray11')
+          : getColor(theme, 'gray3')};
+        border-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray9')
+          : getColor(theme, 'gray5')};
+        &:hover span {
+          background: none;
+        }
       }
     }
 
@@ -297,7 +349,9 @@ export const monthListStyle =
       top: 0;
       left: 0;
       padding: 10px;
-      background-color: ${getColor(theme, 'gray1')};
+      background-color: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray13')
+        : getColor(theme, 'gray1')};
       grid-template-columns: repeat(3, auto);
       gap: 5px;
       display: grid;
@@ -353,7 +407,9 @@ export const yearListStyle =
         box-sizing: border-box;
         display: flex;
         justify-content: space-between;
-        background-color: white;
+        background-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray13')
+          : getColor(theme, 'gray1')};
         align-items: center;
         font-weight: 500;
         font-size: 18px;
@@ -364,8 +420,9 @@ export const yearListStyle =
           cursor: pointer;
           width: 16px;
           height: 16px;
-
-          fill: ${getColor(theme, 'gray6')};
+          fill: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray8')
+            : getColor(theme, 'gray6')};
 
           &:hover {
             fill: ${primaryColor};
@@ -378,7 +435,9 @@ export const yearListStyle =
         width: 100%;
         height: calc(100% - 40px);
         padding: 10px;
-        background-color: ${getColor(theme, 'gray1')};
+        background-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray13')
+          : getColor(theme, 'gray1')};
         grid-template-columns: repeat(3, auto);
         gap: 5px;
         display: grid;

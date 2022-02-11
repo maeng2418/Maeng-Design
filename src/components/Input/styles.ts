@@ -20,8 +20,14 @@ const createStyle =
       outline: none;
       font-weight: 400;
       letter-spacing: 1px;
-      background-color: #fff;
-      border: 1px solid ${getColor(theme, 'gray5')};
+      color: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray1')
+        : getColor(theme, 'gray13')};
+      background-color: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray13')
+        : getColor(theme, 'gray1')};
+      border: 1px solid
+        ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray9') : getColor(theme, 'gray5')};
       border-radius: 2px;
       text-overflow: ellipsis;
       line-height: 1.5715;
@@ -34,9 +40,15 @@ const createStyle =
       }
 
       &:disabled {
-        color: ${getColor(theme, 'gray6')} !important;
-        background-color: ${getColor(theme, 'gray3')} !important;
-        border-color: ${getColor(theme, 'gray5')} !important;
+        color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray8')
+          : getColor(theme, 'gray6')} !important;
+        background-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray11')
+          : getColor(theme, 'gray3')} !important;
+        border-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray9')
+          : getColor(theme, 'gray5')} !important;
         box-shadow: none !important;
         cursor: not-allowed;
       }

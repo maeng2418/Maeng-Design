@@ -7,6 +7,7 @@ import {
   Grid,
   lightColor,
   LightColorType,
+  Theme as MaengTheme,
   ThemeMode,
   Typography,
   useToast,
@@ -61,8 +62,8 @@ const Colors: React.FC = () => {
                         onCopy={onCopy}
                       >
                         <div className="color-content">
-                          <span className="color">{colorName}</span>
-                          <span className="color-code">
+                          <span className={`color ${(theme as MaengTheme).mode}`}>{colorName}</span>
+                          <span className={`color-code ${(theme as MaengTheme).mode}`}>
                             {getColor(theme, colorName as LightColorType | DarkColorType)}
                           </span>
                         </div>
@@ -91,8 +92,8 @@ const Colors: React.FC = () => {
                       onCopy={onCopy}
                     >
                       <div className="color-content">
-                        <span className="color">{colorName}</span>
-                        <span className="color-code">
+                        <span className="color LIGHT">{colorName}</span>
+                        <span className="color-code LIGHT">
                           {getColor(theme, colorName as LightColorType | DarkColorType)}
                         </span>
                       </div>
@@ -117,7 +118,6 @@ const colorBoxStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<
       aspect-ratio: 1 / 1;
 
       div.color-content {
-        color: ${+v.replace(/[^0-9]/g, '') > 5 ? '#fff' : '#000'};
         font-size: 14px;
         cursor: pointer; 
         display: flex;
@@ -126,6 +126,17 @@ const colorBoxStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<
         width: 100%;
         height: 100%;
         background: ${getColor(theme, v as LightColorType | DarkColorType)};
+
+        span.color.LIGHT, span.color-code.LIGHT {
+          color: ${
+            +v.replace(/[^0-9]/g, '') > 5 ? getColor(theme, 'gray1') : getColor(theme, 'gray13')
+          }
+        }
+        span.color.DARK, span.color-code.DARK {
+          color: ${
+            +v.replace(/[^0-9]/g, '') > 5 ? getColor(theme, 'gray13') : getColor(theme, 'gray1')
+          }
+        }
 
         span.color-code {
           display: none;

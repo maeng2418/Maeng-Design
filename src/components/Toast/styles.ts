@@ -11,10 +11,16 @@ const createStyle =
       flex-grow: 0;
       align-items: center;
       padding: 10px 16px;
-      background: #fff;
+      color: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray1')
+        : getColor(theme, 'gray13')};
+      background: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray13')
+        : getColor(theme, 'gray1')};
       border-radius: 2px;
-      box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
-        0 9px 28px 8px rgb(0 0 0 / 5%);
+      box-shadow: ${theme.mode === ThemeMode.DARK
+        ? `0 3px 16px -4px ${getColor(theme, 'gray13')}`
+        : '0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%)'};
       margin-bottom: 16px;
 
       & > span {

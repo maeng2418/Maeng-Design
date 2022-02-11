@@ -31,22 +31,22 @@ const createStyle =
 
     const tagColor = (function () {
       if (isPresetColor(color)) return `${color?.replace(NOT_STRING_REGEX, '')}${PRESET_COLOR_IDX}`;
-      if (color) return 'gray1';
-      return 'gray13';
+      if (color) return `${theme.mode === ThemeMode.DARK ? 'gray13' : 'gray1'}`;
+      return `${theme.mode === ThemeMode.DARK ? 'gray1' : 'gray13'}`;
     })();
 
     const bgColor = (function () {
       if (isPresetColor(color))
         return `${color?.replace(NOT_STRING_REGEX, '')}${PRESET_BG_COLOR_IDX}`;
       if (color) return color;
-      return 'gray3';
+      return `${theme.mode === ThemeMode.DARK ? 'gray9' : 'gray3'}`;
     })();
 
     const borderColor = (function () {
       if (isPresetColor(color))
         return `${color?.replace(NOT_STRING_REGEX, '')}${PRESET_BORDER_COLOR_IDX}`;
-      if (color) return 'gray5';
-      return 'gray4';
+      if (color) return `${theme.mode === ThemeMode.DARK ? 'gray9' : 'gray5'}`;
+      return `${theme.mode === ThemeMode.DARK ? 'gray10' : 'gray4'}`;
     })();
 
     // default

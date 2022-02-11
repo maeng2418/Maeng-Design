@@ -1,4 +1,6 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
+import { useDarkMode } from 'storybook-dark-mode';
+import { ThemeMode, ThemeProvider } from '../../styles';
 import { CloseOutlined } from '../Icons';
 import Tag, { TagProps } from './Tag';
 
@@ -8,10 +10,12 @@ export default {
 } as Meta;
 
 const Template: Story = (args) => (
-  <Tag {...args}>
-    <span>Tag</span>
-    <CloseOutlined />
-  </Tag>
+  <ThemeProvider theme={{ mode: useDarkMode() ? ThemeMode.DARK : ThemeMode.LIGHT }}>
+    <Tag {...args}>
+      <span>Tag</span>
+      <CloseOutlined />
+    </Tag>
+  </ThemeProvider>
 );
 
 export const DefaultTag = Template.bind({});

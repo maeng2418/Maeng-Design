@@ -1,4 +1,6 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
+import { useDarkMode } from 'storybook-dark-mode';
+import { ThemeMode, ThemeProvider } from '../../../styles';
 import { InputProps } from '../Input';
 import Radio, { RadioProps } from './Radio';
 import RadioGroup from './RadioGroup';
@@ -13,7 +15,7 @@ const Template: Story = (args) => {
     console.log(value);
   };
   return (
-    <>
+    <ThemeProvider theme={{ mode: useDarkMode() ? ThemeMode.DARK : ThemeMode.LIGHT }}>
       <Radio name="1" value={1}>
         1 번
       </Radio>
@@ -32,7 +34,7 @@ const Template: Story = (args) => {
           3 번
         </Radio>
       </RadioGroup>
-    </>
+    </ThemeProvider>
   );
 };
 

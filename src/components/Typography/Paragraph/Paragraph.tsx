@@ -396,7 +396,7 @@ export interface ParagraphProps {
 const Paragraph: React.FC<ParagraphProps> = ({
   className = '',
   children,
-  color = 'gray13',
+  color,
   disabled = false,
   ellipsis = false,
   mark = false,
@@ -415,7 +415,7 @@ const Paragraph: React.FC<ParagraphProps> = ({
     return (
       <>
         <Global styles={codeStyle} />
-        <div className={className} css={createStyle('gray13', false, false)} onClick={onClick}>
+        <div className={className} css={createStyle(color, false, false)} onClick={onClick}>
           <pre className={`language-${code.language}`}>
             <code className={`language-${code.language}`}>{children}</code>
           </pre>

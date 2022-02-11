@@ -57,7 +57,7 @@ const Days: React.FC<DaysProps> = ({
             <div
               key={date.toDateString()}
               className={classNames.join(' ')}
-              onClick={onClickDay(date)}
+              onClick={classNames.includes('disabled') ? () => null : onClickDay(date)}
             >
               <span>{day}</span>
             </div>

@@ -22,11 +22,32 @@ const selectStyle =
       & > div.input-box {
         position: relative;
         cursor: pointer;
-        color: ${active ? getColor(theme, 'gray6') : getColor(theme, 'gray10')};
-        border: 1px solid ${active ? primaryColor : getColor(theme, 'gray5')};
+        color: ${active
+          ? theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray8')
+            : getColor(theme, 'gray6')
+          : theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray4')
+          : getColor(theme, 'gray10')};
+        border: 1px solid
+          ${active
+            ? primaryColor
+            : theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray9')
+            : getColor(theme, 'gray5')};
+
         border-radius: 2px;
-        box-shadow: ${active ? '0 0 8px 2px rgb(0 0 0 / 12%)' : 'none'};
-        background: ${getColor(theme, 'gray1')};
+        box-shadow: ${active
+          ? `0 0 8px 2px ${
+              theme.mode === ThemeMode.DARK
+                ? getColor(theme, 'gray13')
+                : `${getColor(theme, 'gray13')}1F`
+            }`
+          : 'none'};
+        background: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray13')
+          : getColor(theme, 'gray1')};
+
         width: 100%;
         box-sizing: border-box;
         padding: 0 calc(15px + 1em) 0 15px;
@@ -37,6 +58,8 @@ const selectStyle =
         overflow: hidden;
 
         & > input.hidden-input {
+          color: inherit;
+          background: inherit;
           pointer-events: none;
           cursor: pointer;
           box-sizing: border-box;
@@ -55,7 +78,9 @@ const selectStyle =
           position: absolute;
           top: 50%;
           right: 15px;
-          fill: ${getColor(theme, 'gray7')};
+          fill: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray7')
+            : getColor(theme, 'gray7')};
           transform: translateY(-50%);
         }
 
@@ -63,13 +88,21 @@ const selectStyle =
         &:active,
         &:hover {
           border-color: ${primaryColor};
-          background: ${getColor(theme, 'gray1')};
-          box-shadow: 0 0 8px 2px rgb(0 0 0 / 12%);
+          background: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray13')
+            : getColor(theme, 'gray1')};
+          box-shadow: 0 0 8px 2px
+            ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray13')
+              : `${getColor(theme, 'gray13')}1f`};
         }
       }
 
       // Options
       & ul.option-list {
+        color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray1')
+          : getColor(theme, 'gray13')};
         max-height: 50vh;
         overflow: scroll;
         margin: 0;
@@ -80,11 +113,16 @@ const selectStyle =
         left: 0;
         right: 0;
         opacity: 1;
-        background-color: ${getColor(theme, 'gray1')};
+        background-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray13')
+          : getColor(theme, 'gray1')};
         transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         transform: translateY(10px);
-        box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
-          0 9px 28px 8px rgb(0 0 0 / 5%);
+        box-shadow: ${theme.mode === ThemeMode.DARK
+          ? `0 3px 16px -4px ${getColor(theme, 'gray13')}`
+          : `0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
+          0 9px 28px 8px rgb(0 0 0 / 5%)`};
+
         z-index: 1;
 
         &::before {
@@ -133,9 +171,15 @@ const selectStyle =
         return css`
           & > div.input-box {
             cursor: not-allowed;
-            color: ${getColor(theme, 'gray6')} !important;
-            background: ${getColor(theme, 'gray3')} !important;
-            border-color: ${getColor(theme, 'gray5')} !important;
+            color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray8')
+              : getColor(theme, 'gray6')} !important;
+            background: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray11')
+              : getColor(theme, 'gray3')} !important;
+            border-color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray9')
+              : getColor(theme, 'gray5')} !important;
             text-shadow: none !important;
             box-shadow: none !important;
 
@@ -183,7 +227,9 @@ export const optionListStyle =
       padding: 4px 15px;
 
       &:hover {
-        background-color: ${getColor(theme, 'gray3')};
+        background-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray11')
+          : getColor(theme, 'gray3')};
       }
       &.selected {
         font-weight: 600;

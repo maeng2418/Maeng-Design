@@ -22,11 +22,28 @@ export const dateRangePickerStyle =
         padding: 0;
         position: relative;
         cursor: pointer;
-        color: ${active ? getColor(theme, 'gray6') : getColor(theme, 'gray10')};
-        border: 1px solid ${active ? primaryColor : getColor(theme, 'gray5')};
+        color: ${active
+          ? theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray8')
+            : getColor(theme, 'gray6')
+          : theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray4')
+          : getColor(theme, 'gray10')};
+        border: 1px solid
+          ${active
+            ? primaryColor
+            : theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray9')
+            : getColor(theme, 'gray5')};
         border-radius: 2px;
-        box-shadow: ${active ? '0 0 8px 2px rgb(0 0 0 / 12%)' : 'none'};
-        background: ${getColor(theme, 'gray1')};
+        box-shadow: ${active
+          ? `0 0 8px 2px ${
+              theme.mode === ThemeMode.DARK ? getColor(theme, 'gray13') : 'rgb(0 0 0 / 12%)'
+            }`
+          : 'none'};
+        background: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray13')
+          : getColor(theme, 'gray1')};
         width: 100%;
         box-sizing: border-box;
         outline: none;
@@ -45,6 +62,8 @@ export const dateRangePickerStyle =
           height: 100%;
           padding: 0 15px;
           input {
+            color: inherit;
+            background: inherit;
             width: 100%;
             pointer-events: none;
             cursor: pointer;
@@ -70,7 +89,9 @@ export const dateRangePickerStyle =
           &.active,
           &:hover {
             border-bottom: 1px solid ${primaryColor};
-            background: ${getColor(theme, 'gray1')};
+            background: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray13')
+              : getColor(theme, 'gray1')};
 
             svg.ic-calendar-outlined {
               fill: ${primaryColor};
@@ -90,8 +111,11 @@ export const dateRangePickerStyle =
         &.input-box:active,
         &.input-box:hover {
           border-color: ${primaryColor};
-          background: ${getColor(theme, 'gray1')};
-          box-shadow: 0 0 8px 2px rgb(0 0 0 / 12%);
+          background: ${theme.mode === ThemeMode.DARK
+            ? getColor(theme, 'gray13')
+            : getColor(theme, 'gray1')};
+          box-shadow: 0 0 8px 2px
+            ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray13') : 'rgb(0 0 0 / 12%'};
         }
       }
     `;
@@ -129,9 +153,15 @@ export const dateRangePickerStyle =
         return css`
           &.date-range-picker div.input-box {
             cursor: not-allowed;
-            color: ${getColor(theme, 'gray6')};
-            background: ${getColor(theme, 'gray3')};
-            border-color: ${getColor(theme, 'gray5')};
+            color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray8')
+              : getColor(theme, 'gray6')};
+            background: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray11')
+              : getColor(theme, 'gray3')};
+            border-color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray9')
+              : getColor(theme, 'gray5')};
             text-shadow: none;
             box-shadow: none;
 
@@ -144,7 +174,9 @@ export const dateRangePickerStyle =
               &:focus,
               &:active,
               &:hover {
-                background: ${getColor(theme, 'gray3')};
+                background: ${theme.mode === ThemeMode.DARK
+                  ? getColor(theme, 'gray11')
+                  : getColor(theme, 'gray3')};
                 border: none;
                 box-shadow: none !important;
                 svg.ic-calendar-outlined {
@@ -156,8 +188,12 @@ export const dateRangePickerStyle =
             &.input-box:focus,
             &.input-box:active,
             &.input-box:hover {
-              background: ${getColor(theme, 'gray3')};
-              border-color: ${getColor(theme, 'gray5')};
+              background: ${theme.mode === ThemeMode.DARK
+                ? getColor(theme, 'gray11')
+                : getColor(theme, 'gray3')};
+              border-color: ${theme.mode === ThemeMode.DARK
+                ? getColor(theme, 'gray9')
+                : getColor(theme, 'gray5')};
               box-shadow: none !important;
             }
           }
@@ -174,10 +210,14 @@ export const rangeCalendarContainerStyle = (
   width: 560px;
   overflow: hidden;
   position: absolute;
-  background: ${getColor(theme, 'gray1')};
+  background: ${theme.mode === ThemeMode.DARK
+    ? getColor(theme, 'gray13')
+    : getColor(theme, 'gray1')};
   border-radius: 2px;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+  box-shadow: ${theme.mode === ThemeMode.DARK
+    ? `0 3px 16px -4px ${getColor(theme, 'gray13')}`
+    : '0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d'};
   transform: translateY(10px);
   z-index: 1;
 `;
@@ -196,7 +236,12 @@ export const rangeCalendarStyle =
         padding: 0;
         border-radius: 2px;
         overflow: hidden;
-        background: ${getColor(theme, 'gray1')};
+        color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray1')
+          : getColor(theme, 'gray13')};
+        background: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray13')
+          : getColor(theme, 'gray1')};
         border-radius: 2px;
         transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         z-index: 1;
@@ -233,8 +278,9 @@ export const rangeCalendarStyle =
             cursor: pointer;
             width: 16px;
             height: 16px;
-
-            fill: ${getColor(theme, 'gray6')};
+            fill: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray8')
+              : getColor(theme, 'gray6')};
 
             &:hover {
               fill: ${primaryColor};

@@ -22,7 +22,10 @@ const createStyle =
       cursor: pointer;
       transition: all 0.2s;
       user-select: none;
-      background-color: ${getColor(theme, 'gray6')};
+      background-color: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray8')
+        : getColor(theme, 'gray6')};
+
       & .handle {
         position: absolute;
         top: 2px;
@@ -34,7 +37,9 @@ const createStyle =
           position: absolute;
           inset: 0;
           background-color: ${getColor(theme, 'gray1')};
-          box-shadow: 0 2px 4px #00230b33;
+
+          box-shadow: 0 2px 4px
+            ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray13') : '#00230b33'};
           transition: all 0.2s ease-in-out;
         }
       }

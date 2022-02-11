@@ -1,5 +1,7 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
 import { ChangeEvent } from 'react';
+import { useDarkMode } from 'storybook-dark-mode';
+import { ThemeMode, ThemeProvider } from '../../../styles';
 import Checkbox, { CheckboxProps } from './Checkbox';
 
 export default {
@@ -11,7 +13,11 @@ const Template: Story = (args) => {
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.checked);
   };
-  return <Checkbox {...args} onChange={onChange} />;
+  return (
+    <ThemeProvider theme={{ mode: useDarkMode() ? ThemeMode.DARK : ThemeMode.LIGHT }}>
+      <Checkbox {...args} onChange={onChange} />
+    </ThemeProvider>
+  );
 };
 
 export const DefaultCheckbox = Template.bind({});

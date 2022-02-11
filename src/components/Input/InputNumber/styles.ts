@@ -23,8 +23,14 @@ const createStyle =
       outline: none;
       font-weight: 400;
       letter-spacing: 1px;
-      background-color: #fff;
-      border: 1px solid ${getColor(theme, 'gray5')};
+      color: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray1')
+        : getColor(theme, 'gray13')};
+      background-color: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray13')
+        : getColor(theme, 'gray1')};
+      border: 1px solid
+        ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray9') : getColor(theme, 'gray5')};
       border-radius: 2px;
       text-overflow: ellipsis;
       line-height: 1.5715;
@@ -37,9 +43,15 @@ const createStyle =
       }
 
       &:disabled {
-        color: ${getColor(theme, 'gray6')} !important;
-        background-color: ${getColor(theme, 'gray3')} !important;
-        border-color: ${getColor(theme, 'gray5')} !important;
+        color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray8')
+          : getColor(theme, 'gray6')} !important;
+        background-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray11')
+          : getColor(theme, 'gray3')} !important;
+        border-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray9')
+          : getColor(theme, 'gray5')} !important;
         box-shadow: none !important;
         cursor: not-allowed;
       }
@@ -93,9 +105,15 @@ const createStyle =
       }
 
       &.disabled {
-        color: ${getColor(theme, 'gray6')} !important;
-        background-color: ${getColor(theme, 'gray3')} !important;
-        border-color: ${getColor(theme, 'gray5')} !important;
+        color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray8')
+          : getColor(theme, 'gray6')} !important;
+        background-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray11')
+          : getColor(theme, 'gray3')} !important;
+        border-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray9')
+          : getColor(theme, 'gray5')} !important;
         box-shadow: none !important;
         cursor: not-allowed;
       }
@@ -110,6 +128,8 @@ const createStyle =
           border: none;
           outline: none;
           font-size: inherit;
+          color: inherit;
+          background: inherit;
         }
 
         &.disabled {
@@ -144,7 +164,8 @@ const createStyle =
             flex-direction: column;
             height: 100%;
             width: 22px;
-            border-left: 1px solid ${getColor(theme, 'gray5')};
+            border-left: 1px solid
+              ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray9') : getColor(theme, 'gray5')};
             button {
               display: flex;
               align-items: center;
@@ -158,12 +179,17 @@ const createStyle =
               border: none;
               color: ${getColor(theme, 'gray7')};
               &:first-of-type {
-                border-bottom: 1px solid ${getColor(theme, 'gray5')};
+                border-bottom: 1px solid
+                  ${theme.mode === ThemeMode.DARK
+                    ? getColor(theme, 'gray9')
+                    : getColor(theme, 'gray5')};
               }
 
               &:active,
               &:hover {
-                background: ${getColor(theme, 'gray3')};
+                background: ${theme.mode === ThemeMode.DARK
+                  ? getColor(theme, 'gray11')
+                  : getColor(theme, 'gray3')};
                 color: ${primaryColor};
               }
             }

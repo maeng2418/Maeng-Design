@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, Interpolation, jsx, Theme } from '@emotion/react';
-import { getColor, ThemeMode, Typography } from 'maeng-design';
+import { getColor, Theme as MaengTheme, ThemeMode, Typography } from 'maeng-design';
 import React from 'react';
 
 const { Title, Paragraph, Text } = Typography;
@@ -21,15 +21,19 @@ const Intro: React.FC = () => {
 
 const introStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => css`
   h2.intro-title mark {
+    color: inherit;
     position: relative;
     background: none;
+    z-index: 1;
     &::before {
       content: '';
       position: absolute;
       bottom: 0;
       width: 100%;
       height: 30%;
-      background: ${getColor(theme, 'magenta2')};
+      background: ${(theme as MaengTheme).mode === ThemeMode.DARK
+        ? getColor(theme, 'magenta5')
+        : getColor(theme, 'magenta2')};
       z-index: -1;
     }
   }

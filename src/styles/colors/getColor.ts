@@ -14,11 +14,13 @@ const getColor: GetColorType = (
   theme = {
     mode: ThemeMode.LIGHT,
   },
-  color = 'gray13',
+  color,
   disabled = false,
   disabledColor = 'gray5',
 ) => {
   const mode = theme.mode || ThemeMode.LIGHT;
+  if (!color && theme.mode === ThemeMode.LIGHT) color = 'gray13';
+  if (!color && theme.mode === ThemeMode.DARK) color = 'gray1';
   if (mode === ThemeMode.DARK && !disabled) return darkColor[color as DarkColorType];
   if (mode === ThemeMode.LIGHT && !disabled) return lightColor[color as LightColorType];
   if (mode === ThemeMode.DARK && disabled) return darkColor[disabledColor as DarkColorType];

@@ -71,6 +71,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
       (e) => {
         e.preventDefault();
         e.stopPropagation();
+        if (disabled) return;
         const filteredOptions = selectedOption?.filter(
           (selectedItem) => selectedItem.props.value !== child.props.value,
         );
@@ -82,7 +83,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
         onChange && onChange(filteredOptions?.map((child) => child.props.value));
       },
-    [onChange, selectedOption],
+    [disabled, onChange, selectedOption],
   );
 
   const onPreventMouseDownEvent = useCallback((e: MouseEvent) => {

@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, Interpolation, jsx, Theme } from '@emotion/react';
-import { getColor, Grid, ThemeMode, Typography } from 'maeng-design';
+import { getColor, Grid, Theme as MaengTheme, ThemeMode, Typography } from 'maeng-design';
 import React from 'react';
 
 const { Title } = Typography;
@@ -70,16 +70,23 @@ const conceptStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<T
     div[class*='row-box'] {
       display: flex;
       justify-content: center;
-      background: ${getColor(theme, 'gray3')};
+      background: ${(theme as MaengTheme).mode === ThemeMode.DARK
+        ? getColor(theme, 'gray11')
+        : getColor(theme, 'gray3')};
+
       margin-bottom: 16px;
       div.col-box {
         text-align: center;
         padding: 14px 16px;
-        color: ${getColor(theme, 'gray6')};
+        color: ${(theme as MaengTheme).mode === ThemeMode.DARK
+          ? getColor(theme, 'gray8')
+          : getColor(theme, 'gray6')};
       }
       div.col-box.filled {
         background: ${getColor(theme, 'magenta5')}B3;
-        color: ${getColor(theme, 'gray1')};
+        color: ${(theme as MaengTheme).mode === ThemeMode.DARK
+          ? getColor(theme, 'gray13')
+          : getColor(theme, 'gray1')};
       }
     }
   }

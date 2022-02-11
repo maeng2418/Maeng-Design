@@ -1,7 +1,8 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, Global, jsx } from '@emotion/react';
-import React from 'react';
+import { ThemeMode, ThemeProvider } from 'maeng-design';
+import React, { MouseEvent, useCallback, useState } from 'react';
 import globalStyle from '../../../styles/globals';
 import Footer from './Footer';
 import Header from './Header';
@@ -15,11 +16,18 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ title, children, className }) => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const onToggleDarkMode = useCallback((e: MouseEvent) => {
+    e.preventDefault();
+    setDarkMode((prev) => !prev);
+  }, []);
+
   return (
-    <React.Fragment>
+    <ThemeProvider theme={{ mode: darkMode ? ThemeMode.DARK : ThemeMode.LIGHT }}>
       <SEO title={title} />
       <Global styles={globalStyle} />
-      <Header />
+      <Header onSetDarkMode={onToggleDarkMode} />
       <main css={mainStyles}>
         <Nav />
         <section className={className} css={sectionStyles}>
@@ -27,7 +35,7 @@ const Layout: React.FC<LayoutProps> = ({ title, children, className }) => {
         </section>
       </main>
       <Footer />
-    </React.Fragment>
+    </ThemeProvider>
   );
 };
 

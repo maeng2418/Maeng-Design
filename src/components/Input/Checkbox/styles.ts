@@ -12,6 +12,9 @@ const createStyle =
     // color
     const primaryColor = getColor(theme, color);
     const defaultStyle = css`
+      color: ${theme.mode === ThemeMode.DARK
+        ? getColor(theme, 'gray1')
+        : getColor(theme, 'gray13')};
       position: relative;
       box-sizing: border-box;
       margin: 0;
@@ -38,8 +41,11 @@ const createStyle =
         width: 16px;
         height: 16px;
         direction: ltr;
-        border: 1px solid ${getColor(theme, 'gray5')};
-        background-color: ${getColor(theme, 'gray1')};
+        border: 1px solid
+          ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray9') : getColor(theme, 'gray5')};
+        background-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray13')
+          : getColor(theme, 'gray1')};
         border-radius: 2px;
         border-collapse: separate;
         transition: all 0.3s;
@@ -52,7 +58,8 @@ const createStyle =
           box-sizing: border-box;
           position: absolute;
           display: table;
-          border: 2px solid ${getColor(theme, 'gray1')};
+          border: 2px solid
+            ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray13') : getColor(theme, 'gray1')};
           border-top: 0;
           border-left: 0;
           transform: rotate(45deg) scale(1) translate(-50%, -50%);
@@ -92,19 +99,28 @@ const createStyle =
             cursor: not-allowed;
           }
           .checkbox {
-            background-color: ${getColor(theme, 'gray3')};
-            border-color: ${getColor(theme, 'gray5')};
+            background-color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray11')
+              : getColor(theme, 'gray3')};
+            border-color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray9')
+              : getColor(theme, 'gray5')};
             cursor: not-allowed;
 
             &::after {
-              border: 2px solid ${getColor(theme, 'gray6')};
+              border: 2px solid
+                ${theme.mode === ThemeMode.DARK
+                  ? getColor(theme, 'gray8')
+                  : getColor(theme, 'gray6')};
               border-top: 0;
               border-left: 0;
               ${!checked && `border: none;`}
             }
           }
           .label {
-            color: ${getColor(theme, 'gray6')};
+            color: ${theme.mode === ThemeMode.DARK
+              ? getColor(theme, 'gray8')
+              : getColor(theme, 'gray6')};
             cursor: not-allowed;
           }
         `;
