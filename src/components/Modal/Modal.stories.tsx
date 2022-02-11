@@ -1,5 +1,7 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
 import { useState } from 'react';
+import { useDarkMode } from 'storybook-dark-mode';
+import { ThemeMode, ThemeProvider } from '../../styles';
 import Button from '../Button';
 import Modal, { ModalProps } from './Modal';
 
@@ -20,7 +22,7 @@ const Template: Story = (args) => {
   };
 
   return (
-    <>
+    <ThemeProvider theme={{ mode: useDarkMode() ? ThemeMode.DARK : ThemeMode.LIGHT }}>
       <Button onClick={onOpen}>클릭!</Button>
       <Modal
         {...args}
@@ -30,7 +32,7 @@ const Template: Story = (args) => {
         onClose={onClose}
         onClickBackground={onClose}
       ></Modal>
-    </>
+    </ThemeProvider>
   );
 };
 

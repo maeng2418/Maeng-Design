@@ -20,7 +20,12 @@ const createStyle =
         transform: translate(-50%, -50%);
         display: flex;
         flex-direction: column;
-        background: ${getColor(theme, 'gray1')};
+        color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray1')
+          : getColor(theme, 'gray13')};
+        background: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray13')
+          : getColor(theme, 'gray1')};
         border-radius: 2px;
         width: ${sizeTranslator(width)};
         max-width: calc(100vw - 32px);
@@ -30,7 +35,8 @@ const createStyle =
           align-items: center;
           justify-content: space-between;
           padding: 16px 24px;
-          border-bottom: 1px solid ${getColor(theme, 'gray4')};
+          border-bottom: 1px solid
+            ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray10') : getColor(theme, 'gray4')};
           h3 {
             padding: 0;
             margin: 0;
@@ -47,7 +53,8 @@ const createStyle =
           padding: 10px 16px;
           text-align: right;
           background: 0 0;
-          border-top: 1px solid ${getColor(theme, 'gray4')};
+          border-top: 1px solid
+            ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray10') : getColor(theme, 'gray4')};
           border-radius: 0 0 2px 2px;
 
           & button {
@@ -61,7 +68,9 @@ const createStyle =
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: ${getColor(theme, 'gray13')};
+        background-color: ${theme.mode === ThemeMode.DARK
+          ? getColor(theme, 'gray1')
+          : getColor(theme, 'gray13')};
         opacity: 0.3;
         z-index: -1;
       }
