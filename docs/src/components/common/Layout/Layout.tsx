@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { css, Global, jsx } from '@emotion/react';
 import { ThemeMode, ThemeProvider } from 'maeng-design';
-import React, { MouseEvent, useCallback, useState } from 'react';
+import React, { MouseEvent, useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import globalStyle from '../../../styles/globals';
 import Footer from './Footer';
 import Header from './Header';
@@ -17,6 +17,15 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ title, children, className }) => {
   const [darkMode, setDarkMode] = useState(false);
+
+  useLayoutEffect(() => {
+    if (typeof window !== 'undefined')
+      setDarkMode(localStorage.getItem('theme-ui-color-mode') === 'dark');
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('theme-ui-color-mode', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
 
   const onToggleDarkMode = useCallback((e: MouseEvent) => {
     e.preventDefault();

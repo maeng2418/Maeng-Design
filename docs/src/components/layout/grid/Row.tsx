@@ -70,9 +70,7 @@ const rowStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme
     line-height: 2;
   }
   div.example {
-    color: ${(theme as MaengTheme).mode === ThemeMode.DARK
-      ? getColor(theme, 'gray13')
-      : getColor(theme, 'gray1')};
+    color: ${getColor(theme, 'gray1')};
 
     margin-top: 24px;
     margin-bottom: 24px;

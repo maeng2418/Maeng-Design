@@ -50,9 +50,7 @@ const gridStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Them
   }
   div.example,
   section.example {
-    color: ${(theme as MaengTheme).mode === ThemeMode.DARK
-      ? getColor(theme, 'gray13')
-      : getColor(theme, 'gray1')};
+    color: ${getColor(theme, 'gray1')};
     background: ${getColor(theme, 'magenta5')}B3;
     padding: 14px 16px;
     margin-top: 24px;

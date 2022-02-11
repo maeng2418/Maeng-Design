@@ -78,15 +78,11 @@ const conceptStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<T
       div.col-box {
         text-align: center;
         padding: 14px 16px;
-        color: ${(theme as MaengTheme).mode === ThemeMode.DARK
-          ? getColor(theme, 'gray8')
-          : getColor(theme, 'gray6')};
+        color: ${getColor(theme, 'gray7')};
       }
       div.col-box.filled {
         background: ${getColor(theme, 'magenta5')}B3;
-        color: ${(theme as MaengTheme).mode === ThemeMode.DARK
-          ? getColor(theme, 'gray13')
-          : getColor(theme, 'gray1')};
+        color: ${getColor(theme, 'gray1')};
       }
     }
   }
