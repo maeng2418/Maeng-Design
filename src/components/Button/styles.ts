@@ -202,9 +202,7 @@ const createStyle =
           &:active {
             color: ${primaryColor};
             border-color: transparent;
-            background: ${theme.mode === ThemeMode.DARK
-              ? getColor(theme, 'gray1')
-              : getColor(theme, 'gray13')};
+            background: 0 0;
             box-shadow: none;
             text-decoration: none;
           }
