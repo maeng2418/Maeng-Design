@@ -99,6 +99,10 @@ const sectionStyles = css`
   & > article {
     margin-bottom: 32px;
   }
+
+  @media screen and (max-width: 576px) {
+    padding: 0 23px 16px;
+  }
 `;
 
 const menuBackground = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => css`
