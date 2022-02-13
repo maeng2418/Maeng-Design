@@ -24,7 +24,7 @@ const Mode: React.FC = () => {
         </Text>
         <Grid className="example">
           <Row gutter={32}>
-            <Col xs={24} md={12}>
+            <Col xs={24} md={24} lg={24} xl={12}>
               {/* horizontal */}
               <Menu>
                 <ItemGroup
@@ -84,7 +84,7 @@ const Mode: React.FC = () => {
                 </ItemGroup>
               </Menu>
             </Col>
-            <Col xs={24} md={12}>
+            <Col xs={24} md={24} lg={24} xl={12}>
               {/* vertical */}
               <Menu mode="vertical">
                 <ItemGroup
@@ -201,6 +201,18 @@ const modeStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Them
     pre {
       max-height: 500px;
       overflow: auto;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .row {
+      overflow: auto;
+      .col {
+        display: flex;
+        flex: 0 0 auto;
+        max-width: inherit;
+        height: fit-content;
+      }
     }
   }
 `;

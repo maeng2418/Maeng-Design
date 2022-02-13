@@ -25,62 +25,67 @@ export interface TableProps {
 
 const Table: React.FC<TableProps> = ({ columns, data, className = '' }) => {
   return (
-    <table className={className} css={tableStyle}>
-      <thead className="header">
-        <tr>
-          {columns.map(({ title, dataIndex, xs, sm, md, lg, xl, xxl }) => (
-            <th key={dataIndex} className={dataIndex} css={colStyle({ xs, sm, md, lg, xl, xxl })}>
-              {title}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody className="body">
-        {data.map((v, idx) => (
-          <tr key={idx}>
-            {columns.map(
-              ({ className = '', css, render, dataIndex, align, xs, sm, md, lg, xl, xxl }) => (
-                <td
-                  key={dataIndex}
-                  className={className}
-                  css={[colStyle({ align, xs, sm, md, lg, xl, xxl }), css]}
-                >
-                  {render ? render(v[dataIndex]) : v[dataIndex]}
-                </td>
-              ),
-            )}
+    <div css={tableStyle}>
+      <table className={className}>
+        <thead className="header">
+          <tr>
+            {columns.map(({ title, dataIndex, xs, sm, md, lg, xl, xxl }) => (
+              <th key={dataIndex} className={dataIndex} css={colStyle({ xs, sm, md, lg, xl, xxl })}>
+                {title}
+              </th>
+            ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody className="body">
+          {data.map((v, idx) => (
+            <tr key={idx}>
+              {columns.map(
+                ({ className = '', css, render, dataIndex, align, xs, sm, md, lg, xl, xxl }) => (
+                  <td
+                    key={dataIndex}
+                    className={className}
+                    css={[colStyle({ align, xs, sm, md, lg, xl, xxl }), css]}
+                  >
+                    {render ? render(v[dataIndex]) : v[dataIndex]}
+                  </td>
+                ),
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
 const tableStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme> => css`
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid
-    ${(theme as MaengTheme).mode === ThemeMode.DARK
-      ? getColor(theme, 'gray10')
-      : getColor(theme, 'gray4')};
-  thead.header {
-    color: ${(theme as MaengTheme).mode === ThemeMode.DARK
-      ? getColor(theme, 'gray6')
-      : getColor(theme, 'gray8')};
-    background: ${(theme as MaengTheme).mode === ThemeMode.DARK
-      ? getColor(theme, 'gray11')
-      : getColor(theme, 'gray3')};
-
-    tr th {
-      text-align: center;
-      font-weight: 500;
-    }
-  }
-  tbody.body tr {
-    border-bottom: 1px solid
+  overflow: auto;
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid
       ${(theme as MaengTheme).mode === ThemeMode.DARK
         ? getColor(theme, 'gray10')
         : getColor(theme, 'gray4')};
+    thead.header {
+      color: ${(theme as MaengTheme).mode === ThemeMode.DARK
+        ? getColor(theme, 'gray6')
+        : getColor(theme, 'gray8')};
+      background: ${(theme as MaengTheme).mode === ThemeMode.DARK
+        ? getColor(theme, 'gray11')
+        : getColor(theme, 'gray3')};
+
+      tr th {
+        text-align: center;
+        font-weight: 500;
+      }
+    }
+    tbody.body tr {
+      border-bottom: 1px solid
+        ${(theme as MaengTheme).mode === ThemeMode.DARK
+          ? getColor(theme, 'gray10')
+          : getColor(theme, 'gray4')};
+    }
   }
 `;
 

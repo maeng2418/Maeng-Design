@@ -124,6 +124,7 @@ const apiStyle = css`
     flex-direction: column;
     line-height: 2;
     ul {
+      overflow: auto;
       margin-top: 10px;
       padding-left: 24px;
       li {

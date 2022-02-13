@@ -13,11 +13,21 @@ const Level: React.FC = () => {
         <Title level={4}>Title</Title>
         <Text className="description">타이틀은 1부터 5까지 총 5가지의 level이 존재합니다.</Text>
         <div className="example">
-          <Title level={1}>h1. Typography Title</Title>
-          <Title level={2}>h2. Typography Title</Title>
-          <Title level={3}>h3. Typography Title</Title>
-          <Title level={4}>h4. Typography Title</Title>
-          <Title level={5}>h5. Typography Title</Title>
+          <Title ellipsis level={1}>
+            h1. Typography Title
+          </Title>
+          <Title ellipsis level={2}>
+            h2. Typography Title
+          </Title>
+          <Title ellipsis level={3}>
+            h3. Typography Title
+          </Title>
+          <Title ellipsis level={4}>
+            h4. Typography Title
+          </Title>
+          <Title ellipsis level={5}>
+            h5. Typography Title
+          </Title>
         </div>
         <Paragraph className="code" code={{ language: 'javascript' }}>
           {`import React from 'react';

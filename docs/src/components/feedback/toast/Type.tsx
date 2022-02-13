@@ -68,6 +68,7 @@ const typeStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Them
   div.example {
     display: flex;
     align-items: center;
+    flex-flow: row wrap;
     gap: 16px;
     margin-top: 24px;
     margin-bottom: 24px;

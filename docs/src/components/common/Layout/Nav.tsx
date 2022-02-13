@@ -1,15 +1,22 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 import { useLocation } from '@reach/router';
 import { Link } from 'gatsby';
 import { Menu } from 'maeng-design';
 import React from 'react';
 import routes from '../../../assets/routes';
 
-const Nav: React.FC = () => {
+interface NavProps {
+  open: boolean;
+}
+
+const Nav: React.FC<NavProps> = ({ open }) => {
   const { Item, ItemGroup } = Menu;
   const location = useLocation();
 
-  return (
-    <Menu mode={'vertical'} collapsed={false} color="magenta6">
+  return open ? (
+    <Menu mode={'vertical'} collapsed={false} color="magenta6" css={navStyle}>
       {Object.entries(routes).map(([menu, menuInfo]) => {
         const isMenuSelected =
           !!location.pathname.split('/')[1] &&
@@ -34,7 +41,17 @@ const Nav: React.FC = () => {
         );
       })}
     </Menu>
-  );
+  ) : null;
 };
+
+const navStyle = css`
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 999;
+  }
+`;
 
 export default Nav;

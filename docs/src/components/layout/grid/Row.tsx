@@ -79,6 +79,9 @@ const rowStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Theme
       background: ${getColor(theme, 'magenta5')}B3;
       padding: 14px 16px;
       text-align: center;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
   }
 

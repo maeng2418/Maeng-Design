@@ -12,15 +12,15 @@ const Type: React.FC = () => {
       <Typography className="divider-type">
         <Title level={4}>Type</Title>
         <Text className="description">horizontal, vertical 2가지의 type이 존재합니다.</Text>
-        <Grid.Row>
-          <Grid.Col xs={10}>
+        <Grid.Row gutter={16}>
+          <Grid.Col>
             <div className="example">
               <Paragraph>안녕하세요. Maeng Design 개발자 Maeng입니다.</Paragraph>
               <Divider />
               <Paragraph>앞으로 많은 사용 부탁드립니다. 😘</Paragraph>
             </div>
           </Grid.Col>
-          <Grid.Col xs={8}>
+          <Grid.Col>
             <div className="example">
               <Text className="link-1">Maeng</Text>
               <Divider type="vertical" />

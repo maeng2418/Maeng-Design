@@ -17,22 +17,22 @@ const Type: React.FC = () => {
         </Text>
         <Grid className="example">
           <Row gutter={16}>
-            <Col xs={2} className="button-box">
+            <Col className="button-box">
               <Button type={'default'}>Default</Button>
             </Col>
-            <Col xs={2} className="button-box">
+            <Col className="button-box">
               <Button type={'primary'}>Primary</Button>
             </Col>
-            <Col xs={2} className="button-box">
+            <Col className="button-box">
               <Button type={'dashed'}>Dashed</Button>
             </Col>
-            <Col xs={2} className="button-box">
+            <Col className="button-box">
               <Button type={'text'}>Text</Button>
             </Col>
-            <Col xs={2} className="button-box">
+            <Col className="button-box">
               <Button type={'link'}>Link</Button>
             </Col>
-            <Col xs={2} className="button-box">
+            <Col className="button-box">
               <Button type={'outline'}>Outline</Button>
             </Col>
           </Row>
