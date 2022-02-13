@@ -49,6 +49,7 @@ const colorStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<The
   }
   div.example {
     display: flex;
+    flex-flow: row wrap;
     align-items: center;
     gap: 16px;
     margin-top: 24px;

@@ -15,13 +15,13 @@ const Size: React.FC = () => {
         <Text className="description">small, medium, large 3가지의 size가 존재합니다.</Text>
         <Grid className="example">
           <Row gutter={16}>
-            <Col xs={2} className="button-box">
+            <Col className="button-box">
               <Button size={'small'}>Small</Button>
             </Col>
-            <Col xs={2} className="button-box">
+            <Col className="button-box">
               <Button size={'medium'}>Medium</Button>
             </Col>
-            <Col xs={2} className="button-box">
+            <Col className="button-box">
               <Button size={'large'}>Large</Button>
             </Col>
           </Row>

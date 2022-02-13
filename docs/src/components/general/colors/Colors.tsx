@@ -154,9 +154,17 @@ const colorBoxStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<
           }
         }
       }
-      
     }`,
   )}
+
+  @media screen and (max-width: 768px) {
+    span.color,
+    span.color-code {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 `;
 
 export default Colors;

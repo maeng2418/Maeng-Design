@@ -78,6 +78,7 @@ const createStyle =
           // 서브 메뉴 노출
           ul.sub-menu {
             opacity: 1;
+            z-index: 99;
           }
         }
 

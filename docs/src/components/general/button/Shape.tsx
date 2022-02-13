@@ -15,13 +15,13 @@ const Shape: React.FC = () => {
         <Text className="description">default, circle, round 3가지의 shape가 존재합니다.</Text>
         <Grid className="example">
           <Row gutter={16}>
-            <Col xs={2} className="button-box">
+            <Col className="button-box">
               <Button shape={'default'}>Default</Button>
             </Col>
-            <Col xs={2} className="button-box">
+            <Col className="button-box">
               <Button shape={'circle'}>C</Button>
             </Col>
-            <Col xs={2} className="button-box">
+            <Col className="button-box">
               <Button shape={'round'}>Round</Button>
             </Col>
           </Row>

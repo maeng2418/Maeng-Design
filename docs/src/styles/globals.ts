@@ -24,6 +24,7 @@ const globalStyle = (theme: Theme = { mode: ThemeMode.LIGHT }): Interpolation<Th
       display: flex;
       flex-direction: column;
       flex: 1;
+      width: 100%;
     }
   }
 
