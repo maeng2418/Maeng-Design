@@ -84,7 +84,7 @@ const datePickerStyle =
             ? getColor(theme, 'gray13')
             : getColor(theme, 'gray1')};
           box-shadow: 0 0 8px 2px
-            ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray13') : 'rgb(0 0 0 / 12%'};
+            ${theme.mode === ThemeMode.DARK ? getColor(theme, 'gray13') : 'rgb(0 0 0 / 12%)'};
           svg.ic-calendar-outlined {
             fill: ${primaryColor};
           }

@@ -66,7 +66,7 @@ const TitleAPI: React.FC = () => {
         {
           property: 'ellipsis',
           description: '텍스트가 넘칠 때 줄임표 표시할 수 있습니다.',
-          type: 'boolean',
+          type: 'boolean | { rows: number }',
           default: 'false',
         },
         {
