@@ -25,6 +25,7 @@ export { default as Menu } from './Menu';
 export { default as Modal } from './Modal';
 export { default as Select } from './Select';
 export { default as Switch } from './Switch';
+export { default as Table } from './Table';
 export { default as Tag } from './Tag';
 export { ToastMsg, ToastMsgContainer } from './Toast';
 export { default as Typography } from './Typography';
